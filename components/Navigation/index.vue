@@ -41,13 +41,18 @@
 	const page = ref(0)
 	const section = ref(0)
 	
-	let scrolling = false 
 	let triggers = []
-	let open = false
+	let menuOpen = false
+	let navHidden = false
 	let mobileWidth = parseInt(config.theme.screens.m)
 	let navHeight = parseInt(config.theme.height['nav-y'])
-	let lastScrollY = 0
-	let scrollBusy = false
+
+	let scroll = {
+		busy: false,
+		active: false,
+		first: true,
+		y: 0
+	}
 	
 	const {data} = await useAsyncData(() => client.getSingle('navigation'))
 	pages.value = data.value.data.links.map((l,i)=>{
@@ -65,7 +70,7 @@
 		}
 		
 		section.value = link.index
-		scrolling = true
+		scroll.active = true
 		
 		
 		gsap.to(window,{
@@ -73,7 +78,7 @@
 			delay,
 			ease:'power3.inOut',
 			scrollTo:{y:link.id,offsetY},
-			onComplete:()=>(scrolling = false)
+			onComplete:()=>(scroll.active = false)
 		})
 	}
 	
@@ -94,7 +99,7 @@
 				start: 'top 50%',
 				end: 'bottom 50%',
 				onToggle:({isActive})=>{
-					if(isActive && !scrolling){
+					if(isActive && !scroll.active){
 						section.value = s.index
 					}
 				}  
@@ -108,8 +113,8 @@
 	}
 	
 	function toggleMobileNav(){
-		open = !open
-		if(open){
+		menuOpen = !menuOpen
+		if(menuOpen){
 			setTimeout(()=>window.addEventListener('click',toggleMobileNav),100)
 			document.documentElement.classList.add('menu-is-open','no-scroll')
 		} else {
@@ -119,15 +124,24 @@
 	}
 	
 	function handleScroll(){
-		if(scrollBusy || open || scrolling) return
-		scrollBusy = true
+		if(scroll.busy) return
+		if(scroll.first) (scroll.y = window.scrollY, scroll.first = false)
+		scroll.busy = true
 		window.requestAnimationFrame(()=>{
-			window.scrollY > navHeight && window.scrollY > lastScrollY
-			? document.documentElement.classList.add('menu-is-hidden')
-			: document.documentElement.classList.remove('menu-is-hidden')
+
+			let y = window.scrollY
+			let next = scroll.active || y < navHeight ? false 
+					 : Math.abs(y - scroll.y) > 10 ? y > scroll.y 
+					 : navHidden
+		
+			if(navHidden != next){
+				let key = next ? 'add' : 'remove'
+				document.documentElement.classList[key]('nav-is-hidden')
+				navHidden = next
+			}
 			
-			lastScrollY = window.scrollY
-			scrollBusy = false
+			scroll.y = y
+			scroll.busy = false
 		})
 	}
 	
@@ -144,7 +158,6 @@
 	
 	onMounted(()=>{
 		window.addEventListener('scroll',handleScroll)
-		handleScroll()
 	})
 	
 	updatePages()
@@ -355,7 +368,7 @@
 			
 		}
 		
-		.menu-is-hidden #c-nav{
+		.nav-is-hidden #c-nav{
 			transform: translateY(-100%);
 		}
 		

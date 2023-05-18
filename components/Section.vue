@@ -64,7 +64,7 @@
       transition-duration: var(--nav-duration);
     }
     
-    .menu-is-hidden .c-section .c-section-sticky{
+    .nav-is-hidden .c-section .c-section-sticky{
       top:0;
     }
   }
