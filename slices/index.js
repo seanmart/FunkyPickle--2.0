@@ -5,13 +5,15 @@ import Events from './Events';
 import Sponsors from './Sponsors';
 import PageHeader from './PageHeader';
 import Gallery from './Gallery';
+import TextHeader from './TextHeader';
 
 export {
 	Carousel,
 	Events,
 	Sponsors,
 	PageHeader,
-	Gallery
+	Gallery,
+	TextHeader
 };
 
 export const components = {
@@ -19,5 +21,6 @@ export const components = {
 	events: Events,
 	sponsors: Sponsors,
 	page_header:PageHeader,
-	gallery: Gallery
+	gallery: Gallery,
+	text_header:TextHeader
 };

@@ -57,13 +57,20 @@
 	function updateScroll(event,link){
 		event.preventDefault()
 
-		let offsetY = window.innerWidth < mobileWidth ? navHeight : -1
+		let offsetY = -1 
+		let delay = 0 
+		if(window.innerWidth < mobileWidth){
+			offsetY = navHeight 
+			delay = .25
+		}
+		
 		section.value = link.index
 		scrolling = true
 		
 		
 		gsap.to(window,{
 			duration:1,
+			delay,
 			ease:'power3.inOut',
 			scrollTo:{y:link.id,offsetY},
 			onComplete:()=>(scrolling = false)
@@ -342,7 +349,10 @@
 		
 		#c-nav .highlight{
 			transform-origin: center;
-			transform: scaleX(0)
+			transition-duration: var(--nav-duration);
+			transform: scaleX(0);
+			transition-delay: var(--nav-duration);
+			
 		}
 		
 		.menu-is-hidden #c-nav{
@@ -361,7 +371,6 @@
 		
 		.menu-is-open #c-nav{
 			height:100%;
-			transition-duration: .5s;
 		}
 		.menu-is-open #c-nav .nav-anim-item{
 			transition-duration: .5s;
@@ -373,7 +382,6 @@
 		
 		.menu-is-open #c-nav .highlight{
 			transition-delay:calc(var(--delay) * 50ms + 250ms);
-			transition-duration: .5s;
 			transition-property: transform;
 			transform:scaleX(1);
 		}

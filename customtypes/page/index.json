@@ -14,11 +14,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "sponsors": { "type": "SharedSlice" },
-            "carousel": { "type": "SharedSlice" },
             "page_header": { "type": "SharedSlice" },
+            "text_header": { "type": "SharedSlice" },
+            "carousel": { "type": "SharedSlice" },
             "gallery": { "type": "SharedSlice" },
-            "events": { "type": "SharedSlice" }
+            "events": { "type": "SharedSlice" },
+            "sponsors": { "type": "SharedSlice" }
           }
         }
       }

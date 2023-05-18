@@ -9,4 +9,5 @@ export const components = defineSliceZoneComponents({
   gallery: defineAsyncComponent(() => import("./Gallery/index.vue")),
   page_header: defineAsyncComponent(() => import("./PageHeader/index.vue")),
   sponsors: defineAsyncComponent(() => import("./Sponsors/index.vue")),
+  text_header: defineAsyncComponent(() => import("./TextHeader/index.vue")),
 });

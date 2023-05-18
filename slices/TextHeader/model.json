@@ -1,0 +1,32 @@
+{
+  "id": "text_header",
+  "type": "SharedSlice",
+  "name": "TextHeader",
+  "description": "TextHeader",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "hide": {
+          "type": "Boolean",
+          "config": {
+            "label": "",
+            "placeholder_false": "Show",
+            "placeholder_true": "Hide",
+            "default_value": false
+          }
+        },
+        "header": {
+          "type": "Text",
+          "config": { "label": "Header", "placeholder": "" }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

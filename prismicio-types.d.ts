@@ -185,7 +185,8 @@ type PageDocumentDataSlicesSlice =
   | CarouselSlice
   | PageHeaderSlice
   | GallerySlice
-  | EventsSlice;
+  | EventsSlice
+  | TextHeaderSlice;
 /**
  * Page document from Prismic
  *
@@ -618,6 +619,52 @@ export type SponsorsSlice = prismicT.SharedSlice<
   "sponsors",
   SponsorsSliceVariation
 >;
+/**
+ * Primary content in TextHeader → Primary
+ *
+ */
+interface TextHeaderSliceDefaultPrimary {
+  /**
+   * Header field in *TextHeader → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_header.primary.header
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  header: prismicT.KeyTextField;
+}
+/**
+ * Default variation for TextHeader Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextHeaderSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<TextHeaderSliceDefaultPrimary>,
+  never
+>;
+/**
+ * Slice variation for *TextHeader*
+ *
+ */
+type TextHeaderSliceVariation = TextHeaderSliceDefault;
+/**
+ * TextHeader Shared Slice
+ *
+ * - **API ID**: `text_header`
+ * - **Description**: `TextHeader`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextHeaderSlice = prismicT.SharedSlice<
+  "text_header",
+  TextHeaderSliceVariation
+>;
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -662,6 +709,10 @@ declare module "@prismicio/client" {
       SponsorsSliceDefault,
       SponsorsSliceVariation,
       SponsorsSlice,
+      TextHeaderSliceDefaultPrimary,
+      TextHeaderSliceDefault,
+      TextHeaderSliceVariation,
+      TextHeaderSlice,
     };
   }
 }
