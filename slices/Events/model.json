@@ -1,0 +1,50 @@
+{
+  "id": "events",
+  "type": "SharedSlice",
+  "name": "Events",
+  "description": "Events Carousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Events",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": { "label": "Label", "placeholder": "" }
+        },
+        "hide": {
+          "type": "Boolean",
+          "config": {
+            "label": "",
+            "placeholder_false": "Show",
+            "placeholder_true": "Hide",
+            "default_value": false
+          }
+        },
+        "carousel": {
+          "type": "Boolean",
+          "config": {
+            "label": "Display Type",
+            "placeholder_false": "List",
+            "placeholder_true": "Carousel",
+            "default_value": false
+          }
+        }
+      },
+      "items": {
+        "event": {
+          "type": "Link",
+          "config": {
+            "label": "Event Picker",
+            "select": "document",
+            "customtypes": ["event"]
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

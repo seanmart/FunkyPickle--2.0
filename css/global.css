@@ -1,0 +1,44 @@
+html{
+    background: theme('colors.slate.50')
+}
+
+@media (min-width: 600px) {
+    :root {
+      font-size: calc(1rem + ((1vw - 6px) * 0.303));
+      min-height: 0vw;
+    }
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-middle{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-between{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.flex-top{
+    display: flex;
+    justify-content:center;
+    align-items: flex-start;
+}
+
+
+html.no-scroll{
+    overflow:hidden;
+    height:100%;
+}
+
+/* .shadowed{
+    box-shadow: 2px 2px 0px rgba(0,0,0,.05);
+} */

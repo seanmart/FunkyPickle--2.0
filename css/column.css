@@ -1,0 +1,16 @@
+.bordered{
+    position: relative;
+}
+
+.bordered::after{
+    content: '';
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    top:-1px;
+    bottom:0px;
+    right:0px;
+    left: -1px;
+    border-width: 1px;
+    border-color: inherit;
+}

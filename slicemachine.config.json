@@ -1,0 +1,6 @@
+{
+  "apiEndpoint": "https://funky-pickle--v02.prismic.io/api/v2",
+  "repositoryName": "funky-pickle--v02",
+  "adapter": "@slicemachine/adapter-nuxt",
+  "libraries": ["./slices"]
+}

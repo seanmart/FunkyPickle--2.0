@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "overrides": {
+    "vue": "latest"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "slicemachine": "start-slicemachine"
+  },
+  "devDependencies": {
+    "@nuxtjs/prismic": "^3.0.0-rc.5",
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "@slicemachine/adapter-nuxt": "^0.1.2",
+    "netlify-cli": "^15.1.1",
+    "nuxt": "^3.2.2",
+    "slice-machine-ui": "^1.0.3"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.9",
+    "@splidejs/vue-splide": "^0.6.12",
+    "pinia": "^2.0.35"
+  }
+}

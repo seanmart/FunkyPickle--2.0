@@ -1,0 +1,25 @@
+.btn{
+    height: 2.5rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+    border-radius: .1rem;
+    transform: scale(.999);
+    transition: transform .25s, background .25s;
+}
+
+.btn:active{
+    transform: scale(.96);
+}
+
+.btn.bg-fp-pink:hover{
+    background: theme('colors.fp-pink-dark')
+}
+
+.btn-wide{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
