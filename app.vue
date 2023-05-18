@@ -18,12 +18,19 @@
   await store.FETCH()
 
   onMounted(()=>{
-    if(checkClipPath()) document.documentElement.classList.add('has-clip-path')
-    
     let timeout = null
+    let width = window.innerWidth
+    
+    if(checkClipPath()){
+      document.documentElement.classList.add('has-clip-path')
+    }
+    
     window.addEventListener('resize',()=>{
+      if(width == window.innerWidth) return
+      
       timeout && clearTimeout(timeout)
       document.documentElement.classList.add('is-resizing')
+      width = window.innerWidth
       timeout = setTimeout(()=>document.documentElement.classList.remove('is-resizing'),250)
     })
   })

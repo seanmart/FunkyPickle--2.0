@@ -1,5 +1,5 @@
 <template>
-	<nav id="c-nav" class="nav-transition">
+	<nav id="c-nav">
 		<button @click="toggleMobileNav" class="nav-button">
 			menu
 		</button>
