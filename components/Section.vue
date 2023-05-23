@@ -15,17 +15,12 @@
 </template>
 
 <script setup>
-    import { useLoadingStore } from '@/stores/loading'
-    const store = useLoadingStore()
     
     const props = defineProps({
       reverse:Boolean,
       header:String,
       contentClass:[String,Object,Array]
     })
-    
-    store.LOADING(true)
-    onMounted(()=>store.LOADING(false))
     
 </script>
 

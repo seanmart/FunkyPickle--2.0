@@ -39,6 +39,11 @@ html.no-scroll{
     height:100%;
 }
 
+.disabled{
+    pointer-events: none;
+    opacity: .25;
+}
+
 /* .shadowed{
     box-shadow: 2px 2px 0px rgba(0,0,0,.05);
 } */

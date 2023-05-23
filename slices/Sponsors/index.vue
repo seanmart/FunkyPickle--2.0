@@ -1,5 +1,5 @@
 <template>
-  <Section :id="id" :header="primary.label" class="s-sponsors">
+  <Section :id="id" :header="primary.label" class="s-sponsors" :data-section="primary.label">
     <div class="flex flex-wrap">
       <template v-for="item,i in items">
       <div v-if="item.logo.url" :key="i" class="w-1/2 d:w-1/4 h-7 flex-center bordered border-outline bg-white">
@@ -11,9 +11,14 @@
 </template>
 
 <script setup>
+  import { useStore } from '@/stores'
   
+  const store = useStore()
   const props = defineProps(['slice','index'])
   const {primary,items,id} = props.slice
+  
+  store.LOADING(true)
+  onMounted(()=>store.LOADING(false))
   
 </script>
 

@@ -1,21 +1,21 @@
 <template>
-	<div class="flex flex-col s:flex-row bordered border-outline shadowed">
-		<Splide ref="images" class="w-full s:w-1/3 d:w-1/2 bg-slate-100 h-20 d:h-24" :options="imageOptions" :has-track="false">
-		  <SplideTrack class="h-full">
-			<SplideSlide v-for="event,i in events" :key="i" class="h-full flex-center relative select-none">
-			  <Media class="absolute inset-0" :src="event.background.url" />
-			  <img :src="event.logo.url" class="h-auto w-auto max-w-3/4 d:max-w-3/5 max-h-3/5 relative z-1">
+	<div :class="carousel.container">
+		<Splide ref="images" :class="carousel.images.container" :options="imageOptions" :has-track="false">
+		  <SplideTrack :class="carousel.images.track">
+			<SplideSlide v-for="event,i in events" :key="i" :class="carousel.images.slide">
+			  <Media :class="carousel.images.media" :src="event.background.url" />
+			  <img :src="event.logo.url" :class="carousel.images.logo">
 			</SplideSlide>
 		  </SplideTrack>
 		</Splide>
 		
-		<Splide ref="info" class="w-full s:w-2/3 d:w-1/2 flex flex-col bg-white" :options="infoOptions" :has-track="false">
-		  <SplideTrack class="flex-auto">
-			<SplideSlide class="splide__content flex-middle" v-for="event,i in events" :key="i">
+		<Splide ref="info" :class="carousel.info.container" :options="infoOptions" :has-track="false">
+		  <SplideTrack :class="carousel.info.track">
+			<SplideSlide :class="carousel.info.slide" v-for="event,i in events" :key="i">
 			  <div>
-				<h5 class="font-label text-0.8 text-slate-400 select-none mb-1">{{formatDate(event.start,'mmmm dd, yyyy')}}</h5>
-				<h2 class="font-header text-3 select-none mb-2">{{event.name}}</h2>
-				<nuxt-link class="btn bg-fp-pink text-white font-header font-normal" :to="event.route">View Event</nuxt-link>
+				<h5 :class="text.h5">{{formatDate(event.start,'mmmm dd, yyyy')}}</h5>
+				<h2 :class="text.h2">{{event.name}}</h2>
+				<nuxt-link :class="text.link" :to="event.route">View Event</nuxt-link>
 			  </div>
 			</SplideSlide>
 		  </SplideTrack>
@@ -26,6 +26,7 @@
 
 <script setup>
 	import {formatDate} from '@/helpers'
+	import {carousel,text} from './classes'
 	import { Splide,SplideSlide,SplideTrack } from '@splidejs/vue-splide';
 	
 	const props = defineProps({events:Array})

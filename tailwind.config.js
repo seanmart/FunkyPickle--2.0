@@ -15,12 +15,13 @@ loop(1,99,(i)=>vh[`${i}vh`] = `${i}vh`)
 loop(1,10,(i)=>zIndex[i] = i)
 loop(1,20,(i)=>leading[`${round((i + .5) * .1)}`] = round((i + .5) * .1))
 
+let auto = 'auto'
 let gutters = '5vw'
 let nav = {
     'nav-x':'275px',
     'nav-y':'70px'
 }
-let percents = {
+let fractions = {
     '1/12': '8.333%',
     '1/8': '12.5%',
     '1/6':  '16.666%',
@@ -38,27 +39,29 @@ let percents = {
     'full': '100%'
 }
 
-let flexPercents = {}
-Object.keys(percents).forEach(key => {
-    flexPercents[key] = `0 0 ${percents[key]}`
+let flexfractions = {}
+Object.keys(fractions).forEach(key => {
+    flexfractions[key] = `0 0 ${fractions[key]}`
 })
 
 export default{
     content:[
       './pages/**/*.vue',
       './components/**/*.vue',
+      './components/**/*.js',
       './slices/**/*.vue',
+      './slices/**/*.js'
     ],
     theme:{
         fontSize:{...rem,...px,...vw},
         fontFamily:{header:['Saira Extra Condensed', 'sans-serif']},
-        spacing:{...rem,...px,...vw,...percents,...nav,gutters},
-        width:{...rem,...px,...vw,...percents, ...nav, screen:'100vw',gutters},
-        height:{...rem,...px,...vw,...vh,...percents, ...nav, screen:'100vh',gutters},
-        minWidth:{...rem,...px,...vw,...percents, screen:'100vw'},
-        minHeight:{...rem,...px,...vw,...percents, screen:'100vh'},
-        maxWidth:{...rem,...px,...vw,...percents, screen:'100vw'},
-        maxHeight:{...rem,...px,...vw,...percents, screen:'100vh'},
+        spacing:{...rem,...px,...vw,...fractions,...nav,gutters},
+        width:{...rem,...px,...vw,...fractions, ...nav,gutters,auto,screen:'100vw'},
+        height:{...rem,...px,...vw,...vh,...fractions,...nav,gutters,auto,screen:'100vh'},
+        minWidth:{...rem,...px,...vw,...fractions,auto,screen:'100vw',},
+        minHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
+        maxWidth:{...rem,...px,...vw,...fractions,auto,screen:'100vw'},
+        maxHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
         lineHeight:leading,
         zIndex:{...zIndex},
         screens:{
@@ -80,7 +83,7 @@ export default{
                 'fp-pink-dark':'#E00081'
             },
             fill: ({theme})=>({...theme('colors')}),
-            flex:{...flexPercents}
+            flex:{...flexfractions}
         }
     }
 }

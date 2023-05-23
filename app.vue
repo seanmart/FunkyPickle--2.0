@@ -1,22 +1,16 @@
 <template>
-  <div id="app" class="relative">
+  <div id="app" class="pt-nav-y m:pt-0 m:pl-nav-x">
     <Navigation/>
-    <NuxtPage/>
+    <NuxtPage id="page"/>
     <Footer/>
     <Columns/>
-    <Modal/>
     <section id="transition" class="hidden fixed inset-0 z-9 bg-fp-lime"/>
   </div>
 </template>
 
 <script setup>
-  import {checkClipPath} from '@/helpers'
-  import {usePagesStore} from '@/stores/pages'
-  import {getParams} from '@/helpers'
+  import {checkClipPath,has} from '@/helpers'
   
-  const store = usePagesStore()
-  await store.FETCH()
-
   onMounted(()=>{
     let timeout = null
     let width = window.innerWidth
@@ -27,7 +21,6 @@
     
     window.addEventListener('resize',()=>{
       if(width == window.innerWidth) return
-      
       timeout && clearTimeout(timeout)
       document.documentElement.classList.add('is-resizing')
       width = window.innerWidth
@@ -41,19 +34,4 @@
     transition: none !important;
   }
   
-  #__nuxt{
-    position: relative;
-  }
-  
-  @media screen and (min-width:theme('screens.m')){
-    #__nuxt{
-      padding-left: theme('spacing.nav-x')
-    }
-  }
-  
-  @media screen and (max-width:theme('screens.m-max')){
-    #__nuxt{
-      padding-top: theme('spacing.nav-y')
-    }
-  }
 </style>

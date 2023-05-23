@@ -1,5 +1,5 @@
 <template>
-  <Section :id="id" :header="primary.label" class="s-carousel">
+  <Section :id="id" :header="primary.label" class="s-carousel" :data-section="primary.label">
     <Splide :options="options" class="bg-outline bordered border-outline shadowed" :has-track="false">
       
       <SplideTrack>
@@ -20,20 +20,12 @@
 <script setup>
   import { Splide,SplideSlide,SplideTrack } from '@splidejs/vue-splide';
   import config from '@/tailwind.config.js'
+  import {useStore} from '@/stores'
   
+  const store = useStore()
   const props = defineProps(['slice','index'])
   const {primary,items,id} = props.slice
-  
-  const hasContent = (s)=>{
-    if(s.title) return true 
-    if(s.subtitle) return true 
-    if(s.body.length > 0) return true
-    if(s.link.url) return true
-    return false 
-  }
-  
   const breakpoint = parseInt(config.theme.screens.d)
-  
   const options = {
       perPage: items.length > 1 ? 2 : 1,
       perMove: 1,
@@ -51,6 +43,17 @@
       type: 'slide',
       drag: items.length > 2
   }
+  
+  function hasContent(s){
+    if(s.title) return true 
+    if(s.subtitle) return true 
+    if(s.body.length > 0) return true
+    if(s.link.url) return true
+    return false 
+  }
+  
+  store.LOADING(true)
+  onMounted(()=>store.LOADING(false))
   
 </script>
 

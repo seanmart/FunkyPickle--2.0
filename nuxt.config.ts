@@ -7,7 +7,8 @@ export default defineNuxtConfig({
             script:[
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js'},
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js'},
-                {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js'}
+                {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js'},
+                {src:'https://static.cdn.prismic.io/prismic.js?new=true&repo=funky-pickle--v02',defer:true, async:true}
             ]
         }
     },

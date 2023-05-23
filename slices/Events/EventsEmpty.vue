@@ -1,48 +1,82 @@
 <template>
-	<div class="s-events-empty border-outline bordered bg-white">
-		<div class="flex-center h-24 relative overflow-hidden p-3">
-			<div class="felx auto text-center relative z-1">
-			  <h1 class="font-header text-3">No upcoming events at this time</h1>
-			  <p class="mt-1 text-slate-400">check back soon for updates!</p>
-			</div>
-			<Ball v-for="ball,i in balls" :key="ball" class="w-5 h-5 absolute -top-5" :class="[ball,`ball-${i + 1}`]"/>
+	<div ref="container" class="s-events-empty" :class="[empty.container,{'is-paused':pause}]">
+		<h2 :class="[empty.text,text.h2]">No upcoming events at this time</h2>
+		<h5 :class="[empty.text,text.h5]">check back soon for updates!</h5>
+		<div :class="empty.wrapper">
+			<Ball v-for="ball,i in balls" :key="i" class="s-events-empty--ball" :class="empty.ball" :style="ball"/>
 		</div>
-	 </div>
+	</div>
 </template>
 
 <script setup>
-	const balls = ['fill-fp-lime', 'fill-fp-pink','fill-fp-green','fill-fp-blue','fill-fp-turq']
-	let anims = []
-	let trigger = null
-	const ease = 'none'
-
+	import {randomInt,randomFloat} from '@/helpers'
+	import {empty,text} from './classes'
+	
+	const container = ref(null)
+	const balls = ref([])
+	const pause = ref(false)
+	let count = 10
+	let anim = null
+	
+	
+	for(let i = 0; i < count; i++){
+		let ball = []
+		let rand = randomInt(1,100)
+		
+		//left
+		if (rand < 25){
+			ball.push(`--start-left:-5rem`)
+			ball.push(`--end-left:100%`)
+			ball.push(`--start-top:${randomInt(-10,110)}%`)
+			ball.push(`--end-top:${randomInt(-10,110)}%`)
+		//top	
+		} else if (rand < 51){
+			ball.push(`--start-top:-5rem`)
+			ball.push(`--end-top:100%`)
+			ball.push(`--start-left:${randomInt(-10,110)}%`)
+			ball.push(`--end-left:${randomInt(-10,110)}%`)
+		//right
+		} else if (rand < 76){
+			ball.push(`--start-left:100%`)
+			ball.push(`--end-left:-5rem`)
+			ball.push(`--start-top:${randomInt(-10,110)}%`)
+			ball.push(`--end-top:${randomInt(-10,110)}%`)
+		//bottom
+		} else {
+			ball.push(`--start-top:100%`)
+			ball.push(`--end-top:-5rem`)
+			ball.push(`--start-left:${randomInt(-10,110)}%`)
+			ball.push(`--end-left:${randomInt(-10,110)}%`)
+		}
+		
+		ball.push(`animation-duration:${randomFloat(2,8)}s`)
+		balls.value.push(ball.join(';'))
+	}
+	
 	onMounted(()=>{
-		gsap.set('.s-events-empty .ball-1',{right:'100%'})
-		gsap.set('.s-events-empty .ball-2',{left:'50%'})
-		gsap.set('.s-events-empty .ball-3',{left:'100%',top:'100%'})
-		gsap.set('.s-events-empty .ball-4',{left:'0%',top:'100%'})
-		gsap.set('.s-events-empty .ball-5',{left:'70%'})
-		
-		anims.push(gsap.to('.s-events-empty .ball-1',{duration:2.1,top:'100%',right:'50%',ease,repeat:-1}))
-		anims.push(gsap.to('.s-events-empty .ball-2',{duration:4.5,top:'100%',left:'10%',ease,repeat:-1}))
-		anims.push(gsap.to('.s-events-empty .ball-3',{duration:3.2,top:'-5rem',left:'20%',ease,repeat:-1}))
-		anims.push(gsap.to('.s-events-empty .ball-4',{duration:2.5,top:'-5rem',left:'100%',ease,repeat:-1}))
-		anims.push(gsap.to('.s-events-empty .ball-5',{duration:1.8,top:'100%',left:'50%',ease,repeat:-1}))
-		
-		trigger = ScrollTrigger.create({
-			trigger: '.s-events-empty',
+		anim = ScrollTrigger.create({
+			trigger: container.value,
 			start: 'top bottom',
 			end: 'bottom top',
-			onToggle:({isActive})=>{
-				anims.forEach(anim => isActive ? anim.play() : anim.pause())
-			}
+			onToggle:({isActive})=> (pause.value = !isActive)
 		})
 	})
 	
 	onUnmounted(()=>{
-		anims.forEach(anim => anim.kill())
-		trigger.kill()
+		anim && anim.kill()	
 	})
+	
 </script>
 
-<style scoped></style>
+<style>
+	.s-events-empty--ball{
+		animation-name: glideTopXY;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+	
+	.s-events-empty.is-paused .s-events-empty--ball{
+		animation-play-state: paused;
+	}
+	
+</style>

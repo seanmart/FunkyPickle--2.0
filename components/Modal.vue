@@ -1,12 +1,13 @@
 <template>
-	<div id="modal" class="fixed inset-0 z-10 opacity-0 flex-center" v-if="content">
+	<div id="modal" class="hidden fixed inset-0 z-10" v-if="content">
 		<div class="absolute inset-0 bg-slate-900/80" @click="handleClick"/>
-			
-		<Splide :options="options" class="w-90vw">
-			<SplideSlide class="modal-slide" v-for="item,i in content" :key="i">
-				<Media class="h-full" :src="item.media" :distance="0"/>
-			</SplideSlide>
-		</Splide>
+		<div class="absolute inset-0 flex-center z-1">
+			<Splide :options="options" class="w-90vw">
+				<SplideSlide class="modal-slide" v-for="item,i in content" :key="i">
+					<Media class="h-full" :src="item.media" :distance="0"/>
+				</SplideSlide>
+			</Splide>
+		</div>
 	</div>
 </template>
 
@@ -17,27 +18,24 @@
 	
 	const splide = ref()
 	const modal = useModalStore()
-	const content = ref(null)
-	const {show} = storeToRefs(modal)
+	const {show,content} = storeToRefs(modal)
 	const options = ref({
 			type:'loop',
 			perPage:1
 		})
 	
-	watch(show,(w)=> w ? showModal() : hideModal())
+	watch(show,(shouldShow)=> shouldShow ? showModal() : hideModal())
 	
 	function handleClick(){
 		modal.show = false
 	}
 	
 	function showModal(){
-		options.value.start = modal.index
-		content.value = modal.content
 		document.documentElement.classList.add('no-scroll')
 		
 		nextTick(()=>{
 			gsap.timeline()
-			.set('#modal',{scale:1.1})
+			.set('#modal',{scale:1.1,opacity:0,display:'block'})
 			.to('#modal',{duration:.5, opacity:1, scale:1})
 		})
 	}
