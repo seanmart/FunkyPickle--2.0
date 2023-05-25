@@ -17,11 +17,11 @@ export const links = {
 		wrapper:`mt-10px relative text-30px`
 	},
 	link:{
-		wrapper: 'font-header font-normal w-full h-40px select-none flex items-center px-10px',
+		wrapper: 'font-header font-normal w-full h-45px m:h-40px select-none flex items-center px-10px',
 		label: 'text-ellipsis whitespace-nowrap flex-auto overflow-hidden'
 	},
 	highlight:{
-		container:'top-0 absolute h-40px left-0 right-0 -z-1 t:transition-transform t:duration-300',
+		container:'top-0 absolute h-45px m:h-40px left-0 right-0 -z-1 t:transition-transform t:duration-300',
 		wrapper:'h-full w-full origin-center t:rounded-sm'
 	}
 }

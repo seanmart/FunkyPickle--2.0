@@ -25,23 +25,31 @@
   const store = useStore()
   const props = defineProps(['slice','index'])
   const {primary,items,id} = props.slice
+  
   const options = {
-      perPage: items.length > 1 ? 2 : 1,
+      perPage: items.length > 2 ? 3 : 1,
       perMove: 1,
       gap:1,
-      breakpoints:{
-        [store.units.desktop]:{
-          perPage:1,
-          type: 'loop', 
-          drag: items.length > 1
-        }
-      },
       resetProgress:false,
       autoplay: true,
       rewind:true,
       type: 'slide',
-      drag: items.length > 2
+      drag: items.length == 2 || items.length > 3,
+      breakpoints:{
+        [store.units.wide - 1]:{
+          perPage:items.length > 1 ? 2 : 1,
+          type: 'loop', 
+          drag: items.length > 2
+        },
+        1200:{
+          perPage:1,
+          type: 'loop', 
+          drag: items.length > 1
+        }
+      }
   }
+  
+  console.log(options)
   
   function hasContent(s){
     if(s.title) return true 

@@ -1,3 +1,9 @@
+export const text = {
+	h5:'font-label text-0.8 select-none text-slate-400',
+	h2:'font-header text-2.5 t:text-2.75 d:text-3 select-none my-1',
+	link:'btn bg-fp-pink text-white font-header font-normal'
+}
+
 export const carousel ={
 	container:'flex flex-col m:flex-row bordered border-outline',
 	images:{
@@ -22,6 +28,7 @@ export const list = {
 		logo:'h-auto w-auto max-w-full max-h-3/4 relative z-1'
 	},
 	info:{
+		h2: text.h2.replace('text-2.5','text-2'),
 		container:'flex-auto flex-middle p-2'
 	}
 }
@@ -31,10 +38,4 @@ export const empty = {
 	wrapper:'overflow-hidden absolute inset-0',
 	text: 'relative z-1',
 	ball: 'h-5 w-5 absolute -z-1 fill-fp-lime'
-}
-
-export const text = {
-	h5:'font-label text-0.8 select-none text-slate-400',
-	h2:'font-header text-2.5 t:text-2.75 d:text-3 select-none my-1',
-	link:'btn bg-fp-pink text-white font-header font-normal'
 }

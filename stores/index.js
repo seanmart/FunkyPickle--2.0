@@ -15,7 +15,8 @@ export const useStore = defineStore('main',()=>{
 		navX: parseInt(config.theme.width['nav-x']),
 		mobile: parseInt(config.theme.screens.m),
 		tablet: parseInt(config.theme.screens.t),
-		desktop: parseInt(config.theme.screens.d)
+		desktop: parseInt(config.theme.screens.d),
+		wide: parseInt(config.theme.screens.w)
 	}
 	
 	//ACTIONS

@@ -1,12 +1,12 @@
 <template>
-  <header class="page-header" :class="classes.container" style="--page-header-height:25rem">
-    <div v-if="primary.background.url" class="page-header--media" :class="classes.media.container">
-      <Media :class="classes.media.media" :src="primary.background.url"/>
-    </div>
-    <div class="page-header--content" :class="classes.content.container">
-        <h1 :class="classes.content.h1" v-if="primary.title">
-            <PrismicRichText :field="primary.title"/>
-        </h1>
+  <header class="page-header" :class="classes.container">
+    <div class="page-header--content" :class="classes.wrapper">
+      <h1 :class="classes.h1" v-if="primary.title">
+          <PrismicRichText :field="primary.title"/>
+      </h1>
+      <div class="page-header--media" :class="classes.media.container">
+        <Media :class="classes.media.media" :src="primary.background.url"/>
+      </div>
     </div>
   </header>
 </template>
@@ -41,23 +41,18 @@
       position: fixed;
       left: 0;
       right: 0;
-      top: 0;
+      top: theme('spacing.nav-y');
       height: var(--page-header-height);
-      z-index: 1;
   }
   
   .has-clip-path .page-header--media{
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: calc(var(--page-header-height) + 250px)
+      bottom: -250px;
       
   }
   
   @media screen and (min-width: theme('screens.t')){
-      .has-clip-path .page-header--content,
-      .has-clip-path .page-header--media{
+      .has-clip-path .page-header--content{
+          top: 0;
           left: theme('spacing.nav-x');
       }
   }

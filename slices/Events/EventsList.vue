@@ -7,7 +7,7 @@
 		<div :class="list.info.container">
 			<div>
 				<h5 :class="text.h5">{{formatDate(event.start,'mmmm dd, yyyy')}}</h5>
-				<h2 :class="text.h2">{{event.name}}</h2>
+				<h2 :class="list.info.h2">{{event.name}}</h2>
 				<nuxt-link :class="text.link" :to="event.route">View Event</nuxt-link>
 			 </div>
 		</div>

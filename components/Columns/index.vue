@@ -1,6 +1,6 @@
 <template>
     <div id="columns" :class="classes.container">
-        <div v-for="i in 6" :key="i" :class="classes.column" />
+        <div v-for="i in 12" :key="i" :class="[classes.column,i > 6 && 'hidden w:block']" />
     </div>
 </template>
 

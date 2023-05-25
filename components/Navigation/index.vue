@@ -28,6 +28,7 @@
 	function toggleMenu(){
 		open = !open
 		if (open){
+			document.documentElement.classList.add('no-scroll')
 			setTimeout(()=>window.addEventListener('click',toggleMenu),100)
 			gsap.timeline()
 			.set(rise,{y:100,opacity:0},0)
@@ -37,6 +38,7 @@
 			.to(grow,{scaleX:1,ease,duration:.5},'>-.3')
 			.set([rise,grow],{clearProps:'all'},'>')
 		} else {
+			document.documentElement.classList.remove('no-scroll')
 			window.removeEventListener('click',toggleMenu)
 			gsap.timeline()
 			.to('#nav',{height:store.units.navY,ease,duration:.5},0)

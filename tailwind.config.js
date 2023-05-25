@@ -49,7 +49,8 @@ let fractions = {
 let screenUnits = {
     m:700,
     t:1000,
-    d:1400
+    d:1400,
+    w:1600
 }
 Object.keys(screenUnits).forEach(k => {
     screens[`${k}`] = `${screenUnits[k]}px`
