@@ -1,3 +1,13 @@
+export function loop(s,e,f){
+  for(let i = s;i <= e;i++){
+    f(i)
+  }
+}
+
+export function round(n,u){
+  return Math.round(n * u) / u
+}
+
 export function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

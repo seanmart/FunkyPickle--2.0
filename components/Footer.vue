@@ -1,6 +1,6 @@
 <template>
-    <footer id="footer" class="h-20">
-        <div class="content bg-black text-white h-full flex-center">
+    <footer id="footer">
+        <div class="footer--content bg-black text-white h-full flex-center">
         content
         </div>
     </footer>
@@ -11,19 +11,24 @@
 </script>
 
 <style>
-    .has-clip-path #footer{
-        clip-path: polygon(0 0,0 200%,200% 100%,100% 0)
+    #footer{
+        --footer-height: 20rem;
+        height: var(--footer-height)
     }
-    .has-clip-path #footer .content{
+    .has-clip-path #footer{
+        clip-path: polygon(0 0,100% 0,100% calc(var(--footer-height) + 250px),0 calc(var(--footer-height) + 250px))
+    }
+    .has-clip-path #footer .footer--content{
         position: fixed;
         left: 0;
-        right: 0px;
-        bottom: -10rem;
-        height: 40rem;
+        right: 0;
+        bottom: 0;
+        height: calc(var(--footer-height) + 250px);
+        padding-top: 250px; 
     }
     
-    @media screen and (min-width: theme('screens.s')){
-        .has-clip-path #footer .content{
+    @media screen and (min-width: theme('screens.t')){
+        .has-clip-path #footer .footer--content{
             left: theme('spacing.nav-x');
         }
     }

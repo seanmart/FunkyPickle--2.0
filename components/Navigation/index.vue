@@ -1,17 +1,21 @@
 <template>
-	<nav id="nav" :class="classes.nav.container">
-		<NavigationButton :classes="classes.button" @click="toggleMenu"/>
-		<NavigationLogo :classes="classes.logo"/>
-		<div :class="classes.nav.wrapper">
-			<NavigationPages :classes="classes.links"/>
-			<NavigationSections :classes="classes.links"/>
+	<nav id="nav" :class="nav.container">
+		<NavButton @click="toggleMenu"/>
+		<NavLogo/>
+		<div :class="nav.wrapper">
+			<NavPages/>
+			<NavSections/>
 		</div>
 	</nav>
 </template>
 
 <script setup>
-	import classes from './classes'
+	import {nav} from './classes'
 	import {useStore} from '@/stores'
+	import NavButton from './NavButton'
+	import NavLogo from './NavLogo'
+	import NavPages from './NavPages'
+	import NavSections from './NavSections'
 	
 	const store = useStore()
 	
@@ -40,21 +44,15 @@
 		}
 	}
 	function handleResize(){
-		if(window.innerWidth >= store.units.mobile && open){
+		if(window.innerWidth >= store.units.tablet && open){
 			open = false 
 			gsap.set('#nav',{clearProps:'height'})
 			window.removeEventListener('click',toggleMenu)
 		}
 	}
 	
-	
 	onMounted(()=>{
 		window.addEventListener('resize', handleResize)
 	})
 	
-	
 </script>
-
-<style>
-	
-</style>

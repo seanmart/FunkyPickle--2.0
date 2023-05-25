@@ -1,5 +1,5 @@
 <template>
-	<div ref="container" class="s-events-empty" :class="[empty.container,{'is-paused':pause}]">
+	<div ref="container" :class="[empty.container,{'is-paused':pause}]">
 		<h2 :class="[empty.text,text.h2]">No upcoming events at this time</h2>
 		<h5 :class="[empty.text,text.h5]">check back soon for updates!</h5>
 		<div :class="empty.wrapper">

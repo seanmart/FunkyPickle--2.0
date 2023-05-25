@@ -1,13 +1,13 @@
 <template>
-    <section class="c-section px-gutters pt-5" :class="{'has-section-header':header}">
+    <section :class="classes.container(header)">
 
-        <div class="c-section-sticky s:w-1/3 sticky z-5 select-none" v-if="header">
-            <div class="bg-fp-lime bordered border-outline h-4 s:h-7 flex-center">
-                <h3 class="font-header text-2" v-html="header"/>
+        <div :class="classes.header.container" v-if="header">
+            <div :class="classes.header.wrapper">
+                <h3 :class="classes.header.label">{{header}}</h3>
             </div>
         </div>
 
-        <div class="c-section-content relative" :class="[contentClass,{'s:w-2/3':header}]">
+        <div :class="[contentClass,classes.content(header)]">
             <slot/>
         </div>
 
@@ -15,6 +15,7 @@
 </template>
 
 <script setup>
+    import classes from './classes'
     
     const props = defineProps({
       reverse:Boolean,
@@ -26,29 +27,29 @@
 
 <style lang="css">
   
-  .c-section.has-section-header{
+  /* .c-section.has-section-header{
     display: flex;
     flex-direction: column;
-  }
+  } */
   
-  .c-section:last-child{
+  /* .c-section:last-child{
     padding-bottom: theme('spacing.5');
-  }
+  } */
   
-  .c-section .c-section-sticky{
+  /* .c-section .c-section-sticky{
     top: 0;
-  }
+  } */
   
-  @media screen and (min-width: theme('screens.s')){
+  @media screen and (min-width: theme('screens.m')){
     
-    .c-section.has-section-header{
+    /* .c-section.has-section-header{
       flex-direction: row;
       align-items: flex-start;
-    }
+    } */
     
-    .c-section.has-section-header:nth-child(odd){
+    /* .c-section.has-section-header:nth-child(odd){
       flex-direction: row-reverse;
-    }
+    } */
     
   }
   

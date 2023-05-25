@@ -1,14 +1,14 @@
 <template>
-	<div :class="classes.links.container">
-		<h3 data-rise :class="classes.links.label">Sections</h3>
-		<div :class="classes.links.wrapper">
+	<div :class="links.links.container">
+		<h3 data-rise :class="links.links.label">Sections</h3>
+		<div :class="links.links.wrapper">
 			
-			<a :class="classes.link.wrapper" data-rise v-for="section in sections" :key="section.id" :href="section.id" @click="scrollToSection($event,section)">
-				<span :class="classes.link.label">{{section.label}}</span>
+			<a :class="links.link.wrapper" data-rise v-for="section in sections" :key="section.id" :href="section.id" @click="scrollToSection($event,section)">
+				<span :class="links.link.label">{{section.label}}</span>
 			</a>
 				
-			<div :class="classes.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
-				<div data-grow :class="classes.highlight.wrapper" class="bg-fp-lime"/>
+			<div :class="links.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
+				<div data-grow :class="links.highlight.wrapper" class="bg-fp-lime"/>
 			</div>
 			
 		</div>
@@ -18,8 +18,8 @@
 <script setup>
 	import {useStore} from '@/stores'
 	import {storeToRefs} from 'pinia'
+	import {links} from './classes'
 	
-	const props = defineProps({classes:Object})
 	const store = useStore()
 	const {loaded} = storeToRefs(store)
 	const sections = ref([])

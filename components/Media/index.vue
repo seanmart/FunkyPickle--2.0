@@ -1,9 +1,9 @@
 <template>
-    <div class="c-parallax-image">
-        <div ref="container" class="h-full relative overflow-hidden">
-            <div ref="media" v-if="isImage(src)" class="bg-cover bg-center absolute inset-0" :style="{...styles,backgroundImage:`url(${src})`}"/>
-            <div ref="media" v-if="isVideo(src)" class="absolute inset-0" :style="styles">
-                <video ref="video" class="h-full w-full object-cover" autoplay loop muted playsinline>
+    <div data-parallax-image>
+        <div ref="container" :class="classes.container">
+            <div ref="media" v-if="isImage(src)" :class="classes.image" :style="{...styles,backgroundImage:`url(${src})`}"/>
+            <div ref="media" v-if="isVideo(src)" :class="classes.video.container" :style="styles">
+                <video ref="video" :class="classes.video.video" autoplay loop muted playsinline>
                     <source :src="src"/>
                 </video>
             </div>
@@ -13,12 +13,14 @@
 
 <script setup>
     import {isVideo,isImage} from '@/helpers'
+    import classes from './classes'
+    
     const video = ref(null)
     const media = ref(null)
     const container = ref(null)
     const props = defineProps({
         src:{type:String,default:null},
-        distance:{type:Number,default:50}
+        distance:{type:Number,default:0}
     })
     
     const styles = {}

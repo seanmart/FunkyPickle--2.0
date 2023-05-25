@@ -1,7 +1,7 @@
 <template>
 	<div v-for="event,i in events" :class="[list.container,{'mt-1': i > 0}]" >
 		<div :class="list.image.container">
-			<Media :class="list.image.media" :src="event.background.url" />
+			<Media :class="list.image.media" :src="event.background.url" :distance="50" />
 			<img :src="event.logo.url" :class="list.image.logo">
 		</div>
 		<div :class="list.info.container">

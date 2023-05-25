@@ -1,10 +1,10 @@
 <template>
-  <Section :id="id" class="s-gallery relative z-9" :data-section="primary.label">
-    <div class="flex flex-wrap" ref="container">
+  <Section :id="id" :class="classes.container" :data-section="primary.label">
+    <div :class="classes.wrapper" ref="container">
       
-      <div v-for="item,i in galleryItems" :key="i" class="gallery-item w-1/2 s:w-1/3 relative bordered border-outline">
-        <div class="gallery-item-sizer w-full pb-full bg-slate-900">
-          <Media class="gallery-item-media absolute inset-0" :src='item.media' :distance="i % 2 == 0 ? 80 : 60"/>
+      <div v-for="item,i in galleryItems" :key="i" :class="classes.media.container">
+        <div :class="classes.media.wrapper">
+          <Media :class="classes.media.media" :src='item.media' :distance="i % 2 == 0 ? 80 : 60"/>
         </div>
       </div>
       
@@ -14,6 +14,7 @@
 
 <script setup>
   import {useStore} from '@/stores'
+  import classes from './classes'
   
   const store = useStore()
   const props = defineProps(['slice','index'])

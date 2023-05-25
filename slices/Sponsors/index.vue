@@ -1,9 +1,9 @@
 <template>
-  <Section :id="id" :header="primary.label" class="s-sponsors" :data-section="primary.label">
-    <div class="flex flex-wrap">
+  <Section :id="id" :header="primary.label" :data-section="primary.label">
+    <div :class="classes.container">
       <template v-for="item,i in items">
-      <div v-if="item.logo.url" :key="i" class="w-1/2 d:w-1/4 h-7 flex-center bordered border-outline bg-white">
-        <img :src="item.logo.url" :alt="item.logo.alt" class="max-w-3/5 max-h-3/4 h-auto w-auto">
+      <div v-if="item.logo.url" :key="i" :class="classes.wrapper">
+        <img :src="item.logo.url" :alt="item.logo.alt" :class="classes.image">
       </div>
       </template>
     </div>
@@ -12,6 +12,7 @@
 
 <script setup>
   import { useStore } from '@/stores'
+  import classes from './classes'
   
   const store = useStore()
   const props = defineProps(['slice','index'])
@@ -21,7 +22,3 @@
   onMounted(()=>store.LOADING(false))
   
 </script>
-
-<style lang="css">
-
-</style>

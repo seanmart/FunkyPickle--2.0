@@ -1,5 +1,5 @@
 <template>
-  <Section :id="id" class="s-events" :data-section="primary.label">
+  <Section :id="id" :data-section="primary.label">
       <template v-if="events.length > 0">
         <EventsCarousel v-if="primary.carousel" :events="events"/>
         <EventsList v-else :events="events"/>

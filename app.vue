@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="pt-nav-y m:pt-0 m:pl-nav-x">
+  <div id="app" class="pt-nav-y t:pt-0 t:pl-nav-x">
     <Navigation/>
     <NuxtPage id="page"/>
     <Footer/>

@@ -13,7 +13,9 @@ export const useStore = defineStore('main',()=>{
 	const units = {
 		navY: parseInt(config.theme.height['nav-y']),
 		navX: parseInt(config.theme.width['nav-x']),
-		mobile: parseInt(config.theme.screens.m)
+		mobile: parseInt(config.theme.screens.m),
+		tablet: parseInt(config.theme.screens.t),
+		desktop: parseInt(config.theme.screens.d)
 	}
 	
 	//ACTIONS
