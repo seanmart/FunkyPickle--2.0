@@ -1,8 +1,8 @@
 {
-  "id": "page_header",
+  "id": "form",
   "type": "SharedSlice",
-  "name": "PageHeader",
-  "description": "PageHeader",
+  "name": "Form",
+  "description": "Form",
   "variations": [
     {
       "id": "default",
@@ -12,6 +12,10 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "label": {
+          "type": "Text",
+          "config": { "label": "Label", "placeholder": "" }
+        },
         "hide": {
           "type": "Boolean",
           "config": {
@@ -21,21 +25,17 @@
             "default_value": false
           }
         },
-        "title": {
+        "airtable": {
+          "type": "Text",
+          "config": { "label": "Airtable Link", "placeholder": "" }
+        },
+        "description": {
           "type": "StructuredText",
           "config": {
-            "label": "Title",
+            "label": "Description",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading1,heading2,strong"
-          }
-        },
-        "background": {
-          "type": "Link",
-          "config": {
-            "label": "Background",
-            "placeholder": "",
-            "select": "media"
+            "multi": "paragraph,heading3,heading4,strong,em"
           }
         }
       },

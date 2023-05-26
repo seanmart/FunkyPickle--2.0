@@ -14,14 +14,14 @@ export const links = {
 	links:{
 		container:'py-20px t:px-20px max-w-500px mx-auto text-center t:text-left',
 		label:'font-label text-slate-400 text-16px',
-		wrapper:`mt-10px relative text-30px`
+		wrapper:`mt-10px relative text-30px t:text-27px`
 	},
 	link:{
 		wrapper: 'font-header font-normal w-full h-45px m:h-40px select-none flex items-center px-10px',
 		label: 'text-ellipsis whitespace-nowrap flex-auto overflow-hidden'
 	},
 	highlight:{
-		container:'top-0 absolute h-45px m:h-40px left-0 right-0 -z-1 t:transition-transform t:duration-300',
+		container:'top-0 absolute h-45px m:h-40px left-0 right-0 -z-1 t:transition-transform duration-100 t:duration-300',
 		wrapper:'h-full w-full origin-center t:rounded-sm'
 	}
 }

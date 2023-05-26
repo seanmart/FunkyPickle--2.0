@@ -3,7 +3,7 @@
 		<h2 :class="[empty.text,text.h2]">No upcoming events at this time</h2>
 		<h5 :class="[empty.text,text.h5]">check back soon for updates!</h5>
 		<div :class="empty.wrapper">
-			<Ball v-for="ball,i in balls" :key="i" class="s-events-empty--ball" :class="empty.ball" :style="ball"/>
+			<SVG name="ball" v-for="ball,i in balls" :key="i" class="s-events-empty--ball" :class="empty.ball" :style="ball"/>
 		</div>
 	</div>
 </template>

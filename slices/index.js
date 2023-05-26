@@ -2,25 +2,28 @@
 
 import Carousel from './Carousel';
 import Events from './Events';
-import Sponsors from './Sponsors';
-import PageHeader from './PageHeader';
+import Form from './Form';
 import Gallery from './Gallery';
+import PageHeader from './PageHeader';
+import Sponsors from './Sponsors';
 import TextHeader from './TextHeader';
 
 export {
 	Carousel,
 	Events,
-	Sponsors,
-	PageHeader,
+	Form,
 	Gallery,
+	PageHeader,
+	Sponsors,
 	TextHeader
 };
 
 export const components = {
 	carousel: Carousel,
 	events: Events,
-	sponsors: Sponsors,
-	page_header:PageHeader,
+	form: Form,
 	gallery: Gallery,
+	page_header:PageHeader,
+	sponsors: Sponsors,
 	text_header:TextHeader
 };

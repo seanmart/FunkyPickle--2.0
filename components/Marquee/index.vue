@@ -1,7 +1,7 @@
 <template>
-    <section class="c-marquee px-gutters py-gutters">
-        <div class="relative overflow-hidden" ref="container">
-            <div class="c-marquee-element inline-block absolute top-0 left-0" ref="text">
+    <section :class="classes.container">
+        <div :class="classes.content.container" ref="container">
+            <div class="c-marquee-element" :class="classes.content.wrapper" ref="text">
                 <slot/>
             </div>
         </div>
@@ -9,15 +9,15 @@
 </template>
 
 <script setup>
-
+    import classes from './classes'
+    
     const text = ref(null)
     const container = ref(null)
-
-    const handleResize = ()=>{
+    let anim = null
+    
+    function handleResize(){
         gsap.set(container.value,{height:text.value.offsetHeight})
     }
-
-    let anim = null
 
     onMounted(()=>{
 

@@ -8,21 +8,40 @@
     cursor: pointer;
     border-radius: .1rem;
     transform: scale(.999);
-    transition: transform .25s, background .25s;
-    font-size: 1.2rem;
+    transition: transform .2s, outline .1s;
+    font-size: 1rem;
+    font-weight: 600;
+    outline-style: solid;
+    outline-width: 0;
+    outline-offset: 2px;
+    position:relative;
+    overflow:hidden;
+}
+
+.btn:focus,
+.btn:hover{
+    outline-width: 2px;
 }
 
 .btn:active{
     transform: scale(.96);
-}
-
-.btn.bg-fp-pink:hover{
-    background: theme('colors.fp-pink-dark')
+    outline-width: 8px;
 }
 
 .btn-wide{
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+.btn.busy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 100%;
+  background: repeating-linear-gradient(60deg, transparent, transparent 0.75rem, rgba(255,255,255,.2) 0.75rem, rgba(255,255,255,.2) 1.5rem);
+  animation: load 1s infinite linear;
 }
 
 @media screen and (min-width:theme('screens.m')){

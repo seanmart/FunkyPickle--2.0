@@ -19,7 +19,8 @@
             "carousel": { "type": "SharedSlice" },
             "gallery": { "type": "SharedSlice" },
             "events": { "type": "SharedSlice" },
-            "sponsors": { "type": "SharedSlice" }
+            "sponsors": { "type": "SharedSlice" },
+            "form": { "type": "SharedSlice" }
           }
         }
       }

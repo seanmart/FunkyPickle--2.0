@@ -1,7 +1,7 @@
 export const text = {
 	h5:'font-label text-0.8 select-none text-slate-400',
-	h2:'font-header text-2.5 t:text-2.75 d:text-3 select-none my-1',
-	link:'btn bg-fp-pink text-white font-header font-normal'
+	h2:'font-header text-2.5 t:text-2.75 d:text-3 select-none mt-0.5',
+	link:'mt-2 btn bg-fp-pink outline-fp-pink/25 text-white'
 }
 
 export const carousel ={
@@ -21,14 +21,13 @@ export const carousel ={
 }
 
 export const list = {
-	container:'flex flex-row bordered border-outline bg-white',
+	container:'flex flex-col m:flex-row bordered border-outline bg-white',
 	image:{
-		container:'flex-none relative flex-center w-1/3 m:w-1/3 p-1',
+		container:'flex-none relative flex-center w-full h-15 m:h-auto m:w-1/2 d:w-1/3 p-2',
 		media:'absolute inset-0',
-		logo:'h-auto w-auto max-w-full max-h-3/4 relative z-1'
+		logo:'h-auto w-auto max-w-full max-h-8 relative z-1'
 	},
 	info:{
-		h2: text.h2.replace('text-2.5','text-2'),
 		container:'flex-auto flex-middle p-2'
 	}
 }

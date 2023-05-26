@@ -7,11 +7,15 @@ let leading = {}
 let vw = {}
 let vh = {}
 let screens = {}
+let flexfractions = {}
+let border = {DEFAULT:'1px'}
 
 loop(11,100,(i)=>rem[i] = `${i}rem`)
-loop(1,500,(i)=>px[`${i}px`] = `${i}px`)
+loop(1,99,(i)=>px[`${i}px`] = `${i}px`)
+loop(1,18,(i)=>px[`${100 + (i * 50)}px`] = `${100 + (i * 50)}px`)
 loop(1,99,(i)=>vw[`${i}vw`] = `${i}vw`)
 loop(1,99,(i)=>vh[`${i}vh`] = `${i}vh`)
+loop(2,30,(i)=>border[`${i}`] = `${i}px`)
 loop(1,10,(i)=>zIndex[i] = i)
 loop(0,100,(i)=> {
     let num = round(i * .1,10)
@@ -49,6 +53,7 @@ let fractions = {
 let screenUnits = {
     m:700,
     t:1000,
+    l:1200,
     d:1400,
     w:1600
 }
@@ -58,23 +63,23 @@ Object.keys(screenUnits).forEach(k => {
     screens[`${k}-unit`] = `${screenUnits[k]}`
 })
 
-console.log(screens)
-
-let flexfractions = {}
 Object.keys(fractions).forEach(key => {
     flexfractions[key] = `0 0 ${fractions[key]}`
 })
 
 export default{
     content:[
+      './app.vue',
       './pages/**/*.vue',
-      './components/**/*.vue',
-      './components/**/*.js',
-      './slices/**/*.vue',
-      './slices/**/*.js'
+      './components/**/*.{js,vue}',
+      './slices/**/*.{js,vue}',
     ],
     theme:{
-        screens,
+        screens:{...screens},
+        lineHeight:{...leading},
+        zIndex:{...zIndex},
+        borderWidth:{...border},
+        outlineWidth:{...border},
         fontSize:{...rem,...px,...vw},
         spacing:{...rem,...px,...vw,...fractions,...nav,gutters},
         width:{...rem,...px,...vw,...fractions, ...nav,gutters,auto,screen:'100vw'},
@@ -83,9 +88,8 @@ export default{
         minHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
         maxWidth:{...rem,...px,...vw,...fractions,auto,screen:'100vw'},
         maxHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
-        lineHeight:leading,
-        zIndex:{...zIndex},
         extend:{
+            gradientColorStopPositions:{...fractions},
             fill: ({theme})=>({...theme('colors')}),
             flex:{...flexfractions},
             colors:{
@@ -94,8 +98,9 @@ export default{
                 'fp-pink': '#FF0093',
                 'fp-blue': '#00C8F8',
                 'fp-turq': '#2BCCA7',
-                'outline': '#f0f2f5',
-                'fp-pink-dark':'#E00081'
+                'outline': '#e2e8f0',
+                'fp-pink-dark':'#B00C4B',
+                'fp-lime-dark':'#BAEF09'
             }
         }
     }

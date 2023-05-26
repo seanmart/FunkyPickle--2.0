@@ -21,18 +21,18 @@
   const {id,primary,items} = props.slice
   const events = ref([])
 
-  if(!store.data.previews){
+  if(!store.previews){
     let orderings = ['event.start']
     let fetch = ['event.logo','event.background','event.name','event.start','event.end']
     const res = await client.getAllByType('event',{fetch, orderings})
-    if (res) store.data.previews = res.map(e => ({...e.data,route:`/events/${e.uid}`,uid:e.uid}))
+    if (res) store.previews = res.map(e => ({...e.data,route:`/events/${e.uid}`,uid:e.uid}))
   }
   
-  events.value = items.length ? getFilteredPreviews() : store.data.previews
+  events.value = items.length ? getFilteredPreviews() : store.previews
   
   function getFilteredPreviews(){
     return items.reduce((a,i) => {
-      let item = store.data.previews.find(p => p.uid == i.event.uid)
+      let item = store.previews.find(p => p.uid == i.event.uid)
       return item ? [...a,item] : a
     },[])
   }

@@ -181,12 +181,13 @@ interface PageDocumentData {
  *
  */
 type PageDocumentDataSlicesSlice =
-  | SponsorsSlice
-  | CarouselSlice
   | PageHeaderSlice
+  | TextHeaderSlice
+  | CarouselSlice
   | GallerySlice
   | EventsSlice
-  | TextHeaderSlice;
+  | SponsorsSlice
+  | FormSlice;
 /**
  * Page document from Prismic
  *
@@ -396,6 +397,80 @@ type EventsSliceVariation = EventsSliceDefault;
  *
  */
 export type EventsSlice = prismicT.SharedSlice<"events", EventsSliceVariation>;
+/**
+ * Primary content in Form → Primary
+ *
+ */
+interface FormSliceDefaultPrimary {
+  /**
+   * Label field in *Form → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: form.primary.label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  label: prismicT.KeyTextField;
+  /**
+   * hide field in *Form → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: form.primary.hide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  hide: prismicT.BooleanField;
+  /**
+   * Airtable Link field in *Form → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: form.primary.airtable
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  airtable: prismicT.KeyTextField;
+  /**
+   * Description field in *Form → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: form.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+}
+/**
+ * Default variation for Form Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FormSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<FormSliceDefaultPrimary>,
+  never
+>;
+/**
+ * Slice variation for *Form*
+ *
+ */
+type FormSliceVariation = FormSliceDefault;
+/**
+ * Form Shared Slice
+ *
+ * - **API ID**: `form`
+ * - **Description**: `Form`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FormSlice = prismicT.SharedSlice<"form", FormSliceVariation>;
 /**
  * Primary content in Gallery → Primary
  *
@@ -625,6 +700,17 @@ export type SponsorsSlice = prismicT.SharedSlice<
  */
 interface TextHeaderSliceDefaultPrimary {
   /**
+   * hide field in *TextHeader → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: text_header.primary.hide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  hide: prismicT.BooleanField;
+  /**
    * Header field in *TextHeader → Primary*
    *
    * - **Field Type**: Text
@@ -695,6 +781,10 @@ declare module "@prismicio/client" {
       EventsSliceDefault,
       EventsSliceVariation,
       EventsSlice,
+      FormSliceDefaultPrimary,
+      FormSliceDefault,
+      FormSliceVariation,
+      FormSlice,
       GallerySliceDefaultPrimary,
       GallerySliceDefaultItem,
       GallerySliceDefault,

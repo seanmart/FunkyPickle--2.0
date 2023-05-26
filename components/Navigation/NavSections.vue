@@ -8,7 +8,7 @@
 			</a>
 				
 			<div :class="links.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
-				<div data-grow :class="links.highlight.wrapper" class="bg-fp-lime"/>
+				<div data-grow :class="links.highlight.wrapper" class="bg-gradient-to-br from-fp-lime to-fp-lime-dark"/>
 			</div>
 			
 		</div>

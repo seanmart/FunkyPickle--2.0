@@ -1,9 +1,7 @@
 <template>
   <header class="page-header" :class="classes.container">
     <div class="page-header--content" :class="classes.wrapper">
-      <h1 :class="classes.h1" v-if="primary.title">
-          <PrismicRichText :field="primary.title"/>
-      </h1>
+      <RichText :text="primary.title" :class="classes.title"/>
       <div class="page-header--media" :class="classes.media.container">
         <Media :class="classes.media.media" :src="primary.background.url"/>
       </div>

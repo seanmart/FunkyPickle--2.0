@@ -8,7 +8,7 @@
           <div v-if="hasContent(slide)" :class="classes.slide.content.container">
             <h3 v-if="slide.title" :class="classes.slide.content.h3">{{ slide.title }}</h3>
             <h5 v-if="slide.subtitle" :class="classes.slide.content.h5">{{ slide.subtitle }}</h5>
-            <PrismicRichText v-if="slide.body.length" :field="slide.body" :class="classes.slide.content.text"/>
+            <RichText v-if="slide.body.length" :text="slide.body" :class="classes.slide.content.text"/>
           </div>
         </SplideSlide>
       </SplideTrack>
@@ -48,8 +48,6 @@
         }
       }
   }
-  
-  console.log(options)
   
   function hasContent(s){
     if(s.title) return true 

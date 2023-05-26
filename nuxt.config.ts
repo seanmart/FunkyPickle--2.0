@@ -13,32 +13,47 @@ export default defineNuxtConfig({
         }
     },
     modules: [
-        '@nuxtjs/tailwindcss',
         '@nuxtjs/prismic',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@formkit/nuxt'
     ],
     css:[
+        '@/css/tailwind.css',
+        '@/css/animation.css',
         '@/css/global.css',
         '@/css/column.css',
         '@/css/font.css',
         '@/css/carousel.css',
         '@/css/button.css',
-        '@/css/animation.css'
     ],
-    prismic: { endpoint: 'funky-pickle--v02' },
-    generate:{
-        async routes(){
-            let routes = []
-            let client = Prismic.client('funky-pickle--v02')
-            
-            let pages = await client.query(Prismic.Predicates.at("document.type", "page"));
-              pages.results.forEach((data) => routes.push({ route: `/${data.uid == 'home' ? '' : data.uid}`, payload: data }));
-            
-            let events = await client.query(Prismic.Predicates.at("document.type", "event"));
-            events.results.forEach((data) => routes.push({ route: `/event/${data.uid}`, payload: data }));
-        
-            return routes;
-            
+    runtimeConfig: {
+        public: {
+          baseURL: process.env.BASE_URL || 'https://funkypickle.com/',
+        }
+     },
+    prismic: { endpoint: process.env.PRISMIC_ENDPOINT },
+    postcss: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {},
         }
     }
 })
+
+
+
+
+    // generate:{
+//     async routes(){
+//         let routes = []
+//         let client = Prismic.client('funky-pickle--v02')
+//         
+//         let pages = await client.query(Prismic.Predicates.at("document.type", "page"));
+//           pages.results.forEach((data) => routes.push({ route: `/${data.uid == 'home' ? '' : data.uid}`, payload: data }));
+//         
+//         let events = await client.query(Prismic.Predicates.at("document.type", "event"));
+//         events.results.forEach((data) => routes.push({ route: `/event/${data.uid}`, payload: data }));
+//         
+//         return routes;
+//     }
+// },

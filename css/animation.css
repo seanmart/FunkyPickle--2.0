@@ -17,3 +17,8 @@
     0%,10%{opacity:0}
     100%{opacity:1}
 }
+
+@keyframes load {
+  0% {transform: translateX(0)}
+  100% {transform: translateX(-1.75rem)}
+}

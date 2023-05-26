@@ -7,7 +7,8 @@ export const useStore = defineStore('main',()=>{
 	
 	//STATE
 	const pages = ref({})
-	const data = ref({})
+	const previews = ref(null)
+	const forms = ref({})
 	const ready = ref(false)
 	const loaded = ref(false)
 	const units = {
@@ -43,5 +44,5 @@ export const useStore = defineStore('main',()=>{
 		if(!pending) loaded.value = Date.now()
 	}
 
-	return {pages,data,ready,loaded,units,PAGE,LOADING}
+	return {pages,previews,forms,ready,loaded,units,PAGE,LOADING}
 })
