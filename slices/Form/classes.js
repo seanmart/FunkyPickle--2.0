@@ -9,11 +9,12 @@ let field = {
 
 export default{
 	container:'bg-white bordered border-outline',
-	content:{
-		container:'p-3',
-		description:'text-center border-b border-outline min-h-4 mb-2.5 flex justify-center',
-		form:`grid gap-0.5 l:grid-cols-2 mb-2`
+	description:{
+		container:'px-1 m:px-3 mb-2.5',
+		wrapper:'border-b border-outline flex-center text-center min-h-7'
 	},
+	content:'p-1 m:p-3',
+	form:`grid gap-0.5 l:grid-cols-2 mb-2`,
 	text:field,
 	email:field,
 	tel:field,

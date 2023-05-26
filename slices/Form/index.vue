@@ -2,14 +2,16 @@
   <Section v-if="inputs" :id="id" :header="primary.label" :data-section="primary.label">
     <div :class="classes.container">
       
-      <div :class="classes.content.container">
-        
-        <div v-if="primary.description.length" :class="classes.content.description" >
+      <div v-if="primary.description.length" :class="classes.description.container" >
+        <div :class="classes.description.wrapper">
           <RichText :text="primary.description"/>
         </div>
+      </div>
+      
+      <div :class="classes.content">
         
         <FormKit type="form" #default="{ disabled }" @submit="handleSubmit" :submit-attrs="{inputClass:`${classes.submit} ${busy ? 'busy' : ''}`}">
-          <div :class="classes.content.form">
+          <div :class="classes.form">
             
             <FormKit 
               v-for="input in inputs" 
@@ -62,8 +64,8 @@
     
     if (data.value){
       
-      if(!Array.isArray(data.value)) data.value = JSON.parse(data.value)
       store.forms[table] = []
+      if(!Array.isArray(data.value)) data.value = JSON.parse(data.value)
       
       data.value.forEach(field => {
         
