@@ -60,29 +60,29 @@
       })
     })
     
-    console.log(data.value)
-    
     if (data.value){
+      
+      if(!Array.isArray(data.value)) data.value = JSON.parse(data.value)
       store.forms[table] = []
-      for (let i = 0; i < data.value.length; i++){
+      
+      data.value.forEach(field => {
         
-        let field = data.value[i]
+        if(field.type == 'autoNumber') return
+        
         let type = 'text' 
         let required = false
         let options = []
         let name = field.name
         let label = field.name
         
-        if(field.type != 'autoNumber'){
-          if(field.type == 'email') (type = 'email', required = true)
-          if(field.type == 'phoneNumber') (type = 'tel', required = true)
-          if(field.type == 'multilineText') type = 'textarea'
-          if(field.type == 'singleSelect')(type = 'select', options = field.options.choices.map(o => o.name))
-          if(field.type == 'checkbox')(type = 'checkbox', options.push(field.description || field.name), label = null)
-          
-          store.forms[table].push({type,required,options,name,label})
-        }
-      }
+        if(field.type == 'email') (type = 'email', required = true)
+        if(field.type == 'phoneNumber') (type = 'tel', required = true)
+        if(field.type == 'multilineText') type = 'textarea'
+        if(field.type == 'singleSelect')(type = 'select', options = field.options.choices.map(o => o.name))
+        if(field.type == 'checkbox')(type = 'checkbox', options.push(field.description || field.name), label = null)
+        
+        store.forms[table].push({type,required,options,name,label})
+      })
     }
   }
   
