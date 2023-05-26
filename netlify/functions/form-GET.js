@@ -22,6 +22,7 @@ exports.handler = async function (event, context) {
 	if (res.data){
 		const table = res.data.tables.find(t => t.id = params.table)
 		if(table) fields = table.fields
+		console.log(fields ? 'fields recieved' : 'error')
 	}
   }
   

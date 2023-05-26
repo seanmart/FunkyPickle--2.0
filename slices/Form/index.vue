@@ -60,8 +60,6 @@
       })
     })
     
-    //const data = {value:mockData}
-    
     if (data.value){
       store.forms[table] = []
       data.value.forEach(i => {
