@@ -61,6 +61,7 @@
     })
     
     if (data.value){
+      console.log(data.value)
       store.forms[table] = []
       data.value.forEach(i => {
         let type = 'text' 
