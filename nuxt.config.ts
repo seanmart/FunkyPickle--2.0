@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
         public: {
-          baseURL: process.env.BASE_URL || 'https://funkypickle.com/',
+          baseURL: process.env.BASE_URL,
         }
      },
     prismic: { endpoint: process.env.PRISMIC_ENDPOINT },
