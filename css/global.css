@@ -63,5 +63,6 @@ html.no-scroll{
         padding-bottom:5rem;
     }
 }
-
--webkit-tap-highlight-color: transparent;
+*{
+  -webkit-tap-highlight-color: transparent;
+}
