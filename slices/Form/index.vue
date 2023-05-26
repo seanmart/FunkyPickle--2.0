@@ -60,6 +60,8 @@
       })
     })
     
+    console.log(data.value)
+    
     if (data.value){
       store.forms[table] = []
       data.value.forEach(i => {
