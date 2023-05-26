@@ -64,22 +64,25 @@
     
     if (data.value){
       store.forms[table] = []
-      data.value.forEach(i => {
+      for (let i = 0; i < data.value.length; i++){
+        
+        let field = data.value[i]
         let type = 'text' 
         let required = false
         let options = []
-        let name = i.name
-        let label = i.name
+        let name = field.name
+        let label = field.name
         
-        if(i.type == 'autoNumber') return
-        if(i.type == 'email') (type = 'email', required = true)
-        if(i.type == 'phoneNumber') (type = 'tel', required = true)
-        if(i.type == 'multilineText') type = 'textarea'
-        if(i.type == 'singleSelect')(type = 'select', options = i.options.choices.map(o => o.name))
-        if(i.type == 'checkbox')(type = 'checkbox', options.push(i.description || i.name), label = null)
-        
-        store.forms[table].push({type,required,options,name,label})
-      })
+        if(field.type != 'autoNumber'){
+          if(field.type == 'email') (type = 'email', required = true)
+          if(field.type == 'phoneNumber') (type = 'tel', required = true)
+          if(field.type == 'multilineText') type = 'textarea'
+          if(field.type == 'singleSelect')(type = 'select', options = field.options.choices.map(o => o.name))
+          if(field.type == 'checkbox')(type = 'checkbox', options.push(field.description || field.name), label = null)
+          
+          store.forms[table].push({type,required,options,name,label})
+        }
+      }
     }
   }
   
