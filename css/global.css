@@ -1,3 +1,7 @@
+*{
+  -webkit-tap-highlight-color: transparent;
+}
+
 html{
     background: theme('colors.slate.50')
 }
@@ -62,7 +66,4 @@ html.no-scroll{
     .section:last-child{
         padding-bottom:5rem;
     }
-}
-*{
-  -webkit-tap-highlight-color: transparent;
 }
