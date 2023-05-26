@@ -78,7 +78,7 @@
       //   if(i.type == 'checkbox')(type = 'checkbox', options.push(i.description || i.name), label = null)
       //   
       //   store.forms[table].push({type,required,options,name,label})
-      })
+      // })
     }
   }
   
