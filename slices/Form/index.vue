@@ -61,24 +61,23 @@
     })
     
     if (data.value){
-      console.log(data.value)
       store.forms[table] = []
-      // data.value.forEach(i => {
-      //   let type = 'text' 
-      //   let required = false
-      //   let options = []
-      //   let name = i.name
-      //   let label = i.name
-      //   
-      //   if(i.type == 'autoNumber') return
-      //   if(i.type == 'email') (type = 'email', required = true)
-      //   if(i.type == 'phoneNumber') (type = 'tel', required = true)
-      //   if(i.type == 'multilineText') type = 'textarea'
-      //   if(i.type == 'singleSelect')(type = 'select', options = i.options.choices.map(o => o.name))
-      //   if(i.type == 'checkbox')(type = 'checkbox', options.push(i.description || i.name), label = null)
-      //   
-      //   store.forms[table].push({type,required,options,name,label})
-      // })
+      data.value.forEach(i => {
+        let type = 'text' 
+        let required = false
+        let options = []
+        let name = i.name
+        let label = i.name
+        
+        if(i.type == 'autoNumber') return
+        if(i.type == 'email') (type = 'email', required = true)
+        if(i.type == 'phoneNumber') (type = 'tel', required = true)
+        if(i.type == 'multilineText') type = 'textarea'
+        if(i.type == 'singleSelect')(type = 'select', options = i.options.choices.map(o => o.name))
+        if(i.type == 'checkbox')(type = 'checkbox', options.push(i.description || i.name), label = null)
+        
+        store.forms[table].push({type,required,options,name,label})
+      })
     }
   }
   
