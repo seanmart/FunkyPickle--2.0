@@ -50,7 +50,7 @@
   async function handleSubmit(data){
     busy.value = true
     const fields = Object.keys(data).reduce((a,c)=>({...a,[c]: Array.isArray(data) ? data[c][0] : data[c]}),{})
-    const res = await $fetch(`${config.public.baseURL}/.netlify/functions/form-POST`,{
+    const res = await $fetch(`${config.public.baseURL}/.netlify/functions/post-form`,{
       method:'POST',
       headers:{ "Content-Type": "application/json" },
       body: JSON.stringify({fields,base,table,view})

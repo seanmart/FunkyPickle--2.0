@@ -5,15 +5,15 @@ export default defineNuxtPlugin( async ()=>{
 	const store = useStore()
 	const config = useRuntimeConfig()
 	
-	const res = await $fetch(`${config.public.baseURL}/.netlify/functions/GET_FORMS`,{
+	const res = await $fetch(`${config.public.baseURL}/.netlify/functions/get-forms`,{
 		method:'POST',
 		headers:{ "Content-Type": "application/json" },
 		body:JSON.stringify({
 			base: store.settings.airtable
 		})
-	  })
+	 })
 	
-	if(res){
+	if(res && Array.isArray(res)){
 		res.forEach(item =>{
 
 			const form = []
