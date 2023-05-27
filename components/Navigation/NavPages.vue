@@ -22,6 +22,22 @@
 	const offset = ref(0)
 	const route = useRoute()
 	const store = useStore()
+	const {client} = usePrismic()
+	
+	//DATA 
+	if (!store.navigation.length){
+		const {data} = await useAsyncData(()=> client.getSingle('navigation'))
+		if(data.value){
+			data.value.data.links.forEach(item => {
+				let link = null
+				let label = item.label
+				let external = !!item.link.url
+				if(item.link.url) link = item.link.url
+				if(!link && item.link.uid) link = `/${item.link.uid.replace('home','')}`
+				link && store.navigation.push({link,label,external})
+			})
+		}
+	}
 	
 	store.navigation.forEach((p,i) => p.link == route.path && (offset.value = i))
 	

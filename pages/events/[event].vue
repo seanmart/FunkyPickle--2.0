@@ -12,18 +12,20 @@
 
 <script setup> 
     import { components } from '~/slices'
-    import { useAPI } from '@/stores/api'
     import { useStore } from '@/stores'
     
     const store = useStore()
-    const {client} = usePrismic()
-    const api = useAPI()
     const {params,path} = useRoute()
+    const page = ref(null)
     
     store.LOADING(true)
     
-    const {data:page,error} = await useAsyncData(()=> api.GET_PAGE('event',params.event,path))
-    if(error.value) throw showError({statusCode:404, fatal: true})
+    if(!store.pages[path]){
+        const {client} = usePrismic()
+        const {data} = await useAsyncData(()=> client.getByUID('event',params.event))
+        if(data.value) store.PAGE(data.value.data,path)
+    }
+    page.value = store.pages[path]
     
     onMounted(()=>store.LOADING(false))
     

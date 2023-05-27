@@ -12,20 +12,36 @@
   import { useStore } from '@/stores'
   
   const store = useStore()
+  const {client} = usePrismic()
   const props = defineProps(['slice','index'])
   const {id,primary,items} = props.slice
   const events = ref([])
   
+  store.LOADING(true)
+  
+  if (!store.previews.length){
+    const fetch = ['event.logo','event.background','event.name','event.start','event.end']
+    const orderings = ['event.start']
+    const {data} = await useAsyncData(()=>client.getAllByType('event',{fetch,orderings}))
+    if(data.value){
+	  data.value.forEach(event => {
+	    let uid = event.uid
+	    let data = event.data 
+	    let route = `/events/${uid}`
+	    store.previews.push({...data,route,uid})
+	  })
+    }
+  }
+  
   if(items.length){
-    events.value = items.reduce((a,i) => {
-      let item = store.previews.find(p => p.uid == i.event.uid)
-      return item ? [...a,item] : a
-    },[])
+    items.forEach(item => {
+      let event = store.previews.find(p => p.uid == item.event.uid)
+      event && events.value.push(event)
+    })
   } else {
     events.value = store.previews
   }
   
-  store.LOADING(true)
   onMounted(()=>store.LOADING(false))
   
 </script>
