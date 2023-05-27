@@ -54,7 +54,10 @@
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify({base})
     const {data} = await useAsyncData('forms',()=>$fetch(url,{method,headers,body}))
-    if (data.value) store.FORMS(data.value)
+    if (data.value){
+      if(!Array.isArray(data.value)) data.value = JSON.parse(data.value)
+      store.FORMS(data.value)
+    }
   }
   
   async function handleSubmit(data){
