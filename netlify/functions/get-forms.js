@@ -6,7 +6,8 @@ exports.handler = async function (event, context) {
 	  return {statusCode:200, headers};
   }
   
-  const {base} = JSON.parse(event.body)
+  const body = JSON.parse(event.body) || {}
+  const base = body.base || null
   
   if(base){
 	  
@@ -23,7 +24,7 @@ exports.handler = async function (event, context) {
   }
   
   return {
-	  statusCode: 200
+	  statusCode: 404
   }
   
 };
