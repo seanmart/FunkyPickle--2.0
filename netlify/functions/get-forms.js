@@ -23,6 +23,8 @@ exports.handler = async function (event, context) {
 	}
   }
   
+  console.log(`response failed: ${res}`)
+  
   return {
 	  statusCode: 404
   }

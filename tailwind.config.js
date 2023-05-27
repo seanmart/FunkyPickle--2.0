@@ -70,6 +70,7 @@ Object.keys(fractions).forEach(key => {
 export default{
     content:[
       './app.vue',
+      './error.vue',
       './pages/**/*.vue',
       './components/**/*.{js,vue}',
       './slices/**/*.{js,vue}',

@@ -7,8 +7,9 @@ export const useStore = defineStore('main',()=>{
 	
 	//STATE
 	const pages = ref({})
-	const settings = ref({})
-	const previews = ref({})
+	const base = ref(null)
+	const navigation = ref([])
+	const previews = ref([])
 	const forms = ref({})
 	const ready = ref(false)
 	const loaded = ref(false)
@@ -23,25 +24,21 @@ export const useStore = defineStore('main',()=>{
 	}
 	
 	//ACTIONS
-	function PAGE(data,path){
-		if(data.slices) data.slices = data.slices.filter(s => !s.primary.hide)
-		pages.value[path] = data
-		if(data.slices){
-			let slices = []
-			data.slices.forEach(slice => {
-				let {label,hide} = slice.primary
-				if (label) slice.id = label.replace(/\s+/g, '-').toLowerCase()
-				!hide && slices.push(slice)
-			})
-			data.slices = slices
-		}
-		pages.value[path] = data
-	}
 	
 	function LOADING(loading){
 		pending += loading ? 1 : -1
 		if(!pending) loaded.value = Date.now()
 	}
 
-	return {pages,settings,previews,forms,ready,loaded,units,PAGE,LOADING}
+	return {
+		pages,
+		base,
+		navigation,
+		previews,
+		forms,
+		ready,
+		loaded,
+		units,
+		LOADING
+	}
 })

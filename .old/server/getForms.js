@@ -1,32 +1,25 @@
-import { useStore } from '@/stores'
-
-export default defineNuxtPlugin( async ()=>{
+export default async function(base, baseURL){
 	
-	const store = useStore()
-	const config = useRuntimeConfig()
-	
-	const res = await $fetch(`${config.public.baseURL}/.netlify/functions/get-forms`,{
+	const res = await $fetch(`${baseURL}/.netlify/functions/get-forms`,{
 		method:'POST',
 		headers:{ "Content-Type": "application/json" },
-		body:JSON.stringify({
-			base: store.settings.airtable
-		})
+		body:JSON.stringify({base})
 	 })
+	 
+	let forms = {}
 	
-	if(res && Array.isArray(res)){
+	if(res){
 		res.forEach(item =>{
 
 			const form = []
 			
 			item.fields.forEach(field => {
-				if(field.type == 'autoNumber') return
-				        
+				if(field.type == 'autoNumber') return  
 		        let type = 'text' 
 		        let required = false
 		        let options = []
 		        let name = field.name
 		        let label = field.name
-		        
 		        if(field.type == 'email') (type = 'email', required = true)
 		        if(field.type == 'phoneNumber') (type = 'tel', required = true)
 		        if(field.type == 'multilineText') type = 'textarea'
@@ -36,9 +29,10 @@ export default defineNuxtPlugin( async ()=>{
 		        form.push({type,required,options,name,label})
 			})
 			
-			if(form.length) store.forms[item.id] = form
+			if(form.length) forms[item.id] = form
 		})
-
 	}
+	
+	return forms
 
-})
+}

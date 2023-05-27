@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import {checkClipPath,has} from '@/helpers'
+  import {checkClipPath} from '@/helpers'
   
   onMounted(()=>{
     let timeout = null

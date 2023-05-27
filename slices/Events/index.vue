@@ -9,9 +9,6 @@
 </template>
 
 <script setup>
-  import EventsCarousel from './EventsCarousel'
-  import EventsList from './EventsList'
-  import EventsEmpty from './EventsEmpty'
   import { useStore } from '@/stores'
   
   const store = useStore()

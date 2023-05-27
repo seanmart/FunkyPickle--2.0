@@ -3,7 +3,7 @@
 		<h3 data-rise :class="links.links.label">Pages</h3>
 		<div :class="links.links.wrapper">
 			
-			<nuxt-link data-rise :class="links.link.wrapper" v-for="page,i in store.settings.navigation" :to="page.link" :target="page.target" @click="offset=i">
+			<nuxt-link data-rise :class="links.link.wrapper" v-for="page,i in store.navigation" :to="page.link" :target="page.external ? '_blank' : null" @click="handleClick(i)">
 				<span :class="links.link.label">{{page.label}}</span>
 			</nuxt-link>
 				
@@ -23,6 +23,12 @@
 	const route = useRoute()
 	const store = useStore()
 	
-	store.settings.navigation.forEach((p,i) => p.link == route.path && (offset.value = i))
+	store.navigation.forEach((p,i) => p.link == route.path && (offset.value = i))
+	
+	function handleClick(i){
+		let link = store.navigation[i]
+		if(link.external) return 
+		offset.value = i
+	}
 	
 </script>

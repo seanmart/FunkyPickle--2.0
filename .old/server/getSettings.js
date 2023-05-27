@@ -1,12 +1,13 @@
 import { useStore } from '@/stores'
 
-export default defineNuxtPlugin( async ( {$prismic} )=>{
+export default async function(client){
 	
-	const navigation = []
-	const store = useStore()
-	const res = await $prismic.client.getSingle('settings')	
+	const res = await client.getSingle('settings')	
+	let navigation = []
+	let base  = ""
 	
 	if(res.data){
+	 base = res.data.airtable
 		res.data.links.forEach( item =>{
 			if(!item.link.url && !item.link.uid) return
 			navigation.push({
@@ -15,6 +16,7 @@ export default defineNuxtPlugin( async ( {$prismic} )=>{
 				target: item.link.url ? '_blank' : null
 			})
 		})
-		store.settings = {navigation,airtable: res.data.airtable}
 	}
-})
+	
+	return {navigation,base}
+}
