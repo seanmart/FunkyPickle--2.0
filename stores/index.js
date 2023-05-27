@@ -7,7 +7,8 @@ export const useStore = defineStore('main',()=>{
 	
 	//STATE
 	const pages = ref({})
-	const previews = ref(null)
+	const settings = ref({})
+	const previews = ref({})
 	const forms = ref({})
 	const ready = ref(false)
 	const loaded = ref(false)
@@ -16,17 +17,15 @@ export const useStore = defineStore('main',()=>{
 		navX: parseInt(config.theme.width['nav-x']),
 		mobile: parseInt(config.theme.screens.m),
 		tablet: parseInt(config.theme.screens.t),
+		laptop: parseInt(config.theme.screens.l),
 		desktop: parseInt(config.theme.screens.d),
 		wide: parseInt(config.theme.screens.w)
 	}
 	
 	//ACTIONS
 	function PAGE(data,path){
-		
 		if(data.slices) data.slices = data.slices.filter(s => !s.primary.hide)
 		pages.value[path] = data
-		
-		
 		if(data.slices){
 			let slices = []
 			data.slices.forEach(slice => {
@@ -44,5 +43,5 @@ export const useStore = defineStore('main',()=>{
 		if(!pending) loaded.value = Date.now()
 	}
 
-	return {pages,previews,forms,ready,loaded,units,PAGE,LOADING}
+	return {pages,settings,previews,forms,ready,loaded,units,PAGE,LOADING}
 })

@@ -199,10 +199,77 @@ type PageDocumentDataSlicesSlice =
  */
 export type PageDocument<Lang extends string = string> =
   prismicT.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+/** Content for Settings documents */
+interface SettingsDocumentData {
+  /**
+   * Links field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[]
+   * - **Tab**: Navigation
+   * - **Documentation**: https://prismic.io/docs/core-concepts/group
+   *
+   */
+  links: prismicT.GroupField<Simplify<SettingsDocumentDataLinksItem>>;
+  /**
+   * Airtable Base ID field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.airtable
+   * - **Tab**: Forms
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  airtable: prismicT.KeyTextField;
+}
+/**
+ * Item in Settings → Links
+ *
+ */
+export interface SettingsDocumentDataLinksItem {
+  /**
+   * Label field in *Settings → Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[].label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  label: prismicT.KeyTextField;
+  /**
+   * Link field in *Settings → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.links[].link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.LinkField;
+}
+/**
+ * Settings document from Prismic
+ *
+ * - **API ID**: `settings`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SettingsDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<SettingsDocumentData>,
+    "settings",
+    Lang
+  >;
 export type AllDocumentTypes =
   | EventDocument
   | NavigationDocument
-  | PageDocument;
+  | PageDocument
+  | SettingsDocument;
 /**
  * Primary content in Carousel → Primary
  *
@@ -770,6 +837,9 @@ declare module "@prismicio/client" {
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       PageDocument,
+      SettingsDocumentData,
+      SettingsDocumentDataLinksItem,
+      SettingsDocument,
       AllDocumentTypes,
       CarouselSliceDefaultPrimary,
       CarouselSliceDefaultItem,

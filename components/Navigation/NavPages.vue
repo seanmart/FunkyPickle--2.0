@@ -3,7 +3,7 @@
 		<h3 data-rise :class="links.links.label">Pages</h3>
 		<div :class="links.links.wrapper">
 			
-			<nuxt-link data-rise :class="links.link.wrapper" v-for="page,i in pages" :to="page.link" :target="page.target" @click="offset=i">
+			<nuxt-link data-rise :class="links.link.wrapper" v-for="page,i in store.settings.navigation" :to="page.link" :target="page.target" @click="offset=i">
 				<span :class="links.link.label">{{page.label}}</span>
 			</nuxt-link>
 				
@@ -16,26 +16,13 @@
 </template>
 
 <script setup>
-	import { getLink, matchRoute } from '@/helpers'
+	import {useStore} from '@/stores'
 	import {links} from './classes'
 	
-	const {client} = usePrismic()
 	const offset = ref(0)
 	const route = useRoute()
+	const store = useStore()
 	
-	const {data} = await useAsyncData(() => client.getSingle('navigation'))
-	
-	const pages = data.value.data.links.map( l =>{
-		let link = getLink(l.link)
-		return {
-			link: getLink(l.link),
-			label: l.label, 
-			target: l.link.url ? '_blank' : null
-		}
-	})
-	
-	pages.forEach((p,i) => p.link == route.path && (offset.value = i))
-	
-	
+	store.settings.navigation.forEach((p,i) => p.link == route.path && (offset.value = i))
 	
 </script>

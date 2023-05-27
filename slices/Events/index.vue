@@ -15,26 +15,17 @@
   import { useStore } from '@/stores'
   
   const store = useStore()
-  const {client} = usePrismic()
-  
   const props = defineProps(['slice','index'])
   const {id,primary,items} = props.slice
   const events = ref([])
-
-  if(!store.previews){
-    let orderings = ['event.start']
-    let fetch = ['event.logo','event.background','event.name','event.start','event.end']
-    const res = await client.getAllByType('event',{fetch, orderings})
-    if (res) store.previews = res.map(e => ({...e.data,route:`/events/${e.uid}`,uid:e.uid}))
-  }
   
-  events.value = items.length ? getFilteredPreviews() : store.previews
-  
-  function getFilteredPreviews(){
-    return items.reduce((a,i) => {
+  if(items.length){
+    events.value = items.reduce((a,i) => {
       let item = store.previews.find(p => p.uid == i.event.uid)
       return item ? [...a,item] : a
     },[])
+  } else {
+    events.value = store.previews
   }
   
   store.LOADING(true)
