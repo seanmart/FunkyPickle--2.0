@@ -1,5 +1,5 @@
 <template>
-  <Section :id="id" :class="classes.container" :data-section="primary.label">
+  <Section :class="classes.container" :data-section="primary.section">
     <div :class="classes.wrapper" ref="container">
       
       <div v-for="item,i in galleryItems" :key="i" :class="classes.media.container">

@@ -11,16 +11,25 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "Carousel",
       "primary": {
-        "label": {
+        "section": {
           "type": "Text",
           "config": { "label": "Label", "placeholder": "" }
         },
         "hide": {
           "type": "Boolean",
           "config": {
-            "label": "",
-            "placeholder_false": "Show",
-            "placeholder_true": "Hide",
+            "label": "Publish",
+            "placeholder_false": "Yes",
+            "placeholder_true": "No",
+            "default_value": false
+          }
+        },
+        "noHeader": {
+          "type": "Boolean",
+          "config": {
+            "label": "Header",
+            "placeholder_false": "Yes",
+            "placeholder_true": "No",
             "default_value": false
           }
         }

@@ -36,7 +36,10 @@
         "config": {
           "choices": {
             "carousel": { "type": "SharedSlice" },
-            "gallery": { "type": "SharedSlice" }
+            "gallery": { "type": "SharedSlice" },
+            "sponsors": { "type": "SharedSlice" },
+            "content": { "type": "SharedSlice" },
+            "form": { "type": "SharedSlice" }
           }
         }
       }

@@ -7,7 +7,7 @@ export default{
 			container:'splide__content select-none',
 			h3:'text-1.1 font-extrabold leading-1.2',
 			h5:'text-slate-500 text-0.9 italic mt-0.7',
-			text:'mt-1'
+			text:'mt-1 text-0.9'
 		}
 	}
 }

@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+	import {matchLinkToRoute} from '@/helpers'
 	import {useStore} from '@/stores'
 	import {links} from './classes'
 	
@@ -39,12 +40,17 @@
 		}
 	}
 	
-	store.navigation.forEach((p,i) => p.link == route.path && (offset.value = i))
-	
 	function handleClick(i){
 		let link = store.navigation[i]
 		if(link.external) return 
 		offset.value = i
 	}
+	
+	function updateHighlight(){
+		offset.value = store.navigation.findIndex((p) => matchLinkToRoute(p.link,route.path))
+	}
+	
+	watch(route,updateHighlight)
+	updateHighlight()
 	
 </script>

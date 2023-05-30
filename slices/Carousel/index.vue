@@ -1,5 +1,5 @@
 <template>
-  <Section :id="id" :header="primary.label" :data-section="primary.label">
+  <Section :header="primary.noHeader ? null : primary.section" :data-section="primary.section">
     <Splide :options="options" :class="classes.container" :has-track="false">
       
       <SplideTrack>
@@ -8,7 +8,7 @@
           <div v-if="hasContent(slide)" :class="classes.slide.content.container">
             <h3 v-if="slide.title" :class="classes.slide.content.h3">{{ slide.title }}</h3>
             <h5 v-if="slide.subtitle" :class="classes.slide.content.h5">{{ slide.subtitle }}</h5>
-            <RichText v-if="slide.body.length" :text="slide.body" :class="classes.slide.content.text"/>
+            <PrismicRichText v-if="slide.body.length" :field="slide.body" :class="classes.slide.content.text"/>
           </div>
         </SplideSlide>
       </SplideTrack>
@@ -27,21 +27,31 @@
   const {primary,items,id} = props.slice
   
   const options = {
-      perPage: items.length > 2 ? 3 : 1,
+      perPage: items.length > 2 ? 3 : items.length > 1 ? 2 : 1,
       perMove: 1,
       gap:1,
       resetProgress:false,
       autoplay: true,
       rewind:true,
       type: 'slide',
-      drag: items.length == 2 || items.length > 3,
+      drag: items.length > 3,
       breakpoints:{
         [store.units.wide - 1]:{
           perPage:items.length > 1 ? 2 : 1,
           type: 'loop', 
           drag: items.length > 2
         },
-        1200:{
+        [store.units.laptop - 1]:{
+          perPage:1,
+          type: 'loop', 
+          drag: items.length > 1
+        },
+        [store.units.tablet - 1]:{
+          perPage:items.length > 1 && !primary.section ? 2 : 1,
+          type: 'loop', 
+          drag: items.length > 2
+        },
+        [store.units.mobile - 1]:{
           perPage:1,
           type: 'loop', 
           drag: items.length > 1

@@ -1,5 +1,5 @@
 <template>
-	<div :class="links.links.container">
+	<div v-if="sections.length" :class="links.links.container">
 		<h3 data-rise :class="links.links.label">Sections</h3>
 		<div :class="links.links.wrapper">
 			
@@ -8,7 +8,7 @@
 			</a>
 				
 			<div :class="links.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
-				<div data-grow :class="links.highlight.wrapper" class="bg-gradient-to-br from-fp-lime to-fp-lime-dark"/>
+				<div data-grow :class="links.highlight.wrapper" class="bg-fp-lime"/>
 			</div>
 			
 		</div>
@@ -35,7 +35,7 @@
 		
 		sections.value = els.map((el,i)=> {
 			let label = el.getAttribute('data-section')
-			let id = el.getAttribute('id')
+			let id = label.replace(/\s+/g, '-').toLowerCase()
 			let trigger = ScrollTrigger.create({
 				trigger: el,
 				start:'top 50%',
@@ -44,6 +44,10 @@
 					if(isActive && !scrolling) offset.value = i
 				}
 			})
+			
+			el.setAttribute('id',id)
+			el.removeAttribute('data-section')
+			
 			return {trigger,label,id:`#${id}`,index:i}
 		})
 	}

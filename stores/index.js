@@ -30,11 +30,7 @@ export const useStore = defineStore('main',()=>{
 	}
 	
 	function PAGE(data,path){
-		const slices = data.slices.filter(s => !s.primary.hide).map(s =>{
-			let label = s.primary.label
-			let id = label ? label.replace(/\s+/g, '-').toLowerCase() : s.primary.id
-			return {...s,id}
-		})
+		const slices = data.slices.filter(s => !s.primary.hide)
 		pages.value[path] = {...data,slices}
 	}
 	
@@ -53,9 +49,10 @@ export const useStore = defineStore('main',()=>{
   				
 				if(field.type == 'select') field.options = f.options.choices.map(o => o.name)
   				if(field.type == 'checkbox') field.options = [f.description || f.name]
-  				if(!field.type == 'checkbox') field.label = f.name
-				  
-  				fields.push({...field,name:f.name})
+  				if(field.type != 'checkbox') field.label = f.name
+				field.name = f.name
+
+  				fields.push(field)
 			})
 			forms.value[item.id] = fields
 		})

@@ -7,10 +7,11 @@ let field = {
 	input: `block px-0.5 ${fieldHeight} w-full border border-slate-300 bg-slate-50 rounded-sm outline-slate-400`}
 
 export default{
-	container:'bg-white bordered border-outline',
-	description:'px-1 pt-3 m:px-3 border-t-10 border-fp-green flex items-center justify-center m:justify-start',
-	content:'py-3 px-1 m:px-3',
-	form:`grid gap-1 l:grid-cols-2 mb-3`,
+	container:'bordered border-outline bg-fp-lime p-0.5',
+	wrapper: 'bg-white',
+	content:'px-1.5 py-3 m:px-2 max-w-40 mx-auto',
+	description:'mb-2 text-center max-w-35 mx-auto',
+	form:`grid gap-0.8 m:grid-cols-2 mb-2`,
 	text:field,
 	email:field,
 	tel:field,

@@ -1,6 +1,6 @@
 export const text = {
 	h5:'font-label text-0.8 select-none text-slate-400',
-	h2:'font-header text-2.5 t:text-2.75 d:text-3 select-none mt-0.5',
+	h2:'font-header font-bold leading-0.9 text-2.5 t:text-2.75 d:text-3 select-none mt-0.5',
 	link:'mt-2 btn bg-fp-pink outline-fp-pink/25 text-white'
 }
 

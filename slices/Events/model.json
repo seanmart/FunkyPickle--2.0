@@ -11,16 +11,16 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "Events",
       "primary": {
-        "label": {
+        "section": {
           "type": "Text",
           "config": { "label": "Label", "placeholder": "" }
         },
         "hide": {
           "type": "Boolean",
           "config": {
-            "label": "",
-            "placeholder_false": "Show",
-            "placeholder_true": "Hide",
+            "label": "Publish",
+            "placeholder_false": "Yes",
+            "placeholder_true": "No",
             "default_value": false
           }
         },

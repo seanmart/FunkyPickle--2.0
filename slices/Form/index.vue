@@ -1,30 +1,31 @@
 <template>
-  <Section v-if="form" :id="id" :header="primary.label" :data-section="primary.label">
+  <Section v-if="form" :header="primary.noHeader ? null : primary.section" :data-section="primary.section">
     <div :class="classes.container">
-      
-      <div v-if="primary.description.length" :class="classes.description" >
-        <RichText :text="primary.description"/>
-      </div>
-      
-      <div :class="classes.content">
+      <div :class="classes.wrapper">
         
-        <FormKit type="form" #default="{ disabled }" @submit="handleSubmit" :submit-attrs="{inputClass:`${classes.submit} ${busy ? 'busy' : ''}`}">
-          <div :class="classes.form">
-            
-            <FormKit 
-              v-for="field in form" 
-              :type="field.type"
-              :classes="classes[field.type]"
-              :name="field.name" 
-              :label="field.label" 
-              :required="field.required"
-              :options="field.options"
-            />
-            
-          </div>
-        </FormKit>
-      </div>
+        <div :class="classes.content">
+          
+          <RichText v-if="primary.description.length" :class="classes.description"  :text="primary.description"/>
+          
+          <FormKit type="form" #default="{ disabled }" @submit="handleSubmit" :submit-attrs="{inputClass:`${classes.submit} ${busy ? 'busy' : ''}`}">
+            <div :class="classes.form">
+              
+              <FormKit 
+                v-for="field in form" 
+                :type="field.type"
+                :classes="classes[field.type]"
+                :name="field.name" 
+                :label="field.label" 
+                :required="field.required"
+                :options="field.options"
+              />
       
+            </div>
+          </FormKit>
+          
+        </div>
+        
+      </div>
     </div>
   </Section>
 </template>

@@ -15,9 +15,9 @@
         "hide": {
           "type": "Boolean",
           "config": {
-            "label": "",
-            "placeholder_false": "Show",
-            "placeholder_true": "Hide",
+            "label": "Publish",
+            "placeholder_false": "Yes",
+            "placeholder_true": "No",
             "default_value": false
           }
         },
@@ -27,7 +27,7 @@
             "label": "Title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading1,heading2,strong"
+            "single": "heading1,strong"
           }
         },
         "background": {

@@ -180,7 +180,7 @@
     background: theme('colors.slate.200');
 }
 .splide__pagination__page.is-active{
-    background: black;
+    background: theme('colors.fp-pink')
 }
 
 .splide__progress{

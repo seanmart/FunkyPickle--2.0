@@ -34,9 +34,12 @@ export function getLink(link){
   if(link.uid) return link.uid == 'home' ? '/' : `/${link.uid}`
 }
 
-export function matchRoute(path,route){
-  if (path == '/') return route == path
-  return route.includes(path)
+export function matchLinkToRoute(link,route){
+  console.log({route,link})
+  console.log(route == link)
+  if (route == '/' || link == '/') return route == link
+  console.log(route.includes(link))
+  return route.includes(link)
 }
 
 export function isVideo(media){
