@@ -1,14 +1,20 @@
 <template>
     <footer id="footer">
         <div :class="classes.wrapper" class="footer--content text-white">
-            <SVG name="logo" class="block w-10 mb-1"/>
-            <nav>
-                <ul class="flex">
-                    <li v-for="page in store.navigation">
-                        <NuxtLink class="px-1 font-header text-1.5" :to="page.link" :target="page.external ? '_blank' : null">{{page.label}}</NuxtLink>
-                    </li>
-                </ul>
+            
+            <SVG name="logo" class="block w-8 mb-1"/>
+                
+            <nav class="flex">
+                <NuxtLink 
+                    v-for="page in store.navigation"
+                    class="px-1 font-header text-1.4" 
+                    :to="page.link" 
+                    :target="page.external ? '_blank' : null"
+                >
+                {{page.label}}
+                </NuxtLink>
             </nav>
+                
         </div>
     </footer>
 </template>

@@ -22,9 +22,4 @@
     display: inline;
     background: theme('colors.fp-lime');
   }
-  
-  .content-s .rich-text p strong{
-    display: inline;
-    background: theme('colors.outline');
-  }
 </style>

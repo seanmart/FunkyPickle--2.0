@@ -53,6 +53,10 @@
     window.addEventListener('resize',resize)
     initialResize(5)
   })
+  
+  onUnmounted(()=>{
+    window.removeEventListener('resize',resize)
+  })
 </script>
 
 <style>

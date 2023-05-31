@@ -31,7 +31,7 @@ console.log(leading)
 let auto = 'auto'
 let gutters = '5vw'
 let nav = {
-    'nav-x':'20rem',
+    'nav-x':'17rem',
     'nav-y':'70px'
 }
 let fractions = {

@@ -4,7 +4,7 @@
       
       <SplideTrack>
         <SplideSlide v-for="slide,i in items" :key="i" :class="classes.slide.container">
-          <Media v-if="slide.media.url" :src="slide.media.url" :class="classes.slide.media" :distance="index % 2 == 0 ? 60 : 40"/>
+          <Media v-if="slide.media.url" :src="slide.media.url" :class="classes.slide.media" :distance="index % 2 == 0 ? 40 : 20"/>
           <div v-if="hasContent(slide)" :class="classes.slide.content.container">
             <h3 v-if="slide.title" :class="classes.slide.content.h3">{{ slide.title }}</h3>
             <h5 v-if="slide.subtitle" :class="classes.slide.content.h5">{{ slide.subtitle }}</h5>

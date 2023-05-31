@@ -14,7 +14,7 @@ export const links = {
 	links:{
 		container:'pt-2 t:px-2 t:first:pt-0 max-w-40 mx-auto text-center t:text-left',
 		label:'font-label text-slate-400 text-0.8',
-		wrapper:`mt-0.5 relative text-2 t:text-1.6`
+		wrapper:`mt-0.5 relative text-2 t:text-1.4`
 	},
 	link:{
 		wrapper: 'font-header w-full h-3 t:h-2.3 select-none flex items-center px-0.5',
