@@ -6,7 +6,7 @@
                 
             <nav class="flex">
                 <NuxtLink 
-                    v-for="page in store.navigation"
+                    v-for="page in pages"
                     class="px-1 font-header text-1.4" 
                     :to="page.link" 
                     :target="page.external ? '_blank' : null"
@@ -24,6 +24,12 @@
     import classes from './classes'
     
     const store = useStore()
+    const pages = ref([])
+    
+    onMounted(()=>{
+        pages.value = store.navigation
+    })
+    
 </script>
 
 <style type="css">

@@ -26,8 +26,6 @@ loop(0,100,(i)=>{
     leading[`${num}`] = num
 })
 
-console.log(leading)
-
 let auto = 'auto'
 let gutters = '5vw'
 let nav = {
