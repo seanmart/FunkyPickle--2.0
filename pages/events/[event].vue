@@ -24,6 +24,7 @@
     
     if(!store.pages[id]){
         const {data} = await useAsyncData(()=> client.getByUID('event',id))
+        console.log(`data: ${data.value}`)
         if(data.value) store.PAGE(data.value.data,id)
     }
     page.value = store.pages[id]
