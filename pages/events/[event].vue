@@ -14,6 +14,7 @@
     import { components } from '~/slices'
     import { useStore } from '@/stores'
     
+    const {client} = usePrismic()
     const store = useStore()
     const {params} = useRoute()
     const page = ref(null)
@@ -22,7 +23,6 @@
     store.LOADING(true)
     
     if(!store.pages[id]){
-        const {client} = usePrismic()
         const {data} = await useAsyncData(()=> client.getByUID('event',id))
         if(data.value) store.PAGE(data.value.data,id)
     }
