@@ -11,18 +11,19 @@
     const store = useStore()
     const {params,path} = useRoute()
     const page = ref(null)
+    const id = params.page || 'home'
     
     store.LOADING(true)
     
-    if(!store.pages[path]){
+    if(!store.pages[id]){
         const {client} = usePrismic()
-        const {data} = await useAsyncData(()=> client.getByUID('page',params.page || 'home'))
-        if(data.value) store.PAGE(data.value.data,path)
+        const {data} = await useAsyncData(()=> client.getByUID('page',id))
+        if(data.value) store.PAGE(data.value.data,id)
     }
     
     console.log({path,store})
     
-    page.value = store.pages[path]
+    page.value = store.pages[id]
     
     onMounted(()=>store.LOADING(false))
 
