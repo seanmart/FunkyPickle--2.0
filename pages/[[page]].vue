@@ -21,7 +21,7 @@
         if(data.value) store.PAGE(data.value.data,id)
     }
     
-    console.log({path,store})
+    console.log(store.pages[id])
     
     page.value = store.pages[id]
     
