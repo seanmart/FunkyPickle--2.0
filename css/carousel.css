@@ -190,7 +190,3 @@
     height: .25rem;
     background: theme('colors.slate.200');
 }
-
-.splide__content{
-    padding:2rem;
-}

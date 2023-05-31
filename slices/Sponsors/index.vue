@@ -2,9 +2,15 @@
   <Section v-if="sponsors.length > 0" :header="primary.noHeader ? null : primary.section" :data-section="primary.section">
     <div :class="classes.container">
       <template v-for="sponsor,i in sponsors">
-      <div v-if="sponsor.logo.url" :key="i" :class="classes.wrapper">
-        <img :src="sponsor.logo.url" :alt="sponsor.logo.alt" :class="classes.image">
+      
+      <div v-if="sponsor.logo.url" :key="i" :class="classes.box.container(primary.noHeader)">
+        <div :class="classes.box.wrapper">
+          <div :class="classes.logo.wrapper">
+            <img :src="sponsor.logo.url" :alt="sponsor.logo.alt" :class="classes.logo.image">
+          </div>
+        </div>
       </div>
+      
       </template>
     </div>
   </Section>

@@ -24,9 +24,7 @@
             "placeholder_true": "No",
             "default_value": false
           }
-        }
-      },
-      "items": {
+        },
         "text": {
           "type": "StructuredText",
           "config": {
@@ -35,12 +33,9 @@
             "allowTargetBlank": true,
             "multi": "paragraph,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
           }
-        },
-        "media": {
-          "type": "Link",
-          "config": { "label": "Media", "placeholder": "", "select": "media" }
         }
-      }
+      },
+      "items": {}
     }
   ]
 }

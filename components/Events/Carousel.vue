@@ -12,11 +12,9 @@
 		<Splide ref="info" :class="carousel.info.container" :options="infoOptions" :has-track="false">
 		  <SplideTrack :class="carousel.info.track">
 			<SplideSlide :class="carousel.info.slide" v-for="event,i in events" :key="i">
-			  <div>
 				<h5 :class="text.h5">{{formatDate(event.start,'mmmm dd, yyyy')}}</h5>
 				<h2 :class="text.h2">{{event.name}}</h2>
 				<nuxt-link :class="text.link" :to="event.route">View Event</nuxt-link>
-			  </div>
 			</SplideSlide>
 		  </SplideTrack>
 		</Splide>

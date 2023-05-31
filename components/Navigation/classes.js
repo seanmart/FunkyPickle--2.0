@@ -17,7 +17,7 @@ export const links = {
 		wrapper:`mt-10px relative text-30px t:text-27px`
 	},
 	link:{
-		wrapper: 'font-header font-normal w-full h-45px m:h-40px select-none flex items-center px-10px',
+		wrapper: 'font-header font-bold m:font-normal w-full h-45px m:h-40px select-none flex items-center px-10px',
 		label: 'text-ellipsis whitespace-nowrap flex-auto overflow-hidden'
 	},
 	highlight:{

@@ -1,7 +1,7 @@
 <template>
   <header :class="classes.container">
-    <div ref="container">
-      <h1 ref="header" class="font-header inline-block overflow-hidden whitespace-nowrap opacity-0">
+    <div class="text-center m:text-left" ref="container">
+      <h1 ref="header" class="font-header font-bold leading-0.9 inline-block overflow-hidden whitespace-nowrap opacity-0">
         <span class="inline-block tracking-tight" v-for="l in primary.header.split('')">{{l || ' '}}</span>
       </h1>
     </div>

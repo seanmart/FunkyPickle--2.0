@@ -29,7 +29,7 @@ loop(1,20,(i)=>{
 let auto = 'auto'
 let gutters = '5vw'
 let nav = {
-    'nav-x':'275px',
+    'nav-x':'300px',
     'nav-y':'70px'
 }
 let fractions = {
@@ -55,7 +55,7 @@ let screenUnits = {
     t:1000,
     l:1200,
     d:1400,
-    w:1600
+    w:1800
 }
 Object.keys(screenUnits).forEach(k => {
     screens[`${k}`] = `${screenUnits[k]}px`

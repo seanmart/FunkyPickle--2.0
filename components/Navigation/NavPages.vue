@@ -7,7 +7,7 @@
 				<span :class="links.link.label">{{page.label}}</span>
 			</nuxt-link>
 				
-			<div :class="links.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
+			<div v-if="offset >= 0" :class="links.highlight.container" :style="{transform: `translateY(${offset * 100}%)`}">
 				<div data-grow :class="links.highlight.wrapper" class="bg-outline"/>
 			</div>
 			

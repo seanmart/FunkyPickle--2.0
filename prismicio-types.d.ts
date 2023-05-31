@@ -392,32 +392,16 @@ interface ContentSliceDefaultPrimary {
    *
    */
   hide: prismicT.BooleanField;
-}
-/**
- * Item in Content → Items
- *
- */
-export interface ContentSliceDefaultItem {
   /**
-   * Text field in *Content → Items*
+   * Text field in *Content → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: content.items[].text
+   * - **API ID Path**: content.primary.text
    * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
    *
    */
   text: prismicT.RichTextField;
-  /**
-   * Media field in *Content → Items*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.items[].media
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  media: prismicT.LinkToMediaField;
 }
 /**
  * Default variation for Content Slice
@@ -430,7 +414,7 @@ export interface ContentSliceDefaultItem {
 export type ContentSliceDefault = prismicT.SharedSliceVariation<
   "default",
   Simplify<ContentSliceDefaultPrimary>,
-  Simplify<ContentSliceDefaultItem>
+  never
 >;
 /**
  * Slice variation for *Content*
@@ -932,7 +916,6 @@ declare module "@prismicio/client" {
       CarouselSliceVariation,
       CarouselSlice,
       ContentSliceDefaultPrimary,
-      ContentSliceDefaultItem,
       ContentSliceDefault,
       ContentSliceVariation,
       ContentSlice,

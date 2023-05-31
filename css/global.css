@@ -6,10 +6,20 @@ html{
     background: theme('colors.slate.50')
 }
 
-@media (min-width: theme('screens.m')) {
+:root{
+  font-size: 16px;
+  min-height: 0vw;
+}
+
+@media screen and (min-width:theme('screens.m')){
+  :root{
+    font-size: calc(1rem + (24 - 16) * ((100vw - theme('screens.m')) / (1920 - theme('screens.m-unit'))));
+  }
+}
+
+@media (min-width: 1920px) {
   :root {
-    font-size: calc(1rem + (20 - 16) * ((100vw - theme('screens.m')) / (1920 - theme('screens.m-unit'))));
-    min-height: 0vw;
+    font-size: 24px;
   }
 }
 
@@ -48,22 +58,33 @@ html.no-scroll{
     opacity: .25;
 }
 
-.section{
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:50px;
+.section,
+.section-y{
+  padding-top: 5rem;
 }
-.section:last-child{
-    padding-bottom:3rem;
+.section:last-child,
+.section-y:last-child{
+    padding-bottom:5rem;
 }
 
-@media screen and (min-width:theme('screens.m')){
-    .section{
-        padding-left:theme('spacing.gutters');
-        padding-right:theme('spacing.gutters');
-        padding-top:theme('spacing.gutters');
-    }
-    .section:last-child{
-        padding-bottom:5rem;
-    }
+.section,
+.section-x{
+    padding-left:5vw;
+    padding-right:5vw;
+}
+
+/* @media screen and (min-width:theme('screens.m')){
+  .section,
+  .section-x{
+      padding-left:5vw;
+      padding-right:5vw;
+  }
+} */
+
+@media screen and (min-width:theme('screens.w')){
+  .section,
+  .section-x{
+      padding-left:80px;
+      padding-right:80px;
+  }
 }

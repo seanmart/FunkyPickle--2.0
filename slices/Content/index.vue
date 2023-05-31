@@ -1,6 +1,6 @@
 <template>
   <section class="section" :data-section="primary.section">
-    <RichText v-for="item in items" :text="item.text" class="w:max-w-3/4"/>
+      <RichText :text="primary.text" class="max-w-55"/>
   </section>
 </template>
 
@@ -9,7 +9,7 @@
   
   const store = useStore()
   const props = defineProps(['slice','index'])
-  const {primary,items,id} = props.slice
+  const {primary} = props.slice
   
   store.LOADING(true)
   onMounted(()=>store.LOADING(false))

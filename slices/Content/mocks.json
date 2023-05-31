@@ -7,41 +7,23 @@
 				"__TYPE__": "FieldContent",
 				"value": "remember",
 				"type": "Text"
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex commodo sint est elit dolore. Ea laboris ex deserunt incididunt laborum quis."
+						}
+					}
+				]
 			}
 		},
 		"items": [
 			{
 				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"text",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "paragraph",
-									"content": {
-										"text": "Minim labore minim ipsum proident ex laboris elit consequat culpa non cillum ad officia proident labore. Nulla est commodo pariatur dolor anim qui esse aliquip commodo."
-									}
-								}
-							]
-						}
-					],
-					[
-						"media",
-						{
-							"__TYPE__": "LinkContent",
-							"value": {
-								"id": "mock_Media_link",
-								"kind": "image/jpeg",
-								"name": "mock_name",
-								"url": "https://source.unsplash.com/daily",
-								"size": "0",
-								"__TYPE__": "FileLink"
-							}
-						}
-					]
-				]
+				"value": []
 			}
 		]
 	}
