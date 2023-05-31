@@ -19,6 +19,9 @@
         const {data} = await useAsyncData(()=> client.getByUID('page',params.page || 'home'))
         if(data.value) store.PAGE(data.value.data,path)
     }
+    
+    console.log({path,store})
+    
     page.value = store.pages[path]
     
     onMounted(()=>store.LOADING(false))
