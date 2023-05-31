@@ -16,12 +16,13 @@
     store.LOADING(true)
     
     if(!store.pages[id]){
+        console.log('fetching')
         const {client} = usePrismic()
         const {data} = await useAsyncData(()=> client.getByUID('page',id))
         if(data.value) store.PAGE(data.value.data,id)
     }
     
-    console.log(store.pages[id])
+    console.log(id)
     
     page.value = store.pages[id]
     
