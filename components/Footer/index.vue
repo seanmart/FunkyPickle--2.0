@@ -1,13 +1,23 @@
 <template>
     <footer id="footer">
-        <div :class="classes.wrapper" class="footer--content">
-            <SVG name="logo" class="w-10"/>
+        <div :class="classes.wrapper" class="footer--content text-white">
+            <SVG name="logo" class="block w-10 mb-1"/>
+            <nav>
+                <ul class="flex">
+                    <li v-for="page in store.navigation">
+                        <NuxtLink class="px-1 font-header text-1.5" :to="page.link" :target="page.external ? '_blank' : null">{{page.label}}</NuxtLink>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </footer>
 </template>
 
 <script setup>
+    import {useStore} from '@/stores'
     import classes from './classes'
+    
+    const store = useStore()
 </script>
 
 <style type="css">

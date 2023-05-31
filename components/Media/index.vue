@@ -1,12 +1,10 @@
 <template>
-    <div data-parallax-image>
-        <div ref="container" :class="classes.container">
-            <div ref="media" v-if="isImage(src)" :class="classes.image" :style="{...styles,backgroundImage:`url(${src})`}"/>
-            <div ref="media" v-if="isVideo(src)" :class="classes.video.container" :style="styles">
-                <video ref="video" :class="classes.video.video" autoplay loop muted playsinline>
-                    <source :src="src"/>
-                </video>
-            </div>
+    <div ref="container" :class="classes.container(absolute)">
+        <div ref="media" v-if="isImage(src)" :class="classes.image" :style="{...styles,backgroundImage:`url(${src})`}"/>
+        <div ref="media" v-if="isVideo(src)" :class="classes.video.container" :style="styles">
+            <video ref="video" :class="classes.video.video" autoplay loop muted playsinline>
+                <source :src="src"/>
+            </video>
         </div>
     </div>
 </template>
@@ -20,7 +18,8 @@
     const container = ref(null)
     const props = defineProps({
         src:{type:String,default:null},
-        distance:{type:Number,default:0}
+        distance:{type:Number,default:0},
+        absolute:{type:Boolean,default:false}
     })
     
     const styles = {}

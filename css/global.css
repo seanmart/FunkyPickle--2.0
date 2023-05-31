@@ -11,15 +11,15 @@ html{
   min-height: 0vw;
 }
 
-@media screen and (min-width:theme('screens.m')){
+@media screen and (min-width:theme('screens.t')){
   :root{
-    font-size: calc(1rem + (24 - 16) * ((100vw - theme('screens.m')) / (1920 - theme('screens.m-unit'))));
+    font-size: calc(1rem + 10 * ((100vw - theme('screens.t')) / (1920 - theme('screens.m-unit'))));
   }
 }
 
 @media (min-width: 1920px) {
   :root {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
@@ -62,6 +62,7 @@ html.no-scroll{
 .section-y{
   padding-top: 5rem;
 }
+
 .section:last-child,
 .section-y:last-child{
     padding-bottom:5rem;
@@ -73,13 +74,17 @@ html.no-scroll{
     padding-right:5vw;
 }
 
-/* @media screen and (min-width:theme('screens.m')){
+@media screen and (min-width:theme('screens.m')){
   .section,
-  .section-x{
-      padding-left:5vw;
-      padding-right:5vw;
+  .section-y{
+    padding-top: 3rem;
   }
-} */
+  
+  .section:last-child,
+  .section-y:last-child{
+      padding-bottom:3rem;
+  }
+}
 
 @media screen and (min-width:theme('screens.w')){
   .section,

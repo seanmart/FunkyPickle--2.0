@@ -3,7 +3,7 @@
 		<Splide ref="images" :class="carousel.images.container" :options="imageOptions" :has-track="false">
 		  <SplideTrack :class="carousel.images.track">
 			<SplideSlide v-for="event,i in events" :key="i" :class="carousel.images.slide">
-			  <Media :class="carousel.images.media" :src="event.background.url" :distance="50"/>
+			  <Media absolute :class="carousel.images.media" :src="event.background.url" :distance="50"/>
 			  <img :src="event.logo.url" :class="carousel.images.logo">
 			</SplideSlide>
 		  </SplideTrack>

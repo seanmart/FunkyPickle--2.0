@@ -35,10 +35,7 @@ export function getLink(link){
 }
 
 export function matchLinkToRoute(link,route){
-  console.log({route,link})
-  console.log(route == link)
   if (route == '/' || link == '/') return route == link
-  console.log(route.includes(link))
   return route.includes(link)
 }
 

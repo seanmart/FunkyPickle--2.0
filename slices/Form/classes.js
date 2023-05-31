@@ -9,7 +9,7 @@ let field = {
 export default{
 	container:'bordered border-outline bg-fp-lime p-0.5',
 	wrapper: 'bg-white',
-	content:'px-1.5 py-3 m:px-2 max-w-40 mx-auto',
+	content:'px-1.5 py-2 m:px-2 max-w-40 mx-auto',
 	description:'mb-2 text-center max-w-35 mx-auto',
 	form:`grid gap-0.8 m:grid-cols-2 mb-2`,
 	text:field,

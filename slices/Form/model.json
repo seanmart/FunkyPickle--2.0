@@ -44,7 +44,7 @@
             "label": "Description",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,heading3,strong,em"
+            "multi": "paragraph,heading3,strong,em,heading2"
           }
         }
       },

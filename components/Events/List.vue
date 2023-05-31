@@ -1,7 +1,7 @@
 <template>
 	<nuxt-link v-for="event,i in events" :to="event.route" :class="[list.container,{'mt-1': i > 0}]" >
 		<div :class="list.image.container">
-			<Media :class="list.image.media" :src="event.background.url" :distance="50" />
+			<Media absolute :class="list.image.media" :src="event.background.url" :distance="50" />
 			<img :src="event.logo.url" :class="list.image.logo">
 		</div>
 		<div :class="list.info.container">

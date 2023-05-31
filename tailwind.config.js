@@ -11,7 +11,7 @@ let flexfractions = {}
 let border = {DEFAULT:'1px'}
 
 loop(11,100,(i)=>rem[i] = `${i}rem`)
-loop(1,99,(i)=>px[`${i}px`] = `${i}px`)
+loop(1,100,(i)=>px[`${i}px`] = `${i}px`)
 loop(1,18,(i)=>px[`${100 + (i * 50)}px`] = `${100 + (i * 50)}px`)
 loop(1,99,(i)=>vw[`${i}vw`] = `${i}vw`)
 loop(1,99,(i)=>vh[`${i}vh`] = `${i}vh`)
@@ -21,15 +21,17 @@ loop(0,100,(i)=> {
     let num = round(i * .1,10)
     rem[`${num}`] = `${num}rem`
 })
-loop(1,20,(i)=>{
-    let num = round((i + .5) * .1,10)
+loop(0,100,(i)=>{
+    let num = round(.7 + round(i * .01,100),100)
     leading[`${num}`] = num
 })
+
+console.log(leading)
 
 let auto = 'auto'
 let gutters = '5vw'
 let nav = {
-    'nav-x':'300px',
+    'nav-x':'20rem',
     'nav-y':'70px'
 }
 let fractions = {
@@ -101,7 +103,8 @@ export default{
                 'fp-turq': '#2BCCA7',
                 'outline': '#e2e8f0',
                 'fp-pink-dark':'#B00C4B',
-                'fp-lime-dark':'#BAEF09'
+                'fp-lime-dark':'#BAEF09',
+                'fp-blue-light':'#CBF4FD'
             }
         }
     }

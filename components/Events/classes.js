@@ -10,7 +10,7 @@ export const carousel ={
 		container:'flex-none m:w-1/2 bg-slate-100',
 		track:'h-full',
 		slide:'h-full flex-center relative select-none p-3 m:p-2',
-		media:'absolute inset-0',
+		media:'inset-0',
 		logo:'h-auto w-20 max-w-full max-h-full relative z-1'
 	},
 	info:{
@@ -24,7 +24,7 @@ export const list = {
 	container:'flex flex-col m:flex-row bordered border-outline bg-white',
 	image:{
 		container:'flex-none relative flex-center w-full h-15 m:h-auto m:w-1/2 d:w-1/3 p-2',
-		media:'absolute inset-0',
+		media:'inset-0',
 		logo:'h-auto w-auto max-w-full max-h-8 relative z-1'
 	},
 	info:{

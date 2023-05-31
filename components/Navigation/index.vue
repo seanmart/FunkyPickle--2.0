@@ -49,6 +49,7 @@
 		if(window.innerWidth >= store.units.tablet && open){
 			open = false 
 			gsap.set('#nav',{clearProps:'height'})
+			document.documentElement.classList.remove('no-scroll')
 			window.removeEventListener('click',toggleMenu)
 		}
 	}

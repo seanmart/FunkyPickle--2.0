@@ -14,7 +14,7 @@
   const store = useStore()
   const {client} = usePrismic()
   const props = defineProps(['slice','index'])
-  const {id,primary,items} = props.slice
+  const {primary,items} = props.slice
   const events = ref([])
   
   store.LOADING(true)
@@ -25,6 +25,7 @@
     const {data} = await useAsyncData(()=>client.getAllByType('event',{fetch,orderings}))
     if(data.value){
 	  data.value.forEach(event => {
+      
 	    let uid = event.uid
 	    let data = event.data 
 	    let route = `/events/${uid}`
@@ -33,7 +34,7 @@
     }
   }
   
-  if(items.length){
+  if(items.length && items[0].event.uid){
     items.forEach(item => {
       let event = store.previews.find(p => p.uid == item.event.uid)
       event && events.value.push(event)
