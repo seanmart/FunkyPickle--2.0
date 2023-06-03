@@ -19,11 +19,14 @@
   const store = useStore()
   const props = defineProps(['slice','index'])
   const {primary,items,id} = props.slice
+  const galleryItems = ref([])
   
-  const galleryItems = items.map(item => ({
-    media: item.media.url,
-    text: item.description
-  }))
+  if (items){
+    galleryItems.value = items.map(item => ({
+      media: item.media.url,
+      text: item.description
+    }))
+  }
   
   store.LOADING(true)  
   onMounted(()=>store.LOADING(false))

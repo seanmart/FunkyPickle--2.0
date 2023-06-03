@@ -15,9 +15,9 @@
     let timeout = null
     let width = window.innerWidth
     
-    if(checkClipPath()){
-      document.documentElement.classList.add('has-clip-path')
-    }
+    // if(checkClipPath()){
+    //   document.documentElement.classList.add('has-clip-path')
+    // }
     
     window.addEventListener('resize',()=>{
       if(width == window.innerWidth) return

@@ -168,7 +168,7 @@
     align-items: center;
     height: 3rem;
     background: white;
-    border-top: 1px solid theme('colors.outline');
+    /* border-top: 1px solid theme('colors.outline'); */
 }
 .splide__pagination li{    
     margin: 0px .2rem;
@@ -189,4 +189,14 @@
 .splide__progress__bar{
     height: .25rem;
     background: theme('colors.slate.200');
+}
+
+@media screen and (min-width: theme('screens.t')){
+    .splide__pagination{
+        height: 2rem;
+    }
+    .splide__arrow{    
+        height: 2rem;
+        width: 2rem;
+    }
 }

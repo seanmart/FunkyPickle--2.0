@@ -7,20 +7,8 @@ html{
 }
 
 :root{
-  font-size: 16px;
-  min-height: 0vw;
-}
-
-@media screen and (min-width:theme('screens.t')){
-  :root{
-    font-size: calc(1rem + 10 * ((100vw - theme('screens.t')) / (1920 - theme('screens.m-unit'))));
-  }
-}
-
-@media (min-width: 1920px) {
-  :root {
-    font-size: 22px;
-  }
+   font-size: max(14px, 14px + (100vw - 600px) * .0075);
+   min-height: 0vw;
 }
 
 .flex-center{
@@ -56,40 +44,4 @@ html.no-scroll{
 .disabled{
     pointer-events: none;
     opacity: .25;
-}
-
-.section,
-.section-y{
-  padding-top: 5rem;
-}
-
-.section:last-child,
-.section-y:last-child{
-    padding-bottom:5rem;
-}
-
-.section,
-.section-x{
-    padding-left:5vw;
-    padding-right:5vw;
-}
-
-@media screen and (min-width:theme('screens.m')){
-  .section,
-  .section-y{
-    padding-top: 3rem;
-  }
-  
-  .section:last-child,
-  .section-y:last-child{
-      padding-bottom:3rem;
-  }
-}
-
-@media screen and (min-width:theme('screens.w')){
-  .section,
-  .section-x{
-      padding-left:80px;
-      padding-right:80px;
-  }
 }

@@ -24,6 +24,10 @@
             "placeholder_true": "No",
             "default_value": false
           }
+        },
+        "message": {
+          "type": "Text",
+          "config": { "label": "Message", "placeholder": "" }
         }
       },
       "items": {

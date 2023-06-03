@@ -19,6 +19,7 @@
     const props = defineProps({
         src:{type:String,default:null},
         distance:{type:Number,default:0},
+        scale:{type:Number,default:1},
         absolute:{type:Boolean,default:false}
     })
     
@@ -31,10 +32,11 @@
     }
 
     onMounted(()=>{
-        if(media.value && props.distance){
+        if(media.value && (props.distance || props.scale)){
             let rect = container.value.getBoundingClientRect()
             gsap.to(media.value,1,{
                 y:props.distance,
+                scale:props.scale,
                 ease:'none',
                 scrollTrigger:{
                     start: rect.top < window.innerHeight && rect.bottom > 0 ? -1 : 'top bottom',

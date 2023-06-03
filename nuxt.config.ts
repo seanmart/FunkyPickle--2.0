@@ -8,7 +8,7 @@ export default defineNuxtConfig({
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js'},
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js'},
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js'},
-                {src:'https://static.cdn.prismic.io/prismic.js?new=true&repo=funky-pickle--v02',defer:true, async:true}
+                // {src:'https://static.cdn.prismic.io/prismic.js?new=true&repo=funky-pickle--v02',defer:true, async:true}
             ]
         }
     },
@@ -31,7 +31,10 @@ export default defineNuxtConfig({
           baseURL: process.env.BASE_URL,
         }
      },
-    prismic: { endpoint: process.env.PRISMIC_ENDPOINT },
+    prismic: {
+        preview: false,
+        endpoint: process.env.PRISMIC_ENDPOINT 
+    },
     postcss: {
         plugins: {
           tailwindcss: {},

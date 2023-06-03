@@ -1,7 +1,7 @@
 <template>
-  <section class="content-s section" :data-section="primary.section">
-      <RichText :text="primary.text" class="max-w-40"/>
-  </section>
+  <Section class="content-s" :data-section="primary.section">
+      <RichText :text="primary.text"/>
+  </Section>
 </template>
 
 <script setup>
@@ -17,9 +17,15 @@
 </script>
 
 <style>
-  .content-s .rich-text h2 strong,
-  .content-s .rich-text h3 strong{
+  .content-s h2 strong,
+  .content-s h3 strong{
     display: inline;
     background: theme('colors.fp-lime');
   }
+  .content-s h2 ~ p,
+  .content-s h3 ~ p,
+  .content-s h4 ~ p{
+    margin-top:2rem;
+  }
+  
 </style>

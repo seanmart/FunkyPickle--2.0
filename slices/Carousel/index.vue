@@ -27,31 +27,16 @@
   const {primary,items,id} = props.slice
   
   const options = {
-      perPage: items.length > 2 ? 3 : items.length > 1 ? 2 : 1,
+      perPage: items.length > 1 ? 2 : 1,
       perMove: 1,
-      gap:1,
+      gap:0,
       resetProgress:false,
       autoplay: true,
       rewind:true,
       type: 'slide',
-      drag: items.length > 3,
+      drag: items.length > 2,
       breakpoints:{
-        [store.units.wide - 1]:{
-          perPage:items.length > 1 ? 2 : 1,
-          type: 'loop', 
-          drag: items.length > 2
-        },
         [store.units.laptop - 1]:{
-          perPage:1,
-          type: 'loop', 
-          drag: items.length > 1
-        },
-        [store.units.tablet - 1]:{
-          perPage:items.length > 1 && !primary.section ? 2 : 1,
-          type: 'loop', 
-          drag: items.length > 2
-        },
-        [store.units.mobile - 1]:{
           perPage:1,
           type: 'loop', 
           drag: items.length > 1

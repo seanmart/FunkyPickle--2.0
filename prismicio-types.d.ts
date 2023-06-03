@@ -625,6 +625,16 @@ interface GallerySliceDefaultPrimary {
    *
    */
   hide: prismicT.BooleanField;
+  /**
+   * Message field in *Gallery → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.primary.message
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  message: prismicT.KeyTextField;
 }
 /**
  * Item in Gallery → Items

@@ -4,7 +4,7 @@
             
             <SVG name="logo" class="block w-8 mb-1"/>
                 
-            <nav class="flex">
+            <!-- <nav class="flex">
                 <NuxtLink 
                     v-for="page in pages"
                     class="px-1 font-header text-1.4" 
@@ -13,7 +13,7 @@
                 >
                 {{page.label}}
                 </NuxtLink>
-            </nav>
+            </nav> -->
                 
         </div>
     </footer>

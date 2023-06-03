@@ -1,16 +1,18 @@
 <template>
     <section :class="classes.container(header)">
-
-        <div :class="classes.header.container" v-if="header">
-            <div :class="classes.header.wrapper">
-                <h3 :class="classes.header.label">{{header}}</h3>
+        <div :class="classes.wrapper(header)">
+            
+            <div :class="classes.header.container" v-if="header">
+                <div :class="classes.header.wrapper">
+                    <h3 :class="classes.header.label">{{header}}</h3>
+                </div>
             </div>
+            
+            <div :class="[contentClass,classes.content(header)]">
+                <slot/>
+            </div>
+            
         </div>
-
-        <div :class="[contentClass,classes.content(header)]">
-            <slot/>
-        </div>
-
     </section>
 </template>
 

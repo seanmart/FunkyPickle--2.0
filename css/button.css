@@ -1,5 +1,5 @@
 .btn{
-    height: 2.5rem;
+    height: 2rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -42,13 +42,4 @@
   height: 100%;
   background: repeating-linear-gradient(60deg, transparent, transparent 0.75rem, rgba(255,255,255,.2) 0.75rem, rgba(255,255,255,.2) 1.5rem);
   animation: load 1s infinite linear;
-}
-
-@media screen and (min-width:theme('screens.m')){
-    .btn{
-        height: 2.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1rem;
-    }   
 }

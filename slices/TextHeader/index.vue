@@ -1,11 +1,11 @@
 <template>
-  <header :class="classes.container">
+  <Section>
     <div ref="container">
       <h1 ref="header" class="font-header font-bold leading-0.72 inline-block overflow-hidden whitespace-nowrap opacity-0">
         <span class="inline-block tracking-tight" v-for="l in primary.header.split('')">{{l || ' '}}</span>
       </h1>
     </div>
-  </header>
+  </Section>
 </template>
 
 <script setup>
@@ -35,8 +35,7 @@
   
   function resize(){
     let ww = window.innerWidth
-    let percent = ww < store.units.mobile ? .75 : ww < store.units.tablet ? .5 : .333
-    let offset = container.value.offsetWidth * percent - header.value.offsetWidth
+    let offset = container.value.offsetWidth - header.value.offsetWidth
     size += offset * ratio
     header.value.style.fontSize = `${size}px`;
   }
@@ -55,7 +54,7 @@
   })
   
   onUnmounted(()=>{
-    window.removeEventListener('resize',resize)
+    //window.removeEventListener('resize',resize)
   })
 </script>
 

@@ -6,22 +6,22 @@ export const nav = {
 export const button = 'fixed h-nav-y w-nav-y top-0 left-0 t:hidden'
 
 export const logo = {
-	container: 'h-nav-y p-0.5 t:p-2 t:h-auto t:w-full flex-none',
+	container: 'h-nav-y p-10px t:p-30px t:h-auto t:w-full flex-none',
 	wrapper: 'h-full t:w-full t:h-auto'
 }
 
 export const links = {
 	links:{
-		container:'pt-2 t:px-2 t:first:pt-0 max-w-40 mx-auto text-center t:text-left',
-		label:'font-label text-slate-400 text-0.8',
-		wrapper:`mt-0.5 relative text-2 t:text-1.4`
+		container:'pt-20px t:px-30px t:first:pt-0 max-w-400px mx-auto text-center t:text-left',
+		label:'font-label text-slate-400 text-15px',
+		wrapper:`mt-10px relative text-30px t:text-25px`
 	},
 	link:{
-		wrapper: 'font-header w-full h-3 t:h-2.3 select-none flex items-center px-0.5',
+		wrapper: 'font-header w-full h-40px t:h-35px select-none flex items-center px-10px',
 		label: 'text-ellipsis whitespace-nowrap flex-auto overflow-hidden'
 	},
 	highlight:{
-		container:'top-0 absolute h-3 t:h-2.3 left-0 right-0 -z-1 t:transition-transform duration-100 t:duration-300',
+		container:'top-0 absolute h-40px t:h-35px left-0 right-0 -z-1 t:transition-transform duration-100 t:duration-300',
 		wrapper:'h-full w-full origin-center t:rounded-sm'
 	}
 }

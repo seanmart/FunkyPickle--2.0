@@ -7,6 +7,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "work",
 				"type": "Text"
+			},
+			"message": {
+				"__TYPE__": "FieldContent",
+				"value": "however",
+				"type": "Text"
 			}
 		},
 		"items": [
