@@ -4,6 +4,9 @@ const Prismic = require("@prismicio/client");
 export default defineNuxtConfig({
     app:{
         head:{
+            htmlAttrs: {
+                  class: 'bg-slate-50 dark:bg-slate-800 dark:text-slate-50'
+            },
             script:[
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js'},
                 {src:'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js'},

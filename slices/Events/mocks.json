@@ -3,36 +3,11 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"hide": {
+			"display": {
 				"__TYPE__": "BooleanContent",
-				"value": false
-			},
-			"label": {
-				"__TYPE__": "FieldContent",
-				"value": "prepare",
-				"type": "Text"
-			},
-			"carousel": {
-				"__TYPE__": "BooleanContent",
-				"value": false
+				"value": true
 			}
 		},
-		"items": [
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"event",
-						{
-							"__TYPE__": "LinkContent",
-							"value": {
-								"__TYPE__": "DocumentLink",
-								"id": "mock_document_id"
-							}
-						}
-					]
-				]
-			}
-		]
+		"items": []
 	}
 ]

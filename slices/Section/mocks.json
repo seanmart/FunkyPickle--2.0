@@ -1,0 +1,23 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"hide": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "research",
+				"type": "Text"
+			},
+			"type": {
+				"__TYPE__": "FieldContent",
+				"value": "Large",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

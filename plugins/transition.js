@@ -13,7 +13,8 @@ export default defineNuxtPlugin(()=>{
 	})
 	
 	addRouteMiddleware('transition',(to,from)=>{
-		if(from.path == to.path) return
+
+		if(process.server || from.path == to.path) return
 		return new Promise((next)=>{
 			gsap.timeline({onComplete:next})
 			.set('#transition',{display:'block',y:'100%'})

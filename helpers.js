@@ -4,6 +4,10 @@ export function loop(s,e,f){
   }
 }
 
+export function arrayHasEmptyObject(x){
+  return Array.isArray(x) && x.length && !Object.keys(x[0]).length
+}
+
 export function round(n,u){
   return Math.round(n * u) / u
 }
@@ -13,16 +17,6 @@ export function randomInt(min, max) {
 }
 export function randomFloat(min, max) {
   return Math.random() * (max - min) + min;
-}
-
-export function getSlices(data){
-  let slices = []
-  if(data) data.forEach(slice => {
-  if(slice.primary.hide) return
-  slice.id = slice.primary.label ? slice.primary.label.replace(/\s+/g, '-').toLowerCase() : slice.id
-  slices.push(slice)
-  })
-  return slices 
 }
 
 export function has(obj,key){
@@ -35,8 +29,12 @@ export function getLink(link){
 }
 
 export function matchLinkToRoute(link,route){
-  if (route == '/' || link == '/') return route == link
-  return route.includes(link)
+  if (link == route) return true
+  if (route == '/' || link == '/') return link == route
+  
+  let parts = route.split('/').filter(p => p)
+  return parts.length && link.includes(parts[0])
+  
 }
 
 export function isVideo(media){

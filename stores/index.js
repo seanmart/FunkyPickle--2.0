@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import config from '@/tailwind.config.js'
+import {arrayHasEmptyObject} from '@/helpers'
 
 export const useStore = defineStore('main',()=>{
 	
@@ -19,7 +20,11 @@ export const useStore = defineStore('main',()=>{
 		tablet: parseInt(config.theme.screens.t),
 		laptop: parseInt(config.theme.screens.l),
 		desktop: parseInt(config.theme.screens.d),
-		wide: parseInt(config.theme.screens.w)
+		wide: parseInt(config.theme.screens.w),
+		margins: {
+			wide: parseInt(config.theme.width.wide),
+			narrow: parseInt(config.theme.width.narrow)
+		}
 	}
 	
 	//ACTIONS
@@ -30,8 +35,41 @@ export const useStore = defineStore('main',()=>{
 	}
 	
 	function PAGE(data,path){
-		const slices = data.slices.filter(s => !s.primary.hide)
-		pages.value[path] = {...data,slices}
+		let margins = data.margins ? 'wide' : 'narrow'
+		let section = null
+		let slices = []
+		let navbar = []
+
+		data.slices.forEach(slice => {
+			let {primary,slice_type,items} = slice
+			
+			if(primary.hide) return
+			if(arrayHasEmptyObject(items)) items = []
+			
+			if(slice_type == 'section'){
+				section && slices.push(section)
+				let id = primary.label.replace(/\s+/g, '-').toLowerCase()
+				let label = primary.label
+				navbar.push({id:`#${id}`,label})
+				section = {id,label,slices:[]}
+			}
+			
+			if(section) section.slices.push({primary,items,slice_type})
+			if(!section) slices.push({primary,items,slice_type})
+		})
+		
+		section && slices.push(section)
+		pages.value[path] = {...data,slices,margins,navbar}
+	}
+	
+	function PREVIEWS(events){
+		events.forEach(event => {
+			previews.value.push({
+				...event.data,
+				link:`/event-${event.uid}`,
+			    uid: event.uid
+			})
+		})
 	}
 	
 	function FORMS(items){
@@ -69,6 +107,7 @@ export const useStore = defineStore('main',()=>{
 		units,
 		LOADING,
 		PAGE,
+		PREVIEWS,
 		FORMS
 	}
 })

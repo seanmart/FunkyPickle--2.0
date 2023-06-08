@@ -1,8 +1,8 @@
 {
-  "id": "events",
+  "id": "media",
   "type": "SharedSlice",
-  "name": "Events",
-  "description": "Events",
+  "name": "Media",
+  "description": "Media",
   "variations": [
     {
       "id": "default",
@@ -21,12 +21,25 @@
             "default_value": false
           }
         },
-        "display": {
+        "media": {
+          "type": "Link",
+          "config": { "label": "Media", "placeholder": "", "select": "media" }
+        },
+        "height": {
+          "type": "Select",
+          "config": {
+            "label": "Height",
+            "placeholder": "",
+            "options": ["Large", "Medium", "Small", "16/9", "Square"],
+            "default_value": "Large"
+          }
+        },
+        "autoplay": {
           "type": "Boolean",
           "config": {
-            "label": "Display",
-            "placeholder_false": "List",
-            "placeholder_true": "Carousel",
+            "label": "Autoplay",
+            "placeholder_false": "Off",
+            "placeholder_true": "On",
             "default_value": false
           }
         }

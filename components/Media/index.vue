@@ -1,56 +1,36 @@
 <template>
-    <div ref="container" :class="classes.container(absolute)">
-        <div ref="media" v-if="isImage(src)" :class="classes.image" :style="{...styles,backgroundImage:`url(${src})`}"/>
-        <div ref="media" v-if="isVideo(src)" :class="classes.video.container" :style="styles">
-            <video ref="video" :class="classes.video.video" autoplay loop muted playsinline>
-                <source :src="src"/>
-            </video>
-        </div>
-    </div>
+   
+   <div v-if="isImage(src)" :class="classes.image" :style="{backgroundImage:`url(${src})`}"/>
+   
+   <video 
+    v-else-if="isVideo(src)" 
+    ref="video" 
+    :class="classes.video" 
+    :autoplay="autoplay || background" 
+    :loop="loop || background" 
+    :muted="muted || background" 
+    :playsinline="playsinline || background" 
+    :controls="controls"
+    >
+       <source :src="src"/>
+   </video>
+   
 </template>
 
 <script setup>
     import {isVideo,isImage} from '@/helpers'
     import classes from './classes'
     
-    const video = ref(null)
-    const media = ref(null)
-    const container = ref(null)
     const props = defineProps({
         src:{type:String,default:null},
-        distance:{type:Number,default:0},
-        scale:{type:Number,default:1},
-        absolute:{type:Boolean,default:false}
+        autoplay:{type:Boolean,default:false},
+        loop:{type:Boolean,default:false},
+        muted:{type:Boolean,default:false},
+        playsinline:{type:Boolean,default:false},
+        controls:{type:Boolean,default:false},
+        background:{type:Boolean,default:false}
     })
-    
-    const styles = {}
-    
-    if(props.distance){
-        let reverse = props.distance < 0
-        if(!reverse) styles.top = `${props.distance * -1}px`
-        if(reverse) styles.bottom = `${-props.distance * -1}px`
-    }
 
-    onMounted(()=>{
-        if(media.value && (props.distance || props.scale)){
-            let rect = container.value.getBoundingClientRect()
-            gsap.to(media.value,1,{
-                y:props.distance,
-                scale:props.scale,
-                ease:'none',
-                scrollTrigger:{
-                    start: rect.top < window.innerHeight && rect.bottom > 0 ? -1 : 'top bottom',
-                    end:'bottom top',
-                    trigger: container.value,
-                    scrub: true,
-                    onToggle: ({isActive})=>{
-                        if(!video.value) return 
-                        isActive ? video.value.play() : video.value.pause()
-                    }
-                }
-            }) 
-        }
-    })
 </script>
 
 <style lang="css">

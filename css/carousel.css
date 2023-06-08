@@ -83,23 +83,6 @@
     vertical-align: bottom
 }
 
-.splide__spinner {
-    animation: splide-loading 1s linear infinite;
-    border: 2px solid #999;
-    border-left-color: transparent;
-    border-radius: 50%;
-    bottom: 0;
-    contain: strict;
-    display: inline-block;
-    height: 20px;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 20px
-}
-
 .splide__sr {
     clip: rect(0 0 0 0);
     border: 0;
@@ -127,48 +110,45 @@
 }
 
 /* EDITS */
-.splide__arrow{    
+.splide__arrows{    
     position: absolute;
-    bottom:0;
+    bottom:-1rem;
+    left:1rem;
+    right:1rem;
     z-index: 1;
-    fill: black;
-    padding: .5rem;
-    height: 3rem;
-    width: 3rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between
+}
+
+.splide__arrow{
+    fill: black;
+    padding: 1rem;
 }
 .splide__arrow:hover{
-    background: theme('colors.fp-pink');
-    fill:white;
+    fill:theme('colors.fp-pink');
 }
 .splide__arrow[disabled]{
     background: theme('colors.slate.200');
     cursor: not-allowed; 
 }
 .splide__arrow svg{    
-    width: 1.15rem;
+    height: 1rem;
+    width: 1rem;
 }
 .splide__arrow--prev{    
-    left: 0;
-    border-right: 1px solid theme('colors.outline');
+    left: 1rem;
 }
 .splide__arrow--prev svg{
     transform: rotate(180deg);
 }
 .splide__arrow--next{    
-    right: 0;
-    border-left: 1px solid theme('colors.outline');
+    left: 1rem;
 }
 
 .splide__pagination{    
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    background: white;
-    /* border-top: 1px solid theme('colors.outline'); */
 }
 .splide__pagination li{    
     margin: 0px .2rem;
@@ -183,20 +163,11 @@
     background: theme('colors.fp-pink')
 }
 
-.splide__progress{
-    background: theme('colors.slate.50');
-}
-.splide__progress__bar{
-    height: .25rem;
-    background: theme('colors.slate.200');
-}
-
-@media screen and (min-width: theme('screens.t')){
-    .splide__pagination{
-        height: 2rem;
+@media screen and (max-width: theme('screens.m-max')){
+    
+    .splide__arrows{
+        left: -1rem;
+        right: -1rem;
     }
-    .splide__arrow{    
-        height: 2rem;
-        width: 2rem;
-    }
+    
 }

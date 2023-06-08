@@ -1,8 +1,8 @@
 {
-  "id": "events",
+  "id": "section",
   "type": "SharedSlice",
-  "name": "Events",
-  "description": "Events",
+  "name": "Section",
+  "description": "A section of the website with a label for the navbar",
   "variations": [
     {
       "id": "default",
@@ -21,13 +21,17 @@
             "default_value": false
           }
         },
-        "display": {
-          "type": "Boolean",
+        "label": {
+          "type": "Text",
+          "config": { "label": "Label", "placeholder": "" }
+        },
+        "type": {
+          "type": "Select",
           "config": {
-            "label": "Display",
-            "placeholder_false": "List",
-            "placeholder_true": "Carousel",
-            "default_value": false
+            "label": "Type",
+            "placeholder": "",
+            "options": ["Large", "Small", "Invisible"],
+            "default_value": "Large"
           }
         }
       },

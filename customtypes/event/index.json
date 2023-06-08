@@ -3,6 +3,7 @@
   "label": "Event",
   "repeatable": true,
   "status": true,
+  "format": "custom",
   "json": {
     "Main": {
       "uid": { "type": "UID", "config": { "label": "ID", "placeholder": "" } },
@@ -10,17 +11,9 @@
         "type": "Text",
         "config": { "label": "Name", "placeholder": "" }
       },
-      "logo": {
-        "type": "Image",
-        "config": { "label": "Logo", "constraint": {}, "thumbnails": [] }
-      },
-      "background": {
-        "type": "Link",
-        "config": {
-          "label": "Background",
-          "placeholder": "",
-          "select": "media"
-        }
+      "location": {
+        "type": "Text",
+        "config": { "label": "Location", "placeholder": "" }
       },
       "start": {
         "type": "Date",
@@ -30,16 +23,28 @@
         "type": "Date",
         "config": { "label": "End Date", "placeholder": "" }
       },
+      "logo": {
+        "type": "Link",
+        "config": { "label": "Logo", "placeholder": "", "select": "media" }
+      },
+      "background": {
+        "type": "Link",
+        "config": {
+          "label": "Background",
+          "placeholder": "",
+          "select": "media"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "carousel": { "type": "SharedSlice" },
-            "gallery": { "type": "SharedSlice" },
-            "sponsors": { "type": "SharedSlice" },
-            "content": { "type": "SharedSlice" },
-            "form": { "type": "SharedSlice" }
+            "section": { "type": "SharedSlice" },
+            "headline": { "type": "SharedSlice" },
+            "slider": { "type": "SharedSlice" },
+            "paragraph": { "type": "SharedSlice" },
+            "media": { "type": "SharedSlice" }
           }
         }
       }

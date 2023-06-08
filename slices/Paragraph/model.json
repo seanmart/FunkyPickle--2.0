@@ -1,8 +1,8 @@
 {
-  "id": "events",
+  "id": "paragraph",
   "type": "SharedSlice",
-  "name": "Events",
-  "description": "Events",
+  "name": "Paragraph",
+  "description": "Paragraphs of copy",
   "variations": [
     {
       "id": "default",
@@ -21,13 +21,13 @@
             "default_value": false
           }
         },
-        "display": {
-          "type": "Boolean",
+        "text": {
+          "type": "StructuredText",
           "config": {
-            "label": "Display",
-            "placeholder_false": "List",
-            "placeholder_true": "Carousel",
-            "default_value": false
+            "label": "Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
           }
         }
       },

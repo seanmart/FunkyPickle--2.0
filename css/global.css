@@ -2,13 +2,22 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html{
-    background: theme('colors.slate.50')
+:root{
+  --text-color: black;
+  --accent-color: theme('colors.fp-lime');
+  color: var(--text-color)
 }
 
-:root{
-   font-size: max(14px, 14px + (100vw - 600px) * .0075);
-   min-height: 0vw;
+@media (min-width: theme('screens.w')) {
+  :root {
+    font-size: calc(1rem + (20 - 16) * ((100vw - theme('screens.w')) / (1920 - theme('screens.w-unit'))));
+    min-height: 0vw;
+  }
+}
+@media (min-width: 1920px) {
+  :root {
+    font-size: 20px;
+  }
 }
 
 .flex-center{
@@ -41,7 +50,89 @@ html.no-scroll{
     height:100%;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
 .disabled{
     pointer-events: none;
     opacity: .25;
+}
+
+/* margins */
+
+.margins{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margins-wide .margins{
+  max-width: theme('width.wide');
+}
+.margins-narrow .margins{
+  max-width: theme('width.narrow');
+}
+
+/* gutters */
+
+.gutters,
+.gutters-x{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.gutters,
+.gutters-y{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.gutters-scroll{
+  scroll-padding-left: 1rem;
+  scroll-padding-right: 1rem; 
+}
+
+@media screen and (min-width: theme('screens.m')){
+  
+  .gutters,
+  .gutters-x{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .gutters-scroll{
+    scroll-padding-left: 3rem;
+    scroll-padding-right: 3rem; 
+  }
+  
+}
+
+@media screen and (min-width: theme('screens.t')){
+  
+  .gutters,
+  .gutters-x{
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  
+  .gutters-scroll{
+    scroll-padding-left: 4rem;
+    scroll-padding-right: 4rem; 
+  }
+  
+}
+
+.gutters:first-child,
+.gutters-y:first-child{
+  margin-top: 0;
+}
+
+.gutters:last-child,
+.gutters-y:last-child{
+  margin-bottom: 0;
 }

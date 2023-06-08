@@ -27,10 +27,12 @@ loop(0,100,(i)=>{
 })
 
 let auto = 'auto'
-let gutters = '1rem'
+let narrow = '56rem'
+let wide = '78rem'
+
 let nav = {
-    'nav-x':'300px',
-    'nav-y':'75px'
+    'nav-x':'18rem',
+    'nav-y':'64px'
 }
 let fractions = {
     '1/12': '8.333%',
@@ -69,11 +71,13 @@ Object.keys(fractions).forEach(key => {
 
 export default{
     content:[
-      './app.vue',
-      './error.vue',
-      './pages/**/*.vue',
-      './components/**/*.{js,vue}',
-      './slices/**/*.{js,vue}',
+      'app.vue',
+      'error.vue',
+      'nuxt.config.ts',
+      'pages/**/*.vue',
+      'globalClasses.js',
+      'components/**/*.{js,vue}',
+      'slices/**/*.{js,vue}',
     ],
     theme:{
         screens:{...screens},
@@ -82,13 +86,16 @@ export default{
         borderWidth:{...border},
         outlineWidth:{...border},
         fontSize:{...rem,...px,...vw},
-        spacing:{...rem,...px,...vw,...fractions,...nav,gutters},
-        width:{...rem,...px,...vw,...fractions, ...nav,gutters,auto,screen:'100vw'},
-        height:{...rem,...px,...vw,...vh,...fractions,...nav,gutters,auto,screen:'100vh'},
+        spacing:{...rem,...px,...vw,...vh,...fractions,...nav},
+        width:{...rem,...px,...vw,...fractions, ...nav,auto,narrow,wide,screen:'100vw'},
+        height:{...rem,...px,...vw,...vh,...fractions,...nav,auto,screen:'100vh'},
         minWidth:{...rem,...px,...vw,...fractions,auto,screen:'100vw',},
-        minHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
+        minHeight:{...rem,...px,...vh,...fractions,auto,screen:'100vh'},
         maxWidth:{...rem,...px,...vw,...fractions,auto,screen:'100vw'},
-        maxHeight:{...rem,...px,...vw,...fractions,auto,screen:'100vh'},
+        maxHeight:{...rem,...px,...vh,...fractions,auto,screen:'100vh'},
+        fontFamily:{
+            header:['Saira Extra Condensed']
+        },
         extend:{
             gradientColorStopPositions:{...fractions},
             fill: ({theme})=>({...theme('colors')}),
@@ -100,9 +107,7 @@ export default{
                 'fp-blue': '#00C8F8',
                 'fp-turq': '#2BCCA7',
                 'outline': '#e2e8f0',
-                'fp-pink-dark':'#B00C4B',
-                'fp-lime-dark':'#BAEF09',
-                'fp-blue-light':'#CBF4FD'
+                'fp-lime-dark':'#3C4534'
             }
         }
     }

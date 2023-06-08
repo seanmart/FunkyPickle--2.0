@@ -20,27 +20,16 @@ interface EventDocumentData {
    */
   name: prismicT.KeyTextField;
   /**
-   * Logo field in *Event*
+   * Location field in *Event*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: event.logo
+   * - **API ID Path**: event.location
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
    *
    */
-  logo: prismicT.ImageField<never>;
-  /**
-   * Background field in *Event*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: event.background
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  background: prismicT.LinkToMediaField;
+  location: prismicT.KeyTextField;
   /**
    * Start Date field in *Event*
    *
@@ -64,6 +53,28 @@ interface EventDocumentData {
    */
   end: prismicT.DateField;
   /**
+   * Logo field in *Event*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  logo: prismicT.LinkToMediaField;
+  /**
+   * Background field in *Event*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.background
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  background: prismicT.LinkToMediaField;
+  /**
    * Slice Zone field in *Event*
    *
    * - **Field Type**: Slice Zone
@@ -80,11 +91,11 @@ interface EventDocumentData {
  *
  */
 type EventDocumentDataSlicesSlice =
-  | CarouselSlice
-  | GallerySlice
-  | SponsorsSlice
-  | ContentSlice
-  | FormSlice;
+  | SectionSlice
+  | HeadlineSlice
+  | SliderSlice
+  | ParagraphSlice
+  | MediaSlice;
 /**
  * Event document from Prismic
  *
@@ -170,6 +181,40 @@ export type NavigationDocument<Lang extends string = string> =
 /** Content for Page documents */
 interface PageDocumentData {
   /**
+   * Margins field in *Page*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: page.margins
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  margins: prismicT.BooleanField;
+  /**
+   * Title field in *Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.RichTextField;
+  /**
+   * Media field in *Page*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.media
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  media: prismicT.LinkToMediaField;
+  /**
    * Slice Zone field in *Page*
    *
    * - **Field Type**: Slice Zone
@@ -219,14 +264,12 @@ interface PageDocumentData {
  *
  */
 type PageDocumentDataSlicesSlice =
-  | PageHeaderSlice
-  | TextHeaderSlice
-  | ContentSlice
-  | CarouselSlice
-  | FormSlice
-  | GallerySlice
-  | SponsorsSlice
-  | EventsSlice;
+  | SectionSlice
+  | HeadlineSlice
+  | ParagraphSlice
+  | MediaSlice
+  | EventsSlice
+  | SliderSlice;
 /**
  * Page document from Prismic
  *
@@ -243,213 +286,12 @@ export type AllDocumentTypes =
   | NavigationDocument
   | PageDocument;
 /**
- * Primary content in Carousel → Primary
- *
- */
-interface CarouselSliceDefaultPrimary {
-  /**
-   * Label field in *Carousel → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.primary.section
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  section: prismicT.KeyTextField;
-  /**
-   * Publish field in *Carousel → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: carousel.primary.hide
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  hide: prismicT.BooleanField;
-  /**
-   * Header field in *Carousel → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: carousel.primary.noHeader
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  noHeader: prismicT.BooleanField;
-}
-/**
- * Item in Carousel → Items
- *
- */
-export interface CarouselSliceDefaultItem {
-  /**
-   * Media field in *Carousel → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.items[].media
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  media: prismicT.LinkField;
-  /**
-   * Title field in *Carousel → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.items[].title
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  title: prismicT.KeyTextField;
-  /**
-   * Subtitle field in *Carousel → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.items[].subtitle
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  subtitle: prismicT.KeyTextField;
-  /**
-   * Body field in *Carousel → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.items[].body
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
-   */
-  body: prismicT.RichTextField;
-  /**
-   * Link field in *Carousel → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.items[].link
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  link: prismicT.LinkField;
-}
-/**
- * Default variation for Carousel Slice
- *
- * - **API ID**: `default`
- * - **Description**: `Carousel`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type CarouselSliceDefault = prismicT.SharedSliceVariation<
-  "default",
-  Simplify<CarouselSliceDefaultPrimary>,
-  Simplify<CarouselSliceDefaultItem>
->;
-/**
- * Slice variation for *Carousel*
- *
- */
-type CarouselSliceVariation = CarouselSliceDefault;
-/**
- * Carousel Shared Slice
- *
- * - **API ID**: `carousel`
- * - **Description**: `Carousel`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type CarouselSlice = prismicT.SharedSlice<
-  "carousel",
-  CarouselSliceVariation
->;
-/**
- * Primary content in Content → Primary
- *
- */
-interface ContentSliceDefaultPrimary {
-  /**
-   * Label field in *Content → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.primary.section
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  section: prismicT.KeyTextField;
-  /**
-   * Publish field in *Content → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: content.primary.hide
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  hide: prismicT.BooleanField;
-  /**
-   * Text field in *Content → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content.primary.text
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
-   */
-  text: prismicT.RichTextField;
-}
-/**
- * Default variation for Content Slice
- *
- * - **API ID**: `default`
- * - **Description**: `Default`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type ContentSliceDefault = prismicT.SharedSliceVariation<
-  "default",
-  Simplify<ContentSliceDefaultPrimary>,
-  never
->;
-/**
- * Slice variation for *Content*
- *
- */
-type ContentSliceVariation = ContentSliceDefault;
-/**
- * Content Shared Slice
- *
- * - **API ID**: `content`
- * - **Description**: `Content`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type ContentSlice = prismicT.SharedSlice<
-  "content",
-  ContentSliceVariation
->;
-/**
  * Primary content in Events → Primary
  *
  */
 interface EventsSliceDefaultPrimary {
   /**
-   * Label field in *Events → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: events.primary.section
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  section: prismicT.KeyTextField;
-  /**
-   * Publish field in *Events → Primary*
+   * hide field in *Events → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
@@ -460,45 +302,29 @@ interface EventsSliceDefaultPrimary {
    */
   hide: prismicT.BooleanField;
   /**
-   * Display Type field in *Events → Primary*
+   * Display field in *Events → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: events.primary.carousel
+   * - **API ID Path**: events.primary.display
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
-  carousel: prismicT.BooleanField;
-}
-/**
- * Item in Events → Items
- *
- */
-export interface EventsSliceDefaultItem {
-  /**
-   * Event Picker field in *Events → Items*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: events.items[].event
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  event: prismicT.RelationField<"event">;
+  display: prismicT.BooleanField;
 }
 /**
  * Default variation for Events Slice
  *
  * - **API ID**: `default`
- * - **Description**: `Events`
+ * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
 export type EventsSliceDefault = prismicT.SharedSliceVariation<
   "default",
   Simplify<EventsSliceDefaultPrimary>,
-  Simplify<EventsSliceDefaultItem>
+  never
 >;
 /**
  * Slice variation for *Events*
@@ -509,397 +335,372 @@ type EventsSliceVariation = EventsSliceDefault;
  * Events Shared Slice
  *
  * - **API ID**: `events`
- * - **Description**: `Events Carousel`
+ * - **Description**: `Events`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
 export type EventsSlice = prismicT.SharedSlice<"events", EventsSliceVariation>;
 /**
- * Primary content in Form → Primary
+ * Primary content in Headline → Primary
  *
  */
-interface FormSliceDefaultPrimary {
+interface HeadlineSliceDefaultPrimary {
   /**
-   * Label field in *Form → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: form.primary.section
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  section: prismicT.KeyTextField;
-  /**
-   * Publish field in *Form → Primary*
+   * hide field in *Headline → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: form.primary.hide
+   * - **API ID Path**: headline.primary.hide
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
   hide: prismicT.BooleanField;
   /**
-   * Header field in *Form → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: form.primary.noHeader
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  noHeader: prismicT.BooleanField;
-  /**
-   * Airtable Link field in *Form → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: form.primary.airtable
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  airtable: prismicT.KeyTextField;
-  /**
-   * Description field in *Form → Primary*
+   * text field in *Headline → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: form.primary.description
+   * - **API ID Path**: headline.primary.text
    * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
    *
    */
-  description: prismicT.RichTextField;
+  text: prismicT.RichTextField;
 }
 /**
- * Default variation for Form Slice
+ * Default variation for Headline Slice
  *
  * - **API ID**: `default`
  * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FormSliceDefault = prismicT.SharedSliceVariation<
+export type HeadlineSliceDefault = prismicT.SharedSliceVariation<
   "default",
-  Simplify<FormSliceDefaultPrimary>,
+  Simplify<HeadlineSliceDefaultPrimary>,
   never
 >;
 /**
- * Slice variation for *Form*
+ * Slice variation for *Headline*
  *
  */
-type FormSliceVariation = FormSliceDefault;
+type HeadlineSliceVariation = HeadlineSliceDefault;
 /**
- * Form Shared Slice
+ * Headline Shared Slice
  *
- * - **API ID**: `form`
- * - **Description**: `Form`
+ * - **API ID**: `headline`
+ * - **Description**: `Headline`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FormSlice = prismicT.SharedSlice<"form", FormSliceVariation>;
+export type HeadlineSlice = prismicT.SharedSlice<
+  "headline",
+  HeadlineSliceVariation
+>;
 /**
- * Primary content in Gallery → Primary
+ * Primary content in Media → Primary
  *
  */
-interface GallerySliceDefaultPrimary {
+interface MediaSliceDefaultPrimary {
   /**
-   * Label field in *Gallery → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.primary.section
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  section: prismicT.KeyTextField;
-  /**
-   * Publish field in *Gallery → Primary*
+   * hide field in *Media → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: gallery.primary.hide
+   * - **API ID Path**: media.primary.hide
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
   hide: prismicT.BooleanField;
   /**
-   * Message field in *Gallery → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.primary.message
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  message: prismicT.KeyTextField;
-}
-/**
- * Item in Gallery → Items
- *
- */
-export interface GallerySliceDefaultItem {
-  /**
-   * Media field in *Gallery → Items*
+   * Media field in *Media → Primary*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.items[].media
+   * - **API ID Path**: media.primary.media
    * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
    *
    */
   media: prismicT.LinkToMediaField;
   /**
-   * Description field in *Gallery → Items*
+   * Height field in *Media → Primary*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.items[].description
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   * - **Default Value**: Large
+   * - **API ID Path**: media.primary.height
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
    *
    */
-  description: prismicT.RichTextField;
-}
-/**
- * Default variation for Gallery Slice
- *
- * - **API ID**: `default`
- * - **Description**: `Default`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type GallerySliceDefault = prismicT.SharedSliceVariation<
-  "default",
-  Simplify<GallerySliceDefaultPrimary>,
-  Simplify<GallerySliceDefaultItem>
->;
-/**
- * Slice variation for *Gallery*
- *
- */
-type GallerySliceVariation = GallerySliceDefault;
-/**
- * Gallery Shared Slice
- *
- * - **API ID**: `gallery`
- * - **Description**: `Gallery`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
- */
-export type GallerySlice = prismicT.SharedSlice<
-  "gallery",
-  GallerySliceVariation
->;
-/**
- * Primary content in PageHeader → Primary
- *
- */
-interface PageHeaderSliceDefaultPrimary {
+  height: prismicT.SelectField<
+    "Large" | "Medium" | "Small" | "16/9" | "Square",
+    "filled"
+  >;
   /**
-   * Publish field in *PageHeader → Primary*
+   * Autoplay field in *Media → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: page_header.primary.hide
+   * - **API ID Path**: media.primary.autoplay
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
-  hide: prismicT.BooleanField;
-  /**
-   * Title field in *PageHeader → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page_header.primary.title
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
-   */
-  title: prismicT.RichTextField;
-  /**
-   * Background field in *PageHeader → Primary*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page_header.primary.background
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  background: prismicT.LinkToMediaField;
+  autoplay: prismicT.BooleanField;
 }
 /**
- * Default variation for PageHeader Slice
+ * Default variation for Media Slice
  *
  * - **API ID**: `default`
  * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type PageHeaderSliceDefault = prismicT.SharedSliceVariation<
+export type MediaSliceDefault = prismicT.SharedSliceVariation<
   "default",
-  Simplify<PageHeaderSliceDefaultPrimary>,
+  Simplify<MediaSliceDefaultPrimary>,
   never
 >;
 /**
- * Slice variation for *PageHeader*
+ * Slice variation for *Media*
  *
  */
-type PageHeaderSliceVariation = PageHeaderSliceDefault;
+type MediaSliceVariation = MediaSliceDefault;
 /**
- * PageHeader Shared Slice
+ * Media Shared Slice
  *
- * - **API ID**: `page_header`
- * - **Description**: `PageHeader`
+ * - **API ID**: `media`
+ * - **Description**: `Media`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type PageHeaderSlice = prismicT.SharedSlice<
-  "page_header",
-  PageHeaderSliceVariation
->;
+export type MediaSlice = prismicT.SharedSlice<"media", MediaSliceVariation>;
 /**
- * Primary content in Sponsors → Primary
+ * Primary content in Paragraph → Primary
  *
  */
-interface SponsorsSliceDefaultPrimary {
+interface ParagraphSliceDefaultPrimary {
   /**
-   * Label field in *Sponsors → Primary*
+   * hide field in *Paragraph → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: paragraph.primary.hide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  hide: prismicT.BooleanField;
+  /**
+   * Text field in *Paragraph → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: paragraph.primary.text
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  text: prismicT.RichTextField;
+}
+/**
+ * Default variation for Paragraph Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type ParagraphSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<ParagraphSliceDefaultPrimary>,
+  never
+>;
+/**
+ * Slice variation for *Paragraph*
+ *
+ */
+type ParagraphSliceVariation = ParagraphSliceDefault;
+/**
+ * Paragraph Shared Slice
+ *
+ * - **API ID**: `paragraph`
+ * - **Description**: `Paragraphs of copy`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type ParagraphSlice = prismicT.SharedSlice<
+  "paragraph",
+  ParagraphSliceVariation
+>;
+/**
+ * Primary content in Section → Primary
+ *
+ */
+interface SectionSliceDefaultPrimary {
+  /**
+   * hide field in *Section → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: section.primary.hide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  hide: prismicT.BooleanField;
+  /**
+   * Label field in *Section → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: sponsors.primary.section
+   * - **API ID Path**: section.primary.label
    * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
    *
    */
-  section: prismicT.KeyTextField;
+  label: prismicT.KeyTextField;
   /**
-   * Publish field in *Sponsors → Primary*
+   * Type field in *Section → Primary*
    *
-   * - **Field Type**: Boolean
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: sponsors.primary.hide
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   * - **Default Value**: Large
+   * - **API ID Path**: section.primary.type
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
    *
    */
-  hide: prismicT.BooleanField;
-  /**
-   * Header field in *Sponsors → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: sponsors.primary.noHeader
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  noHeader: prismicT.BooleanField;
+  type: prismicT.SelectField<"Large" | "Small" | "Invisible", "filled">;
 }
 /**
- * Item in Sponsors → Items
- *
- */
-export interface SponsorsSliceDefaultItem {
-  /**
-   * Logo field in *Sponsors → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: sponsors.items[].logo
-   * - **Documentation**: https://prismic.io/docs/core-concepts/image
-   *
-   */
-  logo: prismicT.ImageField<never>;
-}
-/**
- * Default variation for Sponsors Slice
+ * Default variation for Section Slice
  *
  * - **API ID**: `default`
- * - **Description**: `Sponsors`
+ * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SponsorsSliceDefault = prismicT.SharedSliceVariation<
+export type SectionSliceDefault = prismicT.SharedSliceVariation<
   "default",
-  Simplify<SponsorsSliceDefaultPrimary>,
-  Simplify<SponsorsSliceDefaultItem>
+  Simplify<SectionSliceDefaultPrimary>,
+  never
 >;
 /**
- * Slice variation for *Sponsors*
+ * Slice variation for *Section*
  *
  */
-type SponsorsSliceVariation = SponsorsSliceDefault;
+type SectionSliceVariation = SectionSliceDefault;
 /**
- * Sponsors Shared Slice
+ * Section Shared Slice
  *
- * - **API ID**: `sponsors`
- * - **Description**: `Sponsors`
+ * - **API ID**: `section`
+ * - **Description**: `A section of the website with a label for the navbar`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SponsorsSlice = prismicT.SharedSlice<
-  "sponsors",
-  SponsorsSliceVariation
+export type SectionSlice = prismicT.SharedSlice<
+  "section",
+  SectionSliceVariation
 >;
 /**
- * Primary content in TextHeader → Primary
+ * Primary content in Slider → Primary
  *
  */
-interface TextHeaderSliceDefaultPrimary {
+interface SliderSliceDefaultPrimary {
   /**
-   * Publish field in *TextHeader → Primary*
+   * hide field in *Slider → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: text_header.primary.hide
+   * - **API ID Path**: slider.primary.hide
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
   hide: prismicT.BooleanField;
+}
+/**
+ * Item in Slider → Items
+ *
+ */
+export interface SliderSliceDefaultItem {
   /**
-   * Header field in *TextHeader → Primary*
+   * Media field in *Slider → Items*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.items[].media
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  media: prismicT.LinkToMediaField;
+  /**
+   * Header field in *Slider → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_header.primary.header
+   * - **API ID Path**: slider.items[].header
    * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
    *
    */
   header: prismicT.KeyTextField;
+  /**
+   * Text field in *Slider → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.items[].text
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  text: prismicT.KeyTextField;
+  /**
+   * Link field in *Slider → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.items[].link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.LinkField;
+  /**
+   * Footer field in *Slider → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: slider.items[].footer
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  footer: prismicT.KeyTextField;
 }
 /**
- * Default variation for TextHeader Slice
+ * Default variation for Slider Slice
  *
  * - **API ID**: `default`
  * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TextHeaderSliceDefault = prismicT.SharedSliceVariation<
+export type SliderSliceDefault = prismicT.SharedSliceVariation<
   "default",
-  Simplify<TextHeaderSliceDefaultPrimary>,
-  never
+  Simplify<SliderSliceDefaultPrimary>,
+  Simplify<SliderSliceDefaultItem>
 >;
 /**
- * Slice variation for *TextHeader*
+ * Slice variation for *Slider*
  *
  */
-type TextHeaderSliceVariation = TextHeaderSliceDefault;
+type SliderSliceVariation = SliderSliceDefault;
 /**
- * TextHeader Shared Slice
+ * Slider Shared Slice
  *
- * - **API ID**: `text_header`
- * - **Description**: `TextHeader`
+ * - **API ID**: `slider`
+ * - **Description**: `Slider`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TextHeaderSlice = prismicT.SharedSlice<
-  "text_header",
-  TextHeaderSliceVariation
->;
+export type SliderSlice = prismicT.SharedSlice<"slider", SliderSliceVariation>;
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -920,42 +721,31 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       PageDocument,
       AllDocumentTypes,
-      CarouselSliceDefaultPrimary,
-      CarouselSliceDefaultItem,
-      CarouselSliceDefault,
-      CarouselSliceVariation,
-      CarouselSlice,
-      ContentSliceDefaultPrimary,
-      ContentSliceDefault,
-      ContentSliceVariation,
-      ContentSlice,
       EventsSliceDefaultPrimary,
-      EventsSliceDefaultItem,
       EventsSliceDefault,
       EventsSliceVariation,
       EventsSlice,
-      FormSliceDefaultPrimary,
-      FormSliceDefault,
-      FormSliceVariation,
-      FormSlice,
-      GallerySliceDefaultPrimary,
-      GallerySliceDefaultItem,
-      GallerySliceDefault,
-      GallerySliceVariation,
-      GallerySlice,
-      PageHeaderSliceDefaultPrimary,
-      PageHeaderSliceDefault,
-      PageHeaderSliceVariation,
-      PageHeaderSlice,
-      SponsorsSliceDefaultPrimary,
-      SponsorsSliceDefaultItem,
-      SponsorsSliceDefault,
-      SponsorsSliceVariation,
-      SponsorsSlice,
-      TextHeaderSliceDefaultPrimary,
-      TextHeaderSliceDefault,
-      TextHeaderSliceVariation,
-      TextHeaderSlice,
+      HeadlineSliceDefaultPrimary,
+      HeadlineSliceDefault,
+      HeadlineSliceVariation,
+      HeadlineSlice,
+      MediaSliceDefaultPrimary,
+      MediaSliceDefault,
+      MediaSliceVariation,
+      MediaSlice,
+      ParagraphSliceDefaultPrimary,
+      ParagraphSliceDefault,
+      ParagraphSliceVariation,
+      ParagraphSlice,
+      SectionSliceDefaultPrimary,
+      SectionSliceDefault,
+      SectionSliceVariation,
+      SectionSlice,
+      SliderSliceDefaultPrimary,
+      SliderSliceDefaultItem,
+      SliderSliceDefault,
+      SliderSliceVariation,
+      SliderSlice,
     };
   }
 }

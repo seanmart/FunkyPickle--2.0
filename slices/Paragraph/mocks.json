@@ -1,0 +1,20 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Reprehenderit excepteur ad tempor anim in. Eiusmod dolore velit occaecat excepteur excepteur ea exercitation velit ad consectetur anim cillum qui."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
