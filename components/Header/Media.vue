@@ -1,6 +1,6 @@
 <template>
 	
-	<header id="header" class="relative bg-slate-900 text-center py-10 px-2">
+	<header id="header" class="relative bg-slate-900 text-center py-7 m:py-10 px-2">
 		<PrismicRichText class="relative z-1" :field="title" :htmlSerializer="htmlSerializer"/>
 		<Media class="absolute inset-0 opacity-40" :src="media" background/>
 	</header>

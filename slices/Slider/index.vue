@@ -4,7 +4,7 @@
       
       <template v-for="item in slice.items">
       
-        <div class="flex-auto w-23 m:w-20 min-h-25 border border-slate-200 dark:border-slate-700 snap-start snap-always snap-mandatory flex flex-col">
+        <div class="flex-auto min-w-20 min-h-25 border border-slate-200 dark:border-slate-700 snap-start snap-always snap-mandatory flex flex-col">
           <Media :src="item.media.url" class="flex-none h-8" background/>
           <div class="flex-auto p-2 flex flex-col">
             <h5 class="flex-none" :class="[headingClasses.small,headingClasses.bar]" >{{item.header}}</h5>

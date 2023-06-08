@@ -2,12 +2,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:root{
-  --text-color: black;
-  --accent-color: theme('colors.fp-lime');
-  color: var(--text-color)
-}
-
 @media (min-width: theme('screens.w')) {
   :root {
     font-size: calc(1rem + (20 - 16) * ((100vw - theme('screens.w')) / (1920 - theme('screens.w-unit'))));
