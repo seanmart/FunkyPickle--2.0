@@ -31,6 +31,7 @@ export const useStore = defineStore('main',()=>{
 	
 	function LOADING(loading){
 		pending += loading ? 1 : -1
+		console.log(pending)
 		if(!pending) loaded.value = Date.now()
 	}
 	

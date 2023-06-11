@@ -1,7 +1,6 @@
 <template>
    
    <div v-if="isImage(src) && background" :class="classes.image" :style="{backgroundImage:`url(${src})`}"/>
-   
    <img v-else-if="isImage(src) && !background" :src="src">
    
    <video 
@@ -22,6 +21,10 @@
 <script setup>
     import {isVideo,isImage} from '@/helpers'
     import classes from './classes'
+    import {useStore} from '@/stores'
+    
+    const store = useStore()
+    const video = ref(null)
     
     const props = defineProps({
         src:{type:String,default:null},
@@ -32,6 +35,24 @@
         controls:{type:Boolean,default:false},
         background:{type:Boolean,default:false}
     })
+    
+    store.LOADING(true)
+    
+    onMounted(()=>{
+       if(video.value){
+          video.value.readyState >= 3
+          ? store.LOADING(false)
+          : video.value.addEventListener('loadeddata',handleVideo)
+       } else {
+          store.LOADING(false)
+       }
+    })
+    
+    function handleVideo(){
+       store.LOADING(false)
+       video.value.removeEventListener('loadeddata',handleVideo)
+    }
+    
 
 </script>
 
