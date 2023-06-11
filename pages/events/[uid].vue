@@ -1,9 +1,9 @@
 <template>
 	<main class="min-h-screen margins-wide text-primary dark:text-slate-50" :style="styles">
-		<EventHeader :background="page.background.url" :logo="page.logo.url" :start="page.start" :end="page.end"/>
-		<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
-		<EventTitle :name="page.name"/>
-		<Sections :sections="page.slices"/>
+		<EventHeader :background="event.background.url" :logo="event.logo.url" :start="event.start" :end="event.end"/>
+		<Navbar v-if="event.navbar.length" :data="event.navbar" :color="event.colorLight"/>
+		<EventInformation :name="event.name" :start="event.start" :end="event.end"/>
+		<Sections :sections="event.slices"/>
 	</main>
 </template>
 
@@ -21,11 +21,12 @@
 		if(data.value) store.PAGE(data.value.data,path)
 	}
 	
-	const page = store.pages[path]
+	const event = store.pages[path]
+	
 	const styles = {
-		'--primary-color':page.primaryColor,
-		'--secondary-color': page.secondaryColor,
-		'--tertiary-color': page.secondaryColor,
+		'--primary-color':event.primaryColor,
+		'--secondary-color': event.secondaryColor,
+		'--tertiary-color': event.secondaryColor,
 	}
 	
 	onMounted(()=> store.LOADING(false))
