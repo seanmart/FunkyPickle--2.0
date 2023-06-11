@@ -31,7 +31,6 @@ export const useStore = defineStore('main',()=>{
 	
 	function LOADING(loading){
 		pending += loading ? 1 : -1
-		console.log(pending)
 		if(!pending) loaded.value = Date.now()
 	}
 	
@@ -61,6 +60,7 @@ export const useStore = defineStore('main',()=>{
 		
 		section && slices.push(section)
 		pages.value[path] = {...data,slices,margins,navbar}
+		console.log(path,pages.value[path])
 	}
 	
 	function PREVIEWS(events){
