@@ -1,14 +1,15 @@
 <template>
 	<main class="min-h-screen" :class="`margins-${page.margins}`">
-		<PageHeader v-if="page.media.url && page.title.length" :background="page.media.url" :title="page.title"/>
+		<PageHeader v-if="page.media.url && hasTitle" :background="page.media.url" :title="page.title"/>
 		<Navbar v-if="page.navbar.length" :data="page.navbar"/>
-		<PageTitle v-if="!page.media.url && page.title.length" :title="page.title"/>
+		<PageTitle v-if="!page.media.url && hasTitle" :title="page.title"/>
 		<Sections :sections="page.slices"/>
 	</main>
 </template>
 
 <script setup>
 	import {useStore} from '@/stores'
+	import {richTextHasContent} from '@/helpers'
 	
 	const {path,params} = useRoute()
 	const store = useStore()
@@ -23,6 +24,7 @@
 	}
 	
 	const page = store.pages[path]
+	const hasTitle = richTextHasContent(page.title)
 	
 	onMounted(()=> store.LOADING(false))
 

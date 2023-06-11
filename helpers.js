@@ -8,6 +8,12 @@ export function arrayHasEmptyObject(x){
   return Array.isArray(x) && x.length && !Object.keys(x[0]).length
 }
 
+export function richTextHasContent(text){
+  if(!text.length) return false 
+  if(text.length == 1 && text[0].text == '') return false 
+  return true
+}
+
 export function round(n,u){
   return Math.round(n * u) / u
 }
@@ -51,7 +57,7 @@ export function isDate(d){
 
 export function toDate(d) {
   if (d.indexOf("T") > 0) d = d.split("T")[0];
-  return new Date(`${d}T00:00:00-07:00`);
+  return new Date(`${d}T00:00:00-04:00`);
 }
 
 export function getDay(d) {

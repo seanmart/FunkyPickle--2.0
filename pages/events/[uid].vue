@@ -1,8 +1,9 @@
 <template>
-	<main class="min-h-screen margins-wide text-primary dark:text-slate-50">
-		<div v-if="page" :style="styles">
-			<EventHeader :background="page.background.url" :logo="page.logo.url" :start="page.start" :end="page.end"/>
+	<main class="min-h-screen margins-wide dark:text-slate-50">
+		<div v-if="page" :style="styles" class="text-primary">
+			<EventHeader :background="page.background.url" :logo="page.logo.url"/>
 			<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
+			<EventCountdown :start="page.start"/>
 			<EventInformation :name="page.name" :start="page.start" :end="page.end"/>
 			<Sections :sections="page.slices"/>
 		</div>
