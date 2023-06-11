@@ -17,7 +17,7 @@
 	store.LOADING(true)
 	
 	if(!store.pages[path]){
-		const {data} = await useAsyncData(()=>client.getByUID('event',params.uid))
+		const {data} = await useAsyncData(()=>client.getByUID(params.uid,params.uid))
 		if(data.value) store.PAGE(data.value.data,path)
 	}
 	
