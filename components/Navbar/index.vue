@@ -1,6 +1,6 @@
 <template>
   <nav ref="nav" id="navbar" class="bg-secondary dark:bg-slate-700 dark:text-slate-50 navbar sticky z-8">
-    <div class="relative margins gutters-x flex pt-2 overflow-auto no-scrollbar scroll-smooth">
+    <div class="relative margins gutters-x flex pt-1 t:pt-2 overflow-auto no-scrollbar scroll-smooth">
         <template v-for="section,i in data">
           <a ref="items"  :class="headingClasses.small" class="flex-none mr-3 py-1" :href="section.id" @click="handleClick($event,i)">{{section.label}}</a>
         </template>
@@ -93,7 +93,7 @@
 
 <style>
   #navbar{
-    top: calc(theme('spacing.nav-y') - 2rem);
+    top: calc(theme('spacing.nav-y') - 1rem);
     padding: 0px;
   }
   
