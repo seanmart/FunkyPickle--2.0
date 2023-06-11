@@ -1,9 +1,11 @@
 <template>
 	<main class="min-h-screen margins-wide text-primary dark:text-slate-50" :style="styles">
-		<EventHeader :background="event.background.url" :logo="event.logo.url" :start="event.start" :end="event.end"/>
-		<Navbar v-if="event.navbar.length" :data="event.navbar" :color="event.colorLight"/>
-		<EventInformation :name="event.name" :start="event.start" :end="event.end"/>
-		<Sections :sections="event.slices"/>
+		<template v-if="event">
+			<EventHeader :background="event.background.url" :logo="event.logo.url" :start="event.start" :end="event.end"/>
+			<Navbar v-if="event.navbar.length" :data="event.navbar" :color="event.colorLight"/>
+			<EventInformation :name="event.name" :start="event.start" :end="event.end"/>
+			<Sections :sections="event.slices"/>
+		</template>
 	</main>
 </template>
 
@@ -13,6 +15,8 @@
 	const {path,params} = useRoute()
 	const store = useStore()
 	const {client} = usePrismic()
+	const styles = ref({})
+	const event = ref(null)
 	
 	store.LOADING(true)
 	
@@ -21,13 +25,18 @@
 		if(data.value) store.PAGE(data.value.data,path)
 	}
 	
-	const event = store.pages[path]
+	event.value = store.pages[path]
 	
-	const styles = {
-		'--primary-color':event.primaryColor,
-		'--secondary-color': event.secondaryColor,
-		'--tertiary-color': event.secondaryColor,
-	}
+	watch(event,()=>{
+		styles.value = {
+			'--primary-color':event.primaryColor,
+			'--secondary-color': event.secondaryColor,
+			'--tertiary-color': event.secondaryColor,
+		}
+	})
+	
+	
+	
 	
 	onMounted(()=> store.LOADING(false))
 

@@ -13,11 +13,12 @@
 	const {path,params} = useRoute()
 	const store = useStore()
 	const {client} = usePrismic()
+	const uid = params.uid || 'home'
 	
 	store.LOADING(true)
 	
 	if(!store.pages[path]){
-		const {data} = await useAsyncData(()=>client.getByUID('page',params.uid || 'home'))
+		const {data} = await useAsyncData(()=>client.getByUID(uid,uid))
 		if(data.value) store.PAGE(data.value.data,path)
 	}
 	
