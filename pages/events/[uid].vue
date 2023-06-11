@@ -1,11 +1,11 @@
 <template>
-	<main class="min-h-screen margins-wide text-primary dark:text-slate-50" :style="styles">
-		<template v-if="event">
-			<EventHeader :background="event.background.url" :logo="event.logo.url" :start="event.start" :end="event.end"/>
-			<Navbar v-if="event.navbar.length" :data="event.navbar" :color="event.colorLight"/>
-			<EventInformation :name="event.name" :start="event.start" :end="event.end"/>
-			<Sections :sections="event.slices"/>
-		</template>
+	<main class="min-h-screen margins-wide text-primary dark:text-slate-50">
+		<div v-if="page" :style="styles">
+			<EventHeader :background="page.background.url" :logo="page.logo.url" :start="page.start" :end="page.end"/>
+			<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
+			<EventInformation :name="page.name" :start="page.start" :end="page.end"/>
+			<Sections :sections="page.slices"/>
+		</div>
 	</main>
 </template>
 
@@ -15,28 +15,22 @@
 	const {path,params} = useRoute()
 	const store = useStore()
 	const {client} = usePrismic()
-	const styles = ref({})
-	const event = ref(null)
+	const uid = params.uid
 	
 	store.LOADING(true)
 	
 	if(!store.pages[path]){
-		const {data} = await useAsyncData(()=>client.getByUID(params.uid,params.uid))
+		const {data} = await useAsyncData(uid,()=>client.getByUID('event',uid))
 		if(data.value) store.PAGE(data.value.data,path)
 	}
 	
-	event.value = store.pages[path]
+	const page = store.pages[path]
 	
-	watch(event,()=>{
-		styles.value = {
-			'--primary-color':event.primaryColor,
-			'--secondary-color': event.secondaryColor,
-			'--tertiary-color': event.secondaryColor,
-		}
-	})
-	
-	
-	
+	const styles = {
+		'--primary-color':page.primaryColor,
+		'--secondary-color': page.secondaryColor,
+		'--tertiary-color': page.secondaryColor,
+	}
 	
 	onMounted(()=> store.LOADING(false))
 

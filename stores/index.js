@@ -60,7 +60,6 @@ export const useStore = defineStore('main',()=>{
 		
 		section && slices.push(section)
 		pages.value[path] = {...data,slices,margins,navbar}
-		console.log(path,pages.value[path])
 	}
 	
 	function PREVIEWS(events){
