@@ -3,7 +3,7 @@
     <Navigation/>
     <NuxtPage/>
     <Footer/>
-    <section id="transition" class="hidden fixed inset-0 z-9 bg-fp-lime dark:bg-slate-700"/>
+    <section id="transition" class="hidden fixed inset-0 z-9 bg-secondary transition-colors duration-200 dark:bg-slate-700"/>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
 	<main class="min-h-screen" :class="`margins-${page.margins}`">
-		<HeaderMedia v-if="page.media.url && page.title.length" :media="page.media.url" :title="page.title"/>
+		<PageHeader v-if="page.media.url && page.title.length" :background="page.media.url" :title="page.title"/>
 		<Navbar v-if="page.navbar.length" :data="page.navbar"/>
-		<HeaderTitle v-if="!page.media.url && page.title.length" :title="page.title"/>
+		<PageTitle v-if="!page.media.url && page.title.length" :title="page.title"/>
 		<Sections :sections="page.slices"/>
 	</main>
 </template>

@@ -2,14 +2,14 @@
 	
 	<header id="header" class="relative bg-slate-900 text-center py-7 m:py-10 px-2">
 		<PrismicRichText class="relative z-1" :field="title" :htmlSerializer="htmlSerializer"/>
-		<Media class="absolute inset-0 opacity-40" :src="media" background/>
+		<Media class="absolute top-0 left-0 w-full h-full opacity-40" :src="background" background/>
 	</header>
 		
 </template>
 
 <script setup>
 	
-	const props = defineProps(['title','media','navbar'])
+	const props = defineProps(['title','background','navbar'])
 	const htmlSerializer = {
 		'heading1':({children})=> `<h1 class="text-white font-header font-bold uppercase header-text leading-0.9">${formatText(children)}</h1>`,
 		'strong':({children})=> `<strong class="text-fp-lime">${children}</strong>`
@@ -17,9 +17,9 @@
 	
 	function formatText(words){
 		return words.split(' ').map(word => {
-  			if(word.includes('strong')) return word
-  			if(word.includes('-')) return `<span class="whitespace-nowrap">${word}</span>`
-  			return word
+			  if(word.includes('strong')) return word
+			  if(word.includes('-')) return `<span class="whitespace-nowrap">${word}</span>`
+			  return word
 		}).join(' ')
 	}
 	  

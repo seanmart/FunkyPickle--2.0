@@ -12,7 +12,7 @@ export default{
 		page:'font-header uppercase flex justify-center items-center h-4 w-full text-2.5 px-1 t:justify-start t:h-2.7 t:text-1.8',
 		highlight:{
 			container:'absolute top-0 left-0 right-0 -z-1 transition-transform duration-200',
-			wrapper:'bg-fp-lime dark:bg-slate-700 m:rounded h-4 t:h-2.7'
+			wrapper:'bg-secondary dark:bg-slate-700 m:rounded h-4 t:h-2.7'
 		}
 	}
 }

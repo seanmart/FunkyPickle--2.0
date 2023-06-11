@@ -1,6 +1,8 @@
 <template>
-	<main class="min-h-screen" :class="`margins-${page.margins}`">
-		<Navbar v-if="page.navbar.length" :data="page.navbar"/>
+	<main class="min-h-screen margins-wide text-primary dark:text-slate-50" :style="styles">
+		<EventHeader :background="page.background.url" :logo="page.logo.url" :start="page.start" :end="page.end"/>
+		<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
+		<EventTitle :name="page.name"/>
 		<Sections :sections="page.slices"/>
 	</main>
 </template>
@@ -20,6 +22,11 @@
 	}
 	
 	const page = store.pages[path]
+	const styles = {
+		'--primary-color':page.primaryColor,
+		'--secondary-color': page.secondaryColor,
+		'--tertiary-color': page.secondaryColor,
+	}
 	
 	onMounted(()=> store.LOADING(false))
 

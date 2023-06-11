@@ -21,7 +21,7 @@
             "default_value": false
           }
         },
-        "display": {
+        "isCarousel": {
           "type": "Boolean",
           "config": {
             "label": "Display",

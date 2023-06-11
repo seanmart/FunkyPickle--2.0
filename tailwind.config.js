@@ -107,7 +107,10 @@ export default{
                 'fp-blue': '#00C8F8',
                 'fp-turq': '#2BCCA7',
                 'outline': '#e2e8f0',
-                'fp-lime-dark':'#3C4534'
+                'fp-lime-dark':'#3C4534',
+                "primary": "var(--primary-color)",
+                "secondary": "var(--secondary-color)",
+                "tertiary": "var(--tertiary-color)",
             }
         }
     }

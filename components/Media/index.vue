@@ -1,6 +1,8 @@
 <template>
    
-   <div v-if="isImage(src)" :class="classes.image" :style="{backgroundImage:`url(${src})`}"/>
+   <div v-if="isImage(src) && background" :class="classes.image" :style="{backgroundImage:`url(${src})`}"/>
+   
+   <img v-else-if="isImage(src) && !background" :src="src">
    
    <video 
     v-else-if="isVideo(src)" 

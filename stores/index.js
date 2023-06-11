@@ -66,7 +66,7 @@ export const useStore = defineStore('main',()=>{
 		events.forEach(event => {
 			previews.value.push({
 				...event.data,
-				link:`/event-${event.uid}`,
+				link:`/events/${event.uid}`,
 			    uid: event.uid
 			})
 		})

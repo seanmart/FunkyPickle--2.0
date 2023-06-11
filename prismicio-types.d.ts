@@ -75,6 +75,28 @@ interface EventDocumentData {
    */
   background: prismicT.LinkToMediaField;
   /**
+   * Primary Color field in *Event*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.primaryColor
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/color
+   *
+   */
+  primaryColor: prismicT.ColorField;
+  /**
+   * Secondary Color field in *Event*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event.secondaryColor
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/color
+   *
+   */
+  secondaryColor: prismicT.ColorField;
+  /**
    * Slice Zone field in *Event*
    *
    * - **Field Type**: Slice Zone
@@ -307,11 +329,11 @@ interface EventsSliceDefaultPrimary {
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: events.primary.display
+   * - **API ID Path**: events.primary.isCarousel
    * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
    *
    */
-  display: prismicT.BooleanField;
+  isCarousel: prismicT.BooleanField;
 }
 /**
  * Default variation for Events Slice

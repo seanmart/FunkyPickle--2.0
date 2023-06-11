@@ -2,6 +2,17 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+:root{
+  --primary-color: black;
+  --secondary-color: theme('colors.fp-lime');
+  --tertiary-color: theme('colors.fp-pink');
+}
+
+
+html{
+  background: var(--bg)
+}
+
 @media (min-width: theme('screens.w')) {
   :root {
     font-size: calc(1rem + (20 - 16) * ((100vw - theme('screens.w')) / (1920 - theme('screens.w-unit'))));
@@ -74,6 +85,14 @@ html.no-scroll{
 
 /* gutters */
 
+.section{
+  padding-top: 3rem;
+}
+
+.section:last-child{
+  padding-bottom:3rem;
+}
+
 .gutters,
 .gutters-x{
   padding-left: 1rem;
@@ -92,6 +111,14 @@ html.no-scroll{
 }
 
 @media screen and (min-width: theme('screens.m')){
+  
+  .section{
+    padding-top: 5rem;
+  }
+  
+  .section:last-child{
+    padding-bottom:5rem;
+  }
   
   .gutters,
   .gutters-x{

@@ -8,12 +8,12 @@ export const units = {
 export const headingClasses = {
 	large: 'text-2.5 m:text-3 font-header font-bold uppercase',
 	small: 'text-0.7 font-semibold uppercase tracking-widest',
-	bar: 'flex flex-row items-center before:bg-fp-pink dark:before:bg-fp-lime before:h-0.7 before:w-1.8 before:mr-1'
+	bar: 'flex flex-row items-center before:bg-tertiary dark:before:bg-secondary before:h-0.7 before:w-1.8 before:mr-1'
 }
 
 export const headlineClasses = {
 	heading1: 'text-8 m:text-10 tracking-tight leading-0.9 font-header font-bold uppercase',
-	heading2: 'text-3.6 leading-0.9 font-header font-bold uppercase',
+	heading2: 'text-4 leading-0.9 font-header font-bold uppercase',
 	heading3: 'text-2.9 m:text-3.2 leading-1 font-header font-bold uppercase',
 	heading4: 'text-2.5 m:text-2.8 leading-1 font-header font-bold uppercase',
 	heading5: 'text-2.4 leading-1 font-header font-bold uppercase',
