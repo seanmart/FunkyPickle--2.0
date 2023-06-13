@@ -5,7 +5,7 @@
       <template v-for="item in slice.items">
       
         <div class="flex-auto min-w-20 min-h-25 border border-slate-200 dark:border-slate-700 snap-start snap-always snap-mandatory flex flex-col">
-          <Media :src="item.media.url" class="flex-none h-8" background/>
+          <Media :src="item.media.url" class="flex-none h-10" background/>
           <div class="flex-auto p-2 flex flex-col">
             <h5 class="flex-none" :class="[headingClasses.small,headingClasses.bar]" >{{item.header}}</h5>
             <nuxt-link class="block mt-1 flex-auto" v-if="item.link.url" :to="item.link.url">{{item.text}}</nuxt-link>

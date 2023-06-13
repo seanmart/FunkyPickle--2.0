@@ -1,28 +1,24 @@
 <template>
-	<div class="flex flex-col m:flex-row select-none m:min-h-23" ref="container">
-	  
-	  <Splide ref="images" :options="{...options,...imageOptions}" class="flex-none m:w-1/2 relative" :has-track="false" :style="imageStyles">
-		<SplideTrack class="h-full">
-		  <template v-for="item in store.previews">
-			<SplideSlide class="h-full">
-			  <Image :item="item" class="h-full"/>
-			</SplideSlide>
-		  </template>
-		</SplideTrack>
-		<div class="splide__progress absolute left-0 bottom-0 right-0">
-		  <div class="splide__progress__bar h-0.5 bg-tertiary"/>
-		</div>
-	  </Splide>
-	  
-	  <Splide ref="info" :options="options" class="flex-none m:w-1/2 pb-3 m:pb-0 border-b border-slate-200 dark:border-slate-800 m:border-none" :has-track="false">
-		  <SplideTrack class="h-full">
-			<template v-for="item in store.previews">
-		  	<SplideSlide class="h-full" :style="setStyles(item.secondaryColor)">
-			  	<Content :item="item" class="h-full"/>
-		  	</SplideSlide>
-			</template>
-		</SplideTrack>
-	  </Splide>
+	<div class="grid grid-cols-8 select-none mb-3 m:mb-0 m:gap-2" ref="container">
+		
+		<Splide ref="images" class="col-span-8 m:col-span-4 d:col-span-3 relative " :options="{...options,...imageOptions}" :style="imageStyles" :has-track="false">
+			<SplideTrack class="h-full">
+				<SplideSlide v-for="item in store.previews" class="h-full">
+				  <Image :item="item" class="h-full m:min-h-20"/>
+				</SplideSlide>
+			</SplideTrack>
+			<div class="splide__progress absolute left-0 bottom-0 right-0">
+			  <div class="splide__progress__bar h-0.5 bg-tertiary"/>
+			</div>
+		</Splide>
+		
+		<Splide class="col-span-8 m:col-span-4 d:col-span-5" ref="info" :options="options" :has-track="false">
+			<SplideTrack class="h-full">
+				<SplideSlide v-for="item in store.previews" class="h-full pt-2 m:pt-0" :style="setStyles(item.secondaryColor)">
+					<Content :item="item" class="h-full "/>
+			 	</SplideSlide>
+			 </SplideTrack>
+		</Splide>
 	  
 	</div>
 </template>

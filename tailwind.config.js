@@ -21,7 +21,7 @@ loop(0,100,(i)=> {
     let num = round(i * .1,10)
     rem[`${num}`] = `${num}rem`
 })
-loop(0,100,(i)=>{
+loop(0,150,(i)=>{
     let num = round(.7 + round(i * .01,100),100)
     leading[`${num}`] = num
 })
@@ -97,6 +97,9 @@ export default{
             header:['Saira Extra Condensed']
         },
         extend:{
+            aspectRatio: {
+                '4/3': '4 / 3',
+            },
             gradientColorStopPositions:{...fractions},
             fill: ({theme})=>({...theme('colors')}),
             flex:{...flexfractions},
