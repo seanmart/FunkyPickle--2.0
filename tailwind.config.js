@@ -13,7 +13,7 @@ let border = {DEFAULT:'1px'}
 loop(11,100,(i)=>rem[i] = `${i}rem`)
 loop(1,100,(i)=>px[`${i}px`] = `${i}px`)
 loop(1,18,(i)=>px[`${100 + (i * 50)}px`] = `${100 + (i * 50)}px`)
-loop(1,99,(i)=>vw[`${i}vw`] = `${i}vw`)
+loop(1,199,(i)=>vw[`${i * .5}vw`] = `${i * .5}vw`)
 loop(1,99,(i)=>vh[`${i}vh`] = `${i}vh`)
 loop(2,30,(i)=>border[`${i}`] = `${i}px`)
 loop(1,10,(i)=>zIndex[i] = i)

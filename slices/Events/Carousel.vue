@@ -1,7 +1,7 @@
 <template>
-	<div class="grid grid-cols-8 select-none mb-3 m:mb-0 m:gap-2" ref="container">
+	<div :class="classes.container" ref="container">
 		
-		<Splide ref="images" class="col-span-8 m:col-span-4 d:col-span-3 relative " :options="{...options,...imageOptions}" :style="imageStyles" :has-track="false">
+		<Splide ref="images" :class="classes.image" :options="{...options,...imageOptions}" :style="imageStyles" :has-track="false">
 			<SplideTrack class="h-full">
 				<SplideSlide v-for="item in store.previews" class="h-full">
 				  <Image :item="item" class="h-full m:min-h-20"/>
@@ -12,9 +12,9 @@
 			</div>
 		</Splide>
 		
-		<Splide class="col-span-8 m:col-span-4 d:col-span-5" ref="info" :options="options" :has-track="false">
+		<Splide :class="classes.content" ref="info" :options="options" :has-track="false">
 			<SplideTrack class="h-full">
-				<SplideSlide v-for="item in store.previews" class="h-full pt-2 m:pt-0" :style="setStyles(item.secondaryColor)">
+				<SplideSlide v-for="item in store.previews" class="h-full py-2 m:py-0" :style="setStyles(item.secondaryColor)">
 					<Content :item="item" class="h-full "/>
 			 	</SplideSlide>
 			 </SplideTrack>
@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+	import classes from './classes'
 	import Image from './Image'
 	import Content from './Content'
 	import { Splide,SplideSlide,SplideTrack } from '@splidejs/vue-splide';

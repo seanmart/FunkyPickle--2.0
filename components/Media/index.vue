@@ -22,9 +22,11 @@
     import {isVideo,isImage} from '@/helpers'
     import classes from './classes'
     import {useStore} from '@/stores'
+    import {storeToRefs} from 'pinia'
     
     const store = useStore()
     const video = ref(null)
+    const {loaded} = storeToRefs(store)
     
     const props = defineProps({
         src:{type:String,default:null},
@@ -36,7 +38,11 @@
         background:{type:Boolean,default:false}
     })
     
+    let trigger = null
+    
     store.LOADING(true)
+    
+    watch(loaded,toggleVideo)
     
     onMounted(()=>{
        if(video.value){
@@ -48,9 +54,24 @@
        }
     })
     
+    onUnmounted(()=>{
+       trigger && trigger.kill()
+    })
+    
     function handleVideo(){
        store.LOADING(false)
        video.value.removeEventListener('loadeddata',handleVideo)
+    }
+    
+    function toggleVideo(){
+       if(video.value && (props.background || props.autoplay)){
+           trigger = ScrollTrigger.create({
+              trigger: video.value,
+              start: 'top bottom',
+              end: 'bottom top',
+              onToggle:({isActive})=> isActive ? video.value.play() : video.value.pause()
+           })
+        }
     }
     
 

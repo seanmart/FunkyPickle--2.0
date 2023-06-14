@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@formkit/nuxt": "^0.17.2",
+    "@grcmichael/gscroll": "^1.0.15",
     "@pinia/nuxt": "^0.4.9",
     "@splidejs/vue-splide": "^0.6.12",
     "airtable": "^0.12.1",

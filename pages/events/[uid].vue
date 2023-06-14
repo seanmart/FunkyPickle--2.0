@@ -1,13 +1,10 @@
 <template>
-	<main class="min-h-screen margins-wide dark:text-slate-50">
-		<div v-if="page" :style="styles" class="text-primary">
-			
-			<EventHeader :background="page.background.url" :logo="page.logo.url"/>
-			<!-- <EventCountdown :start="page.start"/> -->
-			<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
-			<EventInformation :name="page.name" :start="page.start" :end="page.end"/>
-			<Sections :sections="page.slices"/>
-		</div>
+	<main v-if="page" :style="styles" class="text-primary margins-wide dark:text-slate-50">
+		<EventHeader :background="page.background.url" :logo="page.logo.url"/>
+		<Navbar v-if="page.navbar.length" :data="page.navbar" :color="page.colorLight"/>
+		<EventCountdown :start="page.start"/>
+		<EventInformation :name="page.name" :start="page.start" :end="page.end"/>
+		<Sections :sections="page.slices"/>
 	</main>
 </template>
 

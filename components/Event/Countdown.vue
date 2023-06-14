@@ -1,21 +1,24 @@
 <template>
-	<div class="text-0.6 m:text-0.7 event-countdown overflow-hidden" v-if="render">
-		<div class="inline-flex gap-0.8 m:gap-1 px-0.8 m:px-1 leading-2.2 rounded bg-slate-200 mb-1">
-			<template v-for="unit in units">
-				<div class="event-countdown-unit flex items-center overflow-hidden relative">
-					<h5 class="mr-1 m:mr-1.2">{{unit.label}}:</h5>
+	<section :class="classes.container" v-if="render">
+		<div :class="classes.wrapper">
+			<template v-for="unit,i in units">
+				<div :class="classes.unit.bar" v-if="i"/>
+				<div :class="[classes.unit.container,headingClasses.noSize]">
+					<h5 :class="classes.unit.label">{{unit.label}}:</h5>
 					<transition name="countdown">
-					<h5 :key="values[unit.key]" class="font-bold absolute top-0 right-0 bottom-0">{{values[unit.key]}}</h5>
+					<h5 :key="values[unit.key]" :class="classes.unit.value">{{values[unit.key]}}</h5>
 					</transition>
 				</div>
 			</template>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script setup>
 	import {toDate} from '@/helpers'
 	const props = defineProps(['start'])
+	import {countdown as classes} from './classes'
+	import {headingClasses} from '/globalClasses'
 	
 	const render = ref(true)
 	const dateStart = Date.parse(toDate(props.start)) + 1000 * 60 * 60 * 8 
@@ -38,9 +41,20 @@
 		render.value = false
 	}
 	
+	onMounted(()=>{
+		window.addEventListener('visibilitychange',handleVisibility)
+	})
+	
 	onBeforeUnmount(()=>{
+		window.removeEventListener('visibilitychange',handleVisibility)
 		interval && clearInterval(interval)
 	})
+	
+	function handleVisibility(e){
+		document.visibilityState === "visible"
+		? (getDiff(), interval = setInterval(getDiff,1000))
+		: clearInterval(interval)
+	}
 	
 	function formatNum(num){
 		return num.toLocaleString('en-US',{minimumIntegerDigits:2})
@@ -65,7 +79,7 @@
 		clearInterval(interval)
 		gsap.timeline({onComplete:()=> render.value = false})
 		.to('.event-countdown-unit',{duration:.25,stagger:.1,y:'-100%'})
-		.to('.event-countdown',{duration:.5,height:0})
+		.to('.event-countdown',{duration:.5,height:0,padding:0})
 	}
 	
 </script>

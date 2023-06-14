@@ -1,8 +1,7 @@
 <template>
 	<section class="margins gutters-x section">
-		<EventCountdown :class="headingClasses.noSize" :start="start"/>
 		<h1 :class="headlineClasses.noSize" class="text-2.5 m:text-3 t:text-3.7 d:text-4.5 d:max-w-50">{{name}}</h1>
-		<h5 :class="headingClasses.medium" class="mt-2">
+		<h5 :class="headingClasses.noSize" class="text-1.2 m:text-1.5 mt-2">
 			<span>{{getDate(start)}}</span>
 			<span class="inline-block mx-0.8">-</span>
 			<span>{{getDate(end)}}</span>

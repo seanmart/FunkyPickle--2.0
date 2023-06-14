@@ -2,7 +2,7 @@
 	
 	<header id="header" class="relative bg-slate-900 text-center py-5 m:py-10 px-2">
 		<PrismicRichText class="relative z-1" :field="title" :htmlSerializer="htmlSerializer"/>
-		<Media class="absolute top-0 left-0 w-full h-full opacity-40" :src="background" background/>
+		<MediaParallax class="absolute top-0 left-0 w-full h-full opacity-40" :src="background" />
 	</header>
 		
 </template>

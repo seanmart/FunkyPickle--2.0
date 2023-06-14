@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-  import {headingClasses} from '@/globalClasses'
+  import {headingClasses,headlineClasses} from '@/globalClasses'
   import {useStore} from '@/stores'
   
   const store = useStore()
@@ -18,7 +18,7 @@
   
   let typeClasses = ''
   if(type == 'Small') typeClasses = `${headingClasses.small} ${headingClasses.bar}`
-  if(!type || type == 'Large') typeClasses = headingClasses.large 
+  if(!type || type == 'Large') typeClasses = headlineClasses.heading5 
 
 
   store.LOADING(true)

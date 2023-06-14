@@ -1,10 +1,17 @@
 <template>
-  <nav ref="nav" id="navbar" class="bg-secondary dark:bg-slate-700 dark:text-slate-50 navbar sticky z-8">
-    <div class="relative margins gutters-x flex pt-1 t:pt-2 overflow-auto no-scrollbar scroll-smooth">
+  <nav ref="nav" id="navbar" :class="classes.container">
+    <div :class="classes.wrapper">
         <template v-for="section,i in data">
-          <a ref="items"  :class="headingClasses.small" class="flex-none mr-3 py-1" :href="section.id" @click="handleClick($event,i)">{{section.label}}</a>
+          
+          <a 
+            ref="items"  
+            :class="[classes.link,headingClasses.small]" 
+            :href="section.id" 
+            @click="handleClick($event,i)"
+          >{{section.label}}</a>
+          
         </template>
-        <i ref="bar" class="absolute bottom-0 left-0 h-0.3 w-0 bg-primary dark:bg-secondary"/>
+        <i ref="bar" :class="classes.bar"/>
     </div>
   </nav>
 </template>
@@ -13,6 +20,7 @@
   import {headingClasses} from '@/globalClasses'
   import {useStore} from '@/stores'
   import {storeToRefs} from 'pinia'
+  import classes from './classes'
   
   const {path} = useRoute()
   const props = defineProps(['data'])

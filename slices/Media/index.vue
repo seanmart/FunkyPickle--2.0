@@ -7,15 +7,8 @@
       'pt-full': slice.primary.height == 'Square',
       'pt-[56.25%]': slice.primary.height == '16/9'
     }]">
-      <Media 
-      :class="classes.media" 
-      :src="slice.primary.media.url" 
-      :controls="!slice.primary.autoplay"
-      :loop="slice.primary.autoplay"
-      :playsinline="slice.primary.autoplay"
-      :muted="slice.primary.autoplay"
-      :autoplay="slice.primary.autoplay"
-      />
+      <Media v-if="!slice.primary.autoplay" :class="classes.media" :src="slice.primary.media.url" controls/>
+      <MediaParallax v-else :class="classes.media" :src="slice.primary.media.url"/>
     </div>
   </div>
 </template>

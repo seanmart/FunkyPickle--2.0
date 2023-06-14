@@ -1,5 +1,5 @@
 <template>
-	<main class="min-h-screen" :class="`margins-${page.margins}`">
+	<main v-if="page" :class="`margins-${page.margins}`">
 		<PageHeader v-if="page.media.url && hasTitle" :background="page.media.url" :title="page.title"/>
 		<Navbar v-if="page.navbar.length" :data="page.navbar"/>
 		<PageTitle v-if="!page.media.url && hasTitle" :title="page.title"/>

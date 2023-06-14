@@ -6,10 +6,8 @@ export const units = {
 }
 
 export const headingClasses = {
-	large: 'text-2.5 m:text-3 font-header font-bold uppercase',
-	medium: 'text-0.9 m:text-1.2 font-semibold uppercase tracking-wider',
+	noSize: 'font-semibold uppercase',
 	small: 'text-0.7 font-semibold uppercase tracking-widest',
-	noSize: 'font-semibold uppercase tracking-widest',
 	bar: 'flex flex-row items-center before:bg-tertiary dark:before:bg-secondary before:h-0.7 before:w-1.8 before:mr-1'
 }
 

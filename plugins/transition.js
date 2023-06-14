@@ -5,11 +5,16 @@ export default defineNuxtPlugin(()=>{
 	
 	const store = useStore()
 	const {loaded} = storeToRefs(store)
+	
+	let first = true
 
 	watch(loaded,(l)=>{
+		let start = first ? .5 : 0
 		gsap.timeline({onComplete:()=> (store.ready = Date.now())})
-			.to('#transition',{y:'-100%', duration:.5, ease: 'power2.in'})
-			.set(['#transition','#page'],{clearProps:'all'})
+			.to('#transition',{y:'-100%', duration:1, ease: 'expo.inOut'},start)
+			.set(['#transition'],{y:0,display:'none'},'>')
+		
+		first = false
 	})
 	
 	addRouteMiddleware('transition',(to,from)=>{
@@ -18,7 +23,7 @@ export default defineNuxtPlugin(()=>{
 		return new Promise((next)=>{
 			gsap.timeline({onComplete:next})
 			.set('#transition',{display:'block',y:'100%'})
-			.to('#transition',{y:'0%', duration:.5, ease: 'power2.out'})
+			.to('#transition',{y:'0%', duration:1, ease: 'expo.inOut'})
 		})
 	},{ global: true })
 })

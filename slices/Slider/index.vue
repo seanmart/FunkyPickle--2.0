@@ -1,10 +1,10 @@
 <template>
   <div ref="container" class="overflow-auto snap-x pb-2 no-scrollbar scroll-smooth gutters-scroll">
-    <div ref="wrapper" class="gutters-x inline-flex flex-row gap-1 m:gap-2 min-w-full">
+    <div ref="wrapper" class="gutters-x inline-flex inline-grid grid-flow-col gap-1 m:gap-2 min-w-full">
       
       <template v-for="item in slice.items">
       
-        <div class="flex-auto min-w-20 min-h-25 border border-slate-200 dark:border-slate-700 snap-start snap-always snap-mandatory flex flex-col">
+        <div class="min-w-20 min-h-25 border border-slate-200 dark:border-slate-700 snap-start snap-always snap-mandatory flex flex-col">
           <Media :src="item.media.url" class="flex-none h-10" background/>
           <div class="flex-auto p-2 flex flex-col">
             <h5 class="flex-none" :class="[headingClasses.small,headingClasses.bar]" >{{item.header}}</h5>

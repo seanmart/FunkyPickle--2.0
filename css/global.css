@@ -88,6 +88,10 @@ html.no-scroll{
   padding-bottom:3rem;
 }
 
+.section-next + .section{
+  padding-top:0
+}
+
 .gutters,
 .gutters-x{
   padding-left: 1rem;
@@ -107,16 +111,25 @@ html.no-scroll{
 
 @media screen and (min-width: theme('screens.m')){
   
+  .m\:section,
   .section{
     padding-top: 5rem;
   }
   
+  .m\:section-next + .section,
+  .m\:section-next + .m\:section{
+    padding-top:0
+  }
+  
+  .m\:section:last-child,
   .section:last-child{
     padding-bottom:5rem;
   }
   
   .gutters,
-  .gutters-x{
+  .m\:gutters,
+  .gutters-x,
+  .m\:gutters-x{
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -131,7 +144,9 @@ html.no-scroll{
 @media screen and (min-width: theme('screens.t')){
   
   .gutters,
-  .gutters-x{
+  .m\:gutters,
+  .gutters-x,
+  .m\:gutters-x{
     padding-left: 4rem;
     padding-right: 4rem;
   }
